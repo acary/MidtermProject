@@ -10,5 +10,7 @@
 
 <h1>Member Token</h1>
 
+${DEBUG}
+
 </body>
 </html>
