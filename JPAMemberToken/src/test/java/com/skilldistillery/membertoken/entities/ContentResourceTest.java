@@ -44,7 +44,7 @@ class ContentResourceTest {
 	}
 
 	@Test
-	@DisplayName("testing purchase mapping user id")
+	@DisplayName("testing contentresource url")
 	void test1() {
 		assertNotNull(contentResource);
 		assertEquals("https://www.nike.com/launch/t/air-jordan-1-stash", contentResource.getResourceUrl());
