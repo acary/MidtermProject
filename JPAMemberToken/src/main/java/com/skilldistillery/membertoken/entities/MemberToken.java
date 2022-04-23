@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -32,6 +34,10 @@ public class MemberToken {
 	
 	@Column(name = "release_date")
 	private LocalDateTime releaseDate;
+	
+	@ManyToOne
+    @JoinColumn(name="actual_item_id")
+    private ActualItem actualItem;
 
 	public MemberToken() {
 		super();
@@ -83,6 +89,14 @@ public class MemberToken {
 
 	public void setTotalSupply(int totalSupply) {
 		this.totalSupply = totalSupply;
+	}
+
+	public ActualItem getActualItem() {
+		return actualItem;
+	}
+
+	public void setActualItem(ActualItem actualItem) {
+		this.actualItem = actualItem;
 	}
 
 	public LocalDateTime getReleaseDate() {

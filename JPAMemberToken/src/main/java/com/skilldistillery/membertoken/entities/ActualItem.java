@@ -1,5 +1,6 @@
 package com.skilldistillery.membertoken.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -7,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -23,6 +25,9 @@ public class ActualItem {
 
 	@Column(name="image_url")
 	private String imageUrl;
+	
+	@OneToMany(mappedBy="actualItem")
+	private List<MemberToken> memberTokens;
 	
 	public ActualItem() {
 		
@@ -60,6 +65,14 @@ public class ActualItem {
 		this.imageUrl = imageUrl;
 	}
 
+	public List<MemberToken> getMemberTokens() {
+		return memberTokens;
+	}
+
+	public void setMemberTokens(List<MemberToken> memberTokens) {
+		this.memberTokens = memberTokens;
+	}
+
 	@Override
 	public String toString() {
 		return "ActualItem [id=" + id + ", name=" + name + ", description=" + description + ", imageUrl=" + imageUrl
@@ -82,6 +95,5 @@ public class ActualItem {
 		ActualItem other = (ActualItem) obj;
 		return id == other.id;
 	}
-	
 	
 }

@@ -47,5 +47,14 @@ class MemberTokenTest {
 		assertNotNull(token);
 		assertEquals("Air Jordan 1 Stash", token.getTokenName() );
 	}
+	
+	@Test
+	void test_membertoken_to_actualItem_mapping() {
+		assertNotNull(token);
+		assertEquals(1, token.getActualItem().getId());
+		assertEquals("Air Jordan 1 Stash", token.getActualItem().getName());
+		assertEquals(null, token.getActualItem().getDescription());
+		assertEquals(null, token.getActualItem().getImageUrl());
+	}
 
 }

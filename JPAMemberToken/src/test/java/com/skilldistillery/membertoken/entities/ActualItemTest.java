@@ -59,5 +59,12 @@ class ActualItemTest {
 		 * 
 		 */
 	}
+	
+	@Test
+	void test_actualitem_to_memberToken_list_mapping() {
+		assertNotNull(actualItem);
+		assertNotNull(actualItem.getMemberTokens());
+		assertTrue(actualItem.getMemberTokens().size() > 0 );
+	}
 
 }
