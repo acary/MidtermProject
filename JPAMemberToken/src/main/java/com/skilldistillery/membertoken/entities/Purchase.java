@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Purchase {
@@ -18,17 +21,19 @@ public class Purchase {
 	@Column(name= "date_time_purchased")
 	private LocalDateTime dateTimePurchased; 
 	
-	@Column(name="member_token_id")
-	private int memberTokenId;
-	
-	@Column(name = "user_id")
-	private int userId;
-	
 
 	private Integer rating;
 
 	@Column(name = "rating_comment")
 	private String ratingComment;
+	
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User customer;
+	
+	@OneToOne
+	@JoinColumn(name="member_token_id")
+	private MemberToken memberToken;
 
 	public Purchase() {
 		super();
@@ -50,22 +55,7 @@ public class Purchase {
 		this.dateTimePurchased = dateTimePurchased;
 	}
 
-	public int getMemberTokenId() {
-		return memberTokenId;
-	}
-
-	public void setMemberTokenId(int memberTokenId) {
-		this.memberTokenId = memberTokenId;
-	}
-
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-
+	
 	public Integer getRating() {
 		return rating;
 	}
@@ -80,6 +70,22 @@ public class Purchase {
 
 	public void setRatingComment(String ratingComment) {
 		this.ratingComment = ratingComment;
+	}
+
+	public User getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(User customer) {
+		this.customer = customer;
+	}
+
+	public MemberToken getMemberToken() {
+		return memberToken;
+	}
+
+	public void setMemberToken(MemberToken memberToken) {
+		this.memberToken = memberToken;
 	}
 
 }

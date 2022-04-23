@@ -1,5 +1,7 @@
 package com.skilldistillery.membertoken.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Content {
@@ -32,6 +35,9 @@ public class Content {
 	@ManyToOne
 	@JoinColumn(name = "member_token_id")
 	private MemberToken memberToken;
+	
+	@OneToMany(mappedBy= "contentItem")
+	private List<ContentResource> contentResources;
 	
 	private String status;
 	
@@ -101,6 +107,14 @@ public class Content {
 
 	public void setMemberToken(MemberToken memberToken) {
 		this.memberToken = memberToken;
+	}
+
+	public List<ContentResource> getContentResources() {
+		return contentResources;
+	}
+
+	public void setContentResources(List<ContentResource> contentResources) {
+		this.contentResources = contentResources;
 	}
 
 	@Override

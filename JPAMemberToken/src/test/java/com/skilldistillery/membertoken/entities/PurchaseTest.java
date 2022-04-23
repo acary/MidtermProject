@@ -57,7 +57,21 @@ class PurchaseTest {
 		assertEquals(21, purchase.getDateTimePurchased().getDayOfMonth());
 
 	}
+	@Test
+	@DisplayName("testing purchase to user mapping")
+	void test3() {
+		assertNotNull(purchase);
+		assertEquals("Becca", purchase.getCustomer().getFirstName());
 
+	}
+
+	@Test
+	@DisplayName("testing purchase to member token mapping")
+	void test4() {
+		assertNotNull(purchase);
+		assertEquals(2, purchase.getMemberToken().getId());
+
+	}
 
 	
 }

@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -14,8 +16,7 @@ public class ContentResource {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(name= "content_id")
-	private int contentId;
+	
 
 	private String title;
 
@@ -23,7 +24,9 @@ public class ContentResource {
 	@Column(name= "resource_url")
 	private String resourceUrl;
 	
-	
+	@ManyToOne
+	@JoinColumn(name = "content_id")
+	private Content contentItem;
 	
 	public ContentResource() {
 		super();
@@ -37,13 +40,6 @@ public class ContentResource {
 		this.id = id;
 	}
 
-	public int getContentId() {
-		return contentId;
-	}
-
-	public void setContentId(int contentId) {
-		this.contentId = contentId;
-	}
 
 	public String getTitle() {
 		return title;
@@ -67,6 +63,14 @@ public class ContentResource {
 
 	public void setResourceUrl(String resourceUrl) {
 		this.resourceUrl = resourceUrl;
+	}
+
+	public Content getContentItem() {
+		return contentItem;
+	}
+
+	public void setContentItem(Content content) {
+		this.contentItem = content;
 	}
 	
 	

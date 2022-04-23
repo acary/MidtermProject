@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -47,6 +48,9 @@ public class MemberToken {
 	
 	@OneToMany(mappedBy="memberToken")
 	private List<Content> contents;
+	
+	@OneToOne(mappedBy="memberToken")
+	private Purchase purchase;
 
 	public MemberToken() {
 		super();
@@ -130,6 +134,14 @@ public class MemberToken {
 
 	public void setContents(List<Content> contents) {
 		this.contents = contents;
+	}
+
+	public Purchase getPurchase() {
+		return purchase;
+	}
+
+	public void setPurchase(Purchase purchase) {
+		this.purchase = purchase;
 	}
 	
 }

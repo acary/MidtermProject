@@ -37,6 +37,10 @@ public class User {
 	
 	@OneToMany(mappedBy="user")
 	private List<Business> businesses;
+	
+	@OneToMany(mappedBy="customer")
+	private List<Purchase> purchases;
+
 
 	public User() {
 		super();
@@ -128,6 +132,14 @@ public class User {
 
 	public void setBusinesses(List<Business> businesses) {
 		this.businesses = businesses;
+	}
+
+	public List<Purchase> getPurchases() {
+		return purchases;
+	}
+
+	public void setPurchases(List<Purchase> purchases) {
+		this.purchases = purchases;
 	}
 
 	@Override

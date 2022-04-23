@@ -50,6 +50,14 @@ class ContentResourceTest {
 		assertEquals("https://www.nike.com/launch/t/air-jordan-1-stash", contentResource.getResourceUrl());
 
 	}
+	@Test
+	@DisplayName("testing contentresource to content mapping")
+	void test2() {
+		assertNotNull(contentResource);
+		assertEquals("Nike Release", contentResource.getContentItem().getTitle());
+
+	}
+	
 	
 
 

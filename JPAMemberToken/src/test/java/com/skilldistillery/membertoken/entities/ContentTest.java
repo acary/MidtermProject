@@ -2,6 +2,7 @@ package com.skilldistillery.membertoken.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -53,5 +54,13 @@ class ContentTest {
 	void test2() {
 		assertNotNull(content);
 		assertEquals("Air Jordan 1 Stash", content.getMemberToken().getTokenName());
+	}
+	
+	@Test
+	@DisplayName("Test Content to ContentResource mapping")
+	void test3() {
+		assertNotNull(content);
+		assertNotNull(content.getContentResources());
+		assertTrue(content.getContentResources().size()>0);
 	}
 }

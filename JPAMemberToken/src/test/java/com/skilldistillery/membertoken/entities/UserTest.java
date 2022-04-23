@@ -57,5 +57,12 @@ class UserTest {
 		assertNotNull(user.getBusinesses());
 		assertTrue(user.getBusinesses().size() > 0);
 	}
+	@Test
+	void test_user_to_customer() {
+		assertNotNull(user);
+		assertNotNull(user.getPurchases());
+		assertTrue(user.getPurchases().size()> 0);
+		
+	}
 
 }
