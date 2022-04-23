@@ -1,8 +1,6 @@
 package com.skilldistillery.membertoken.entities;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -15,11 +13,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class UserTest {
+class MemberTokenTest {
 	
 	private static EntityManagerFactory emf;
 	private static EntityManager em;
-	private User user;
+	private MemberToken token;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -34,22 +32,20 @@ class UserTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		user = em.find(User.class, 1);
+		token = em.find(MemberToken.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		user = null;
+		token = null;
 	}
-	
 
 	@Test
-	@DisplayName("Test User Entity mapping")
-	
+	@DisplayName("Test Member Token Entity mapping")
 	void test() {
-		assertNotNull(user);
-		assertEquals("nikefan", user.getUsername() );
+		assertNotNull(token);
+		assertEquals("Air Jordan 1 Stash", token.getTokenName() );
 	}
 
 }
