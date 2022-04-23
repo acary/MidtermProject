@@ -2,7 +2,7 @@ package com.skilldistillery.membertoken.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -46,10 +46,16 @@ class UserTest {
 
 	@Test
 	@DisplayName("Test User Entity mapping")
-	
 	void test() {
 		assertNotNull(user);
 		assertEquals("nikefan", user.getUsername() );
+	}
+	
+	@Test
+	void test_user_to_business_list_mapping() {
+		assertNotNull(user);
+		assertNotNull(user.getBusinesses());
+		assertTrue(user.getBusinesses().size() > 0);
 	}
 
 }

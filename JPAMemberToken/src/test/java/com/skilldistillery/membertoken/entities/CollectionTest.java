@@ -46,4 +46,10 @@ class CollectionTest {
 		assertNotNull(collection);
 		assertEquals("SNKRS", collection.getName() );
 	}
+	
+	@Test
+	void test_collection_to_business_mapping() {
+		assertNotNull(collection);
+		assertEquals(1, collection.getBusiness().getId());
+	}
 }

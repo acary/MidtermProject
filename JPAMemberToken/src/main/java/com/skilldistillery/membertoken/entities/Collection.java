@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Collection {
@@ -24,6 +26,10 @@ public class Collection {
 
 	@Column(name = "image_url")
 	private String imageUrl;
+	
+	@ManyToOne
+	@JoinColumn(name="business_id")
+	private Business business;
 
 	public int getId() {
 		return id;
@@ -55,6 +61,14 @@ public class Collection {
 
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
+	}
+
+	public Business getBusiness() {
+		return business;
+	}
+
+	public void setBusiness(Business business) {
+		this.business = business;
 	}
 
 	@Override

@@ -2,6 +2,7 @@ package com.skilldistillery.membertoken.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -57,6 +58,32 @@ class BuisnessTest {
 		 *+----+---------------+-------------+------+---------+-----------+
 		 *|  1 | nike@nike.com | nike        | Nike |       1 | NULL      |
 		 *+----+---------------+-------------+------+---------+-----------+
+		 */
+	}
+	
+	@Test
+	void test_business_to_collection_list_mapping() {
+		assertNotNull(business);
+		assertNotNull(business.getCollections());
+		assertTrue(business.getCollections().size() > 0);
+	}
+	
+	@Test
+	void test_business_to_User_mapping() {
+		assertNotNull(business);
+		assertNotNull(business.getUser());
+		assertEquals(1, business.getUser().getId());
+		
+		/*
+		 * SELECT * FROM business WHERE user_id = 1; 
+ 		 *+----+-------------------+-------------+-----------+---------+-----------+
+		 *| id | logo_url          | description | name      | user_id | image_url |
+		 *+----+-------------------+-------------+-----------+---------+-----------+
+		 *|  1 | nike@nike.com     | nike        | Nike      |       1 | NULL      |
+		 *|  2 | tacobell@taco.com | taco        | Taco Bell |       1 | NULL      |
+		 *|  3 | adidas@adidas.com | adidas      | Adidas    |       1 | NULL      |
+		 *+----+-------------------+-------------+-----------+---------+-----------+
+		 * 
 		 */
 	}
 
