@@ -1,5 +1,7 @@
 package com.skilldistillery.membertoken.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Collection {
@@ -30,6 +33,9 @@ public class Collection {
 	@ManyToOne
 	@JoinColumn(name="business_id")
 	private Business business;
+	
+	@OneToMany(mappedBy= "collection")
+	private List<MemberToken> memberTokens;
 
 	public int getId() {
 		return id;
@@ -69,6 +75,14 @@ public class Collection {
 
 	public void setBusiness(Business business) {
 		this.business = business;
+	}
+
+	public List<MemberToken> getMemberTokens() {
+		return memberTokens;
+	}
+
+	public void setMemberTokens(List<MemberToken> memberTokens) {
+		this.memberTokens = memberTokens;
 	}
 
 	@Override

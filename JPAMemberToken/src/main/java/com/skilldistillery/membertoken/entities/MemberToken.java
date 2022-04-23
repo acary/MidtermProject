@@ -1,6 +1,7 @@
 package com.skilldistillery.membertoken.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -38,6 +40,13 @@ public class MemberToken {
 	@ManyToOne
     @JoinColumn(name="actual_item_id")
     private ActualItem actualItem;
+	
+	@ManyToOne
+	@JoinColumn(name = "collection_id")
+	private Collection collection;
+	
+	@OneToMany(mappedBy="memberToken")
+	private List<Content> contents;
 
 	public MemberToken() {
 		super();
@@ -105,6 +114,22 @@ public class MemberToken {
 
 	public void setReleaseDate(LocalDateTime releaseDate) {
 		this.releaseDate = releaseDate;
+	}
+
+	public Collection getCollection() {
+		return collection;
+	}
+
+	public void setCollection(Collection collection) {
+		this.collection = collection;
+	}
+
+	public List<Content> getContents() {
+		return contents;
+	}
+
+	public void setContents(List<Content> contents) {
+		this.contents = contents;
 	}
 	
 }

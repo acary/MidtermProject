@@ -14,7 +14,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class MemberTokenTest {
-	
+
 	private static EntityManagerFactory emf;
 	private static EntityManager em;
 	private MemberToken token;
@@ -45,9 +45,9 @@ class MemberTokenTest {
 	@DisplayName("Test Member Token Entity mapping")
 	void test() {
 		assertNotNull(token);
-		assertEquals("Air Jordan 1 Stash", token.getTokenName() );
+		assertEquals("Air Jordan 1 Stash", token.getTokenName());
 	}
-	
+
 	@Test
 	void test_membertoken_to_actualItem_mapping() {
 		assertNotNull(token);
@@ -55,6 +55,21 @@ class MemberTokenTest {
 		assertEquals("Air Jordan 1 Stash", token.getActualItem().getName());
 		assertEquals(null, token.getActualItem().getDescription());
 		assertEquals(null, token.getActualItem().getImageUrl());
+
 	}
 
+	@Test
+	@DisplayName("Testing member token to collection mapping")
+	void test3() {
+		assertNotNull(token);
+		assertEquals(1, token.getCollection().getId());
+	}
+
+	@Test
+	@DisplayName("Testing member token content mapping")
+	void test4() {
+		assertNotNull(token);
+		assertNotNull(token.getContents());
+		assertTrue(token.getContents().size()>0);
+	}
 }

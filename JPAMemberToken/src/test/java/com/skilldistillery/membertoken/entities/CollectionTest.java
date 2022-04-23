@@ -51,5 +51,15 @@ class CollectionTest {
 	void test_collection_to_business_mapping() {
 		assertNotNull(collection);
 		assertEquals(1, collection.getBusiness().getId());
+		
+	}
+	
+	@Test
+	@DisplayName("Testing Collection to member token mapping")
+	void test3(){
+		assertNotNull(collection);
+		assertNotNull(collection.getMemberTokens());
+		assertTrue(collection.getMemberTokens().size()>0);
+		
 	}
 }

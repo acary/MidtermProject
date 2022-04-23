@@ -48,4 +48,10 @@ class ContentTest {
 		assertEquals("Nike Release", content.getTitle());
 	}
 
+	@Test
+	@DisplayName("Test Content to MemberToken mapping")
+	void test2() {
+		assertNotNull(content);
+		assertEquals("Air Jordan 1 Stash", content.getMemberToken().getTokenName());
+	}
 }

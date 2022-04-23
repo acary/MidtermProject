@@ -23,6 +23,8 @@ public class ContentResource {
 	@Column(name= "resource_url")
 	private String resourceUrl;
 	
+	
+	
 	public ContentResource() {
 		super();
 	}

@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Content {
@@ -26,6 +28,10 @@ public class Content {
 	
 	@Column(name = "access_code")
 	private String accessCode;
+	
+	@ManyToOne
+	@JoinColumn(name = "member_token_id")
+	private MemberToken memberToken;
 	
 	private String status;
 	
@@ -87,6 +93,14 @@ public class Content {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public MemberToken getMemberToken() {
+		return memberToken;
+	}
+
+	public void setMemberToken(MemberToken memberToken) {
+		this.memberToken = memberToken;
 	}
 
 	@Override
