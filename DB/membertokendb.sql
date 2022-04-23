@@ -315,3 +315,13 @@ INSERT INTO `purchase` (`id`, `date_time_purchased`, `member_token_id`, `user_id
 
 COMMIT;
 
+
+-- -----------------------------------------------------
+-- Data for table `content_resource`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `membertokendb`;
+INSERT INTO `content_resource` (`id`, `content_id`, `resource_url`, `title`, `description`) VALUES (1, 1, 'https://www.nike.com/launch/t/air-jordan-1-stash', 'Available 5/3 at 10:00 AM', 'Jordan Brand is bringing a utilitarian attitude to the OG Air Jordan that started it all');
+
+COMMIT;
+
