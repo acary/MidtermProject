@@ -7,8 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="actual_item")
 public class ActualItem {
 
 	@Id
@@ -19,7 +21,7 @@ public class ActualItem {
 
 	private String description;
 
-	@Column(name="img_url")
+	@Column(name="image_url")
 	private String imageUrl;
 	
 	public ActualItem() {

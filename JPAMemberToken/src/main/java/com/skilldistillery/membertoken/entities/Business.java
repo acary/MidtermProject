@@ -21,7 +21,8 @@ public class Business {
 	
 	@Column(name="logo_url")
 	private String logoUrl;
-
+	
+	@Column(name="image_url")
 	private String imageUrl;
 	
 	public Business() {
