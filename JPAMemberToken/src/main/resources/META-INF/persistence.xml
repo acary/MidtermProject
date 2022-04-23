@@ -8,6 +8,13 @@
     </provider>
 
 		<!-- List Entities Here -->
+		<class>com.skilldistillery.membertoken.entities.ActualItem</class>
+		<class>com.skilldistillery.membertoken.entities.Business</class>
+		<class>com.skilldistillery.membertoken.entities.Collection</class>
+		<class>com.skilldistillery.membertoken.entities.Content</class>
+		<class>com.skilldistillery.membertoken.entities.ContentResource</class>
+		<class>com.skilldistillery.membertoken.entities.MemberToken</class>
+		<class>com.skilldistillery.membertoken.entities.Purchase</class>
 		<class>com.skilldistillery.membertoken.entities.User</class>
 
 		<properties>

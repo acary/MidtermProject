@@ -7,16 +7,16 @@ import javax.persistence.Id;
 
 @Entity
 public class User {
- 
-		@Id
-		@GeneratedValue(strategy = GenerationType.IDENTITY)
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
- 
- public User() {
+
+	public User() {
 		super();
 	}
 
-public int getId() {
+	public int getId() {
 		return id;
 	}
 
@@ -32,11 +32,11 @@ public int getId() {
 		this.username = username;
 	}
 
-private String username;
+	private String username;
 
-@Override
-public String toString() {
-	return "User [id=" + id + ", username=" + username + "]";
-}
-	
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + "]";
+	}
+
 }
