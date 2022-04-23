@@ -70,6 +70,14 @@ class MemberTokenTest {
 	void test4() {
 		assertNotNull(token);
 		assertNotNull(token.getContents());
-		assertTrue(token.getContents().size()>0);
+		assertTrue(token.getContents().size() > 0);
+	}
+
+	@Test
+	@DisplayName("Testing member token to user mapping")
+	void test5() {
+		assertNotNull(token);
+//		assertNotNull(token.getUsers());
+//		assertTrue(token.getUsers().size()>0);
 	}
 }

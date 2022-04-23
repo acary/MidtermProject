@@ -1,5 +1,6 @@
 package com.skilldistillery.membertoken.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -7,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -40,6 +44,30 @@ public class User {
 	
 	@OneToMany(mappedBy="customer")
 	private List<Purchase> purchases;
+	
+	@ManyToMany
+	@JoinTable(name = "favorite_token",
+	joinColumns= @JoinColumn(name= "user_id"), 
+	inverseJoinColumns=@JoinColumn(name = "member_token_id")
+	)
+	private List<MemberToken> favorites;
+	
+	
+	public void addFavorite(MemberToken favorite) {
+	    if(favorite == null) favorites = new ArrayList<>();
+	    
+	    if(!favorites.contains(favorite)) {
+	        favorites.add(favorite);
+	        favorite.addUser(this);
+	    }
+	}
+
+	public void removeFavorite(MemberToken favorite) {
+	    if(favorites != null && favorites.contains(favorite)) {
+	        favorites.remove(favorite);
+	        favorite.removeUser(this);
+	    }
+	}
 
 
 	public User() {
@@ -140,6 +168,14 @@ public class User {
 
 	public void setPurchases(List<Purchase> purchases) {
 		this.purchases = purchases;
+	}
+
+	public List<MemberToken> getMemberTokens() {
+		return favorites;
+	}
+
+	public void setMemberTokens(List<MemberToken> memberTokens) {
+		this.favorites = memberTokens;
 	}
 
 	@Override

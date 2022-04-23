@@ -64,5 +64,10 @@ class UserTest {
 		assertTrue(user.getPurchases().size()> 0);
 		
 	}
-
+	@Test
+	void test_user_to_member_token() {
+		assertNotNull(user);
+//		assertNotNull(user.getMemberTokens());
+//		assertTrue(user.getMemberTokens().size()>0);
+	}
 }

@@ -1,6 +1,7 @@
 package com.skilldistillery.membertoken.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -9,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -21,36 +23,39 @@ public class MemberToken {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@Column(name = "token_name")
 	private String tokenName;
-	
+
 	private String description;
-	
+
 	@Column(name = "token_img_url")
 	private String tokenImgUrl;
-	
+
 	private double price;
-	
+
 	@Column(name = "total_supply")
 	private int totalSupply;
-	
+
 	@Column(name = "release_date")
 	private LocalDateTime releaseDate;
-	
+
 	@ManyToOne
-    @JoinColumn(name="actual_item_id")
-    private ActualItem actualItem;
-	
+	@JoinColumn(name = "actual_item_id")
+	private ActualItem actualItem;
+
 	@ManyToOne
 	@JoinColumn(name = "collection_id")
 	private Collection collection;
-	
-	@OneToMany(mappedBy="memberToken")
+
+	@OneToMany(mappedBy = "memberToken")
 	private List<Content> contents;
-	
-	@OneToOne(mappedBy="memberToken")
+
+	@OneToOne(mappedBy = "memberToken")
 	private Purchase purchase;
+
+	@ManyToMany(mappedBy = "favorites")
+	private List<User> users;
 
 	public MemberToken() {
 		super();
@@ -143,5 +148,29 @@ public class MemberToken {
 	public void setPurchase(Purchase purchase) {
 		this.purchase = purchase;
 	}
-	
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+
+	public void addUser(User user) {
+		if (user == null)
+			users = new ArrayList<>();
+
+		if (!users.contains(user)) {
+			users.add(user);
+			user.addFavorite(this);
+		}
+	}
+
+	public void removeUser(User user) {
+		if (users != null && users.contains(user)) {
+			users.remove(user);
+			user.removeFavorite(this);
+		}
+	}
 }
