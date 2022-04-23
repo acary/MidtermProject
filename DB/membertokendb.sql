@@ -22,17 +22,18 @@ DROP TABLE IF EXISTS `user` ;
 
 CREATE TABLE IF NOT EXISTS `user` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `email` VARCHAR(175) NULL,
+  `email` VARCHAR(175) NOT NULL,
   `first_name` VARCHAR(45) NULL,
   `last_name` VARCHAR(45) NULL,
-  `favorites` VARCHAR(45) NULL,
-  `purchases` VARCHAR(45) NULL,
   `username` VARCHAR(45) NULL,
   `password` VARCHAR(45) NULL,
-  `active` TINYINT NULL,
+  `active` TINYINT NOT NULL DEFAULT 1,
   `role` VARCHAR(45) NULL,
+  `profile_image_url` VARCHAR(2000) NULL,
+  `about_me` TEXT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `username_UNIQUE` (`username` ASC))
+  UNIQUE INDEX `username_UNIQUE` (`username` ASC),
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC))
 ENGINE = InnoDB;
 
 
@@ -43,10 +44,18 @@ DROP TABLE IF EXISTS `business` ;
 
 CREATE TABLE IF NOT EXISTS `business` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `email` VARCHAR(75) NULL,
-  `password` VARCHAR(45) NULL,
+  `logo_url` VARCHAR(2000) NULL,
+  `description` TEXT NULL,
   `name` VARCHAR(45) NULL,
-  PRIMARY KEY (`id`))
+  `user_id` INT NOT NULL,
+  `image_url` VARCHAR(2000) NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_business_user1_idx` (`user_id` ASC),
+  CONSTRAINT `fk_business_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -58,7 +67,9 @@ DROP TABLE IF EXISTS `collection` ;
 CREATE TABLE IF NOT EXISTS `collection` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
-  `business_id` INT NULL,
+  `business_id` INT NOT NULL,
+  `image_url` VARCHAR(2000) NULL,
+  `description` TEXT NULL,
   PRIMARY KEY (`id`),
   INDEX `business_id_idx` (`business_id` ASC),
   CONSTRAINT `fk_business_id`
@@ -66,6 +77,20 @@ CREATE TABLE IF NOT EXISTS `collection` (
     REFERENCES `business` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `actual_item`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `actual_item` ;
+
+CREATE TABLE IF NOT EXISTS `actual_item` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(100) NULL,
+  `description` TEXT NULL,
+  `image_url` VARCHAR(2000) NULL,
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
@@ -80,33 +105,21 @@ CREATE TABLE IF NOT EXISTS `member_token` (
   `token_img_url` VARCHAR(1000) NULL,
   `price` DECIMAL(10,2) NULL,
   `total_supply` INT NULL,
-  `token_purchases` VARCHAR(45) NULL,
   `release_date` DATETIME NULL,
-  `collection_id` INT NULL,
+  `collection_id` INT NOT NULL,
+  `actual_item_id` INT NOT NULL,
+  `description` TEXT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_member_token_collection1_idx` (`collection_id` ASC),
+  INDEX `fk_member_token_actual_item1_idx` (`actual_item_id` ASC),
   CONSTRAINT `fk_member_token_collection1`
     FOREIGN KEY (`collection_id`)
     REFERENCES `collection` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `actual_item`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `actual_item` ;
-
-CREATE TABLE IF NOT EXISTS `actual_item` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(100) NULL,
-  `membership_token_id` INT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `membership_token_id_idx` (`membership_token_id` ASC),
-  CONSTRAINT `fk_membership_token_id`
-    FOREIGN KEY (`membership_token_id`)
-    REFERENCES `member_token` (`id`)
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_member_token_actual_item1`
+    FOREIGN KEY (`actual_item_id`)
+    REFERENCES `actual_item` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -124,17 +137,10 @@ CREATE TABLE IF NOT EXISTS `content` (
   `text_content` VARCHAR(100) NULL,
   `image_url` VARCHAR(150) NULL,
   `access_code` VARCHAR(45) NULL,
-  `business_id` INT NULL,
-  `member_token_id` INT NULL,
+  `member_token_id` INT NOT NULL,
   `status` VARCHAR(100) NULL,
   PRIMARY KEY (`id`),
-  INDEX `business_id_idx` (`business_id` ASC),
   INDEX `fk_content_member_token1_idx` (`member_token_id` ASC),
-  CONSTRAINT `business_id`
-    FOREIGN KEY (`business_id`)
-    REFERENCES `business` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT `fk_content_member_token1`
     FOREIGN KEY (`member_token_id`)
     REFERENCES `member_token` (`id`)
@@ -151,8 +157,10 @@ DROP TABLE IF EXISTS `purchase` ;
 CREATE TABLE IF NOT EXISTS `purchase` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `date_time_purchased` DATETIME NULL,
-  `member_token_id` INT NULL,
-  `user_id` INT NULL,
+  `member_token_id` INT NOT NULL,
+  `user_id` INT NOT NULL,
+  `rating` INT NULL,
+  `rating_comment` TEXT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_purchase_member_token1_idx` (`member_token_id` ASC),
   INDEX `fk_purchase_user1_idx` (`user_id` ASC),
@@ -164,6 +172,51 @@ CREATE TABLE IF NOT EXISTS `purchase` (
   CONSTRAINT `fk_purchase_user1`
     FOREIGN KEY (`user_id`)
     REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `favorite_token`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `favorite_token` ;
+
+CREATE TABLE IF NOT EXISTS `favorite_token` (
+  `user_id` INT NOT NULL,
+  `member_token_id` INT NOT NULL,
+  PRIMARY KEY (`user_id`, `member_token_id`),
+  INDEX `fk_user_has_member_token_member_token1_idx` (`member_token_id` ASC),
+  INDEX `fk_user_has_member_token_user1_idx` (`user_id` ASC),
+  CONSTRAINT `fk_user_has_member_token_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_user_has_member_token_member_token1`
+    FOREIGN KEY (`member_token_id`)
+    REFERENCES `member_token` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `content_resource`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `content_resource` ;
+
+CREATE TABLE IF NOT EXISTS `content_resource` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `content_id` INT NOT NULL,
+  `resource_url` VARCHAR(2000) NULL,
+  `title` VARCHAR(2000) NULL,
+  `description` TEXT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_content_resource_content1_idx` (`content_id` ASC),
+  CONSTRAINT `fk_content_resource_content1`
+    FOREIGN KEY (`content_id`)
+    REFERENCES `content` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -184,9 +237,9 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `membertokendb`;
-INSERT INTO `user` (`id`, `email`, `first_name`, `last_name`, `favorites`, `purchases`, `username`, `password`, `active`, `role`) VALUES (1, 'nikefan@gmail.com', 'James', 'Toney', '0', '1', 'nikefan', 'nikefan', 1, 'user');
-INSERT INTO `user` (`id`, `email`, `first_name`, `last_name`, `favorites`, `purchases`, `username`, `password`, `active`, `role`) VALUES (2, 'tacobellfan@gmail.com', 'Becca', 'Greene', '1', '1', 'tacobellfan', 'tacobellfan', NULL, 'user');
-INSERT INTO `user` (`id`, `email`, `first_name`, `last_name`, `favorites`, `purchases`, `username`, `password`, `active`, `role`) VALUES (3, 'adidasfan@gmail.com', 'Tim', 'Stanley', '0', '1', 'adidasfan', 'adidasfan', NULL, 'user');
+INSERT INTO `user` (`id`, `email`, `first_name`, `last_name`, `username`, `password`, `active`, `role`, `profile_image_url`, `about_me`) VALUES (1, 'nikefan@gmail.com', 'James', 'Toney', 'nikefan', 'nikefan', 1, 'user', NULL, NULL);
+INSERT INTO `user` (`id`, `email`, `first_name`, `last_name`, `username`, `password`, `active`, `role`, `profile_image_url`, `about_me`) VALUES (2, 'tacobellfan@gmail.com', 'Becca', 'Greene', 'tacobellfan', 'tacobellfan', DEFAULT, 'user', NULL, NULL);
+INSERT INTO `user` (`id`, `email`, `first_name`, `last_name`, `username`, `password`, `active`, `role`, `profile_image_url`, `about_me`) VALUES (3, 'adidasfan@gmail.com', 'Tim', 'Stanley', 'adidasfan', 'adidasfan', DEFAULT, 'user', NULL, NULL);
 
 COMMIT;
 
@@ -196,9 +249,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `membertokendb`;
-INSERT INTO `business` (`id`, `email`, `password`, `name`) VALUES (1, 'nike@nike.com', 'nike', 'Nike');
-INSERT INTO `business` (`id`, `email`, `password`, `name`) VALUES (2, 'tacobell@taco.com', 'taco', 'Taco Bell');
-INSERT INTO `business` (`id`, `email`, `password`, `name`) VALUES (3, 'adidas@adidas.com', 'adidas', 'Adidas');
+INSERT INTO `business` (`id`, `logo_url`, `description`, `name`, `user_id`, `image_url`) VALUES (1, 'nike@nike.com', 'nike', 'Nike', 1, NULL);
+INSERT INTO `business` (`id`, `logo_url`, `description`, `name`, `user_id`, `image_url`) VALUES (2, 'tacobell@taco.com', 'taco', 'Taco Bell', 1, NULL);
+INSERT INTO `business` (`id`, `logo_url`, `description`, `name`, `user_id`, `image_url`) VALUES (3, 'adidas@adidas.com', 'adidas', 'Adidas', 1, NULL);
 
 COMMIT;
 
@@ -208,21 +261,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `membertokendb`;
-INSERT INTO `collection` (`id`, `name`, `business_id`) VALUES (1, 'SNKRS', 1);
-INSERT INTO `collection` (`id`, `name`, `business_id`) VALUES (2, 'Tacotastic', 2);
-INSERT INTO `collection` (`id`, `name`, `business_id`) VALUES (3, 'Stripe Life', 3);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `member_token`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `membertokendb`;
-INSERT INTO `member_token` (`id`, `token_name`, `token_img_url`, `price`, `total_supply`, `token_purchases`, `release_date`, `collection_id`) VALUES (1, 'Air Jordan 1 Stash', 'https://secure-images.nike.com/is/image/DotCom/DN4336_001_A_PREM', 1000, 100, '0', '2022-05-03', NULL);
-INSERT INTO `member_token` (`id`, `token_name`, `token_img_url`, `price`, `total_supply`, `token_purchases`, `release_date`, `collection_id`) VALUES (2, 'Mexican Pizza', 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.today.com%2Ffood%2Frestaurants%2Fmexican-pizza-taco-bell-returning-rcna24652&psig=AOvVaw3ukNTVite-nuHVxXM0mW7_&ust=1650744860801000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCJjWs_y9qPcCFQAAAAAdAAAAABAD', 1000, 100, '1', '2022-05-19', NULL);
-INSERT INTO `member_token` (`id`, `token_name`, `token_img_url`, `price`, `total_supply`, `token_purchases`, `release_date`, `collection_id`) VALUES (3, 'Superstar Parley', 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/59a9d67b4de1483190cbadf90089b3f8_9366/Superstar_Parley_Shoes_White_GV7615_01_standard.jpg', 1000, 100, '0', '2022-05-20', NULL);
+INSERT INTO `collection` (`id`, `name`, `business_id`, `image_url`, `description`) VALUES (1, 'SNKRS', 1, NULL, NULL);
+INSERT INTO `collection` (`id`, `name`, `business_id`, `image_url`, `description`) VALUES (2, 'Tacotastic', 2, NULL, NULL);
+INSERT INTO `collection` (`id`, `name`, `business_id`, `image_url`, `description`) VALUES (3, 'Stripe Life', 3, NULL, NULL);
 
 COMMIT;
 
@@ -232,9 +273,21 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `membertokendb`;
-INSERT INTO `actual_item` (`id`, `name`, `membership_token_id`) VALUES (1, 'Air Jordan 1 Stash', 1);
-INSERT INTO `actual_item` (`id`, `name`, `membership_token_id`) VALUES (2, 'Mexican Pizza', 2);
-INSERT INTO `actual_item` (`id`, `name`, `membership_token_id`) VALUES (3, 'Superstar Parley', 3);
+INSERT INTO `actual_item` (`id`, `name`, `description`, `image_url`) VALUES (1, 'Air Jordan 1 Stash', NULL, NULL);
+INSERT INTO `actual_item` (`id`, `name`, `description`, `image_url`) VALUES (2, 'Mexican Pizza', NULL, NULL);
+INSERT INTO `actual_item` (`id`, `name`, `description`, `image_url`) VALUES (3, 'Superstar Parley', NULL, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `member_token`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `membertokendb`;
+INSERT INTO `member_token` (`id`, `token_name`, `token_img_url`, `price`, `total_supply`, `release_date`, `collection_id`, `actual_item_id`, `description`) VALUES (1, 'Air Jordan 1 Stash', 'https://secure-images.nike.com/is/image/DotCom/DN4336_001_A_PREM', 1000, 100, '2022-05-03', 1, 1, NULL);
+INSERT INTO `member_token` (`id`, `token_name`, `token_img_url`, `price`, `total_supply`, `release_date`, `collection_id`, `actual_item_id`, `description`) VALUES (2, 'Mexican Pizza', 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.today.com%2Ffood%2Frestaurants%2Fmexican-pizza-taco-bell-returning-rcna24652&psig=AOvVaw3ukNTVite-nuHVxXM0mW7_&ust=1650744860801000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCJjWs_y9qPcCFQAAAAAdAAAAABAD', 1000, 100, '2022-05-19', 1, 1, NULL);
+INSERT INTO `member_token` (`id`, `token_name`, `token_img_url`, `price`, `total_supply`, `release_date`, `collection_id`, `actual_item_id`, `description`) VALUES (3, 'Superstar Parley', 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/59a9d67b4de1483190cbadf90089b3f8_9366/Superstar_Parley_Shoes_White_GV7615_01_standard.jpg', 1000, 100, '2022-05-20', 1, 1, NULL);
 
 COMMIT;
 
@@ -244,10 +297,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `membertokendb`;
-INSERT INTO `content` (`id`, `title`, `description`, `text_content`, `image_url`, `access_code`, `business_id`, `member_token_id`, `status`) VALUES (1, 'Nike Release', 'Be the first to gain access to the upcoming premiere with this exclusive asset.', 'Offered by: Nike', 'https://images.unsplash.com/photo-1513151233558-d860c5398176', 'nike', 1, 1, 'draft');
-INSERT INTO `content` (`id`, `title`, `description`, `text_content`, `image_url`, `access_code`, `business_id`, `member_token_id`, `status`) VALUES (2, 'Taco Bell Release', 'Be the first to gain access to the upcoming premiere with this exclusive asset.', 'Offered by: Taco Bell', 'https://images.unsplash.com/photo-1513151233558-d860c5398176', 'tacobell', 2, 2, 'scheduled');
-INSERT INTO `content` (`id`, `title`, `description`, `text_content`, `image_url`, `access_code`, `business_id`, `member_token_id`, `status`) VALUES (3, 'Adidas Release', 'Be the first to gain access to the upcoming premiere with this exclusive asset.', 'Offered by: Adidas', 'https://images.unsplash.com/photo-1513151233558-d860c5398176', 'adidas', 3, 3, 'published');
-INSERT INTO `content` (`id`, `title`, `description`, `text_content`, `image_url`, `access_code`, `business_id`, `member_token_id`, `status`) VALUES (DEFAULT, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `content` (`id`, `title`, `description`, `text_content`, `image_url`, `access_code`, `member_token_id`, `status`) VALUES (1, 'Nike Release', 'Be the first to gain access to the upcoming premiere with this exclusive asset.', 'Offered by: Nike', 'https://images.unsplash.com/photo-1513151233558-d860c5398176', 'nike', 1, 'draft');
+INSERT INTO `content` (`id`, `title`, `description`, `text_content`, `image_url`, `access_code`, `member_token_id`, `status`) VALUES (2, 'Taco Bell Release', 'Be the first to gain access to the upcoming premiere with this exclusive asset.', 'Offered by: Taco Bell', 'https://images.unsplash.com/photo-1513151233558-d860c5398176', 'tacobell', 2, 'scheduled');
+INSERT INTO `content` (`id`, `title`, `description`, `text_content`, `image_url`, `access_code`, `member_token_id`, `status`) VALUES (3, 'Adidas Release', 'Be the first to gain access to the upcoming premiere with this exclusive asset.', 'Offered by: Adidas', 'https://images.unsplash.com/photo-1513151233558-d860c5398176', 'adidas', 3, 'published');
 
 COMMIT;
 
@@ -257,9 +309,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `membertokendb`;
-INSERT INTO `purchase` (`id`, `date_time_purchased`, `member_token_id`, `user_id`) VALUES (1, '2022-04-21', 1, 1);
-INSERT INTO `purchase` (`id`, `date_time_purchased`, `member_token_id`, `user_id`) VALUES (2, '2022-04-21', 2, 2);
-INSERT INTO `purchase` (`id`, `date_time_purchased`, `member_token_id`, `user_id`) VALUES (3, '2022-04-21', 3, 3);
+INSERT INTO `purchase` (`id`, `date_time_purchased`, `member_token_id`, `user_id`, `rating`, `rating_comment`) VALUES (1, '2022-04-21', 1, 1, NULL, NULL);
+INSERT INTO `purchase` (`id`, `date_time_purchased`, `member_token_id`, `user_id`, `rating`, `rating_comment`) VALUES (2, '2022-04-21', 2, 2, NULL, NULL);
+INSERT INTO `purchase` (`id`, `date_time_purchased`, `member_token_id`, `user_id`, `rating`, `rating_comment`) VALUES (3, '2022-04-21', 3, 3, NULL, NULL);
 
 COMMIT;
 
