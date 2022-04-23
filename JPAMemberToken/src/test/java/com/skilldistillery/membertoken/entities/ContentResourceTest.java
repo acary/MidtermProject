@@ -34,7 +34,7 @@ class ContentResourceTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		contentResource = em.find(ContentResource.class, 2);
+		contentResource = em.find(ContentResource.class, 1);
 	}
 
 	@AfterEach
