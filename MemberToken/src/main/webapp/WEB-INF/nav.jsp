@@ -26,6 +26,7 @@
 								<li><a class="dropdown-item" href="allUser.do">User</a></li>
 								<li><a class="dropdown-item" href="allPurchases.do">Purchases</a></li>
 								<li><a class="dropdown-item" href="login.do">Login</a></li>
+								<li><a class="dropdown-item" href="logout.do">Logout</a></li>
 								
 							</ul></li>
 

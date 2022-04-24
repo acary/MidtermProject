@@ -33,20 +33,19 @@ public class LoginController {
 
 	@RequestMapping(path = "login.do", method= RequestMethod.POST )
 	public String tryLogIn(User user, HttpSession session) {
-			//TODO: FIXME 
 			User u = dao.findUserByEmailAndPass(user.getEmail(), user.getPassword());
-			
+			System.out.println(user == null);
 			if (u == null) {
 				return "redirect:login.do";
 			} 
 			session.setAttribute("user", u);
-			return "account";
+			return "showUser";
 	}
 
 	@RequestMapping("logout.do") 
 	public String logout (HttpSession session) {
 		session.removeAttribute("user");
-		return "redirect:index.do";
+		return "redirect:home.do";
 	}
 	
 }
