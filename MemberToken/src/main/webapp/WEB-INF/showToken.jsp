@@ -5,20 +5,27 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MBR TKN: Collect Unique Assets and Gain Access!</title>
+<title>Token Details</title>
 <jsp:include page="bootstrapHead.jsp" />
 </head>
 <body>
-
 	<div class="container">
 		<jsp:include page="nav.jsp" />
 	</div>
-	
 	<div class="container">
-		<h1>MBR TKN</h1>
+		<h1>Token Details</h1>
 
-		<a href="all.do"><button class="btn btn-primary">Show All Tokens</button></a>
-
+		<div>
+			<h5>${tkn.tokenName}</h5>
+			
+			<br>
+			<p>${tkn.description}</p>
+			
+			<hr>
+			
+			<a href=""><button type="button" class="btn btn-primary">Update</button></a>
+			<a href=""><button type="button" class="btn btn-danger">Delete</button></a>
+		</div>
 	</div>
 
 	<jsp:include page="footer.jsp" />
