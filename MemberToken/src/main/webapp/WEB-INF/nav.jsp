@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 		<nav class="navbar navbar-expand-lg navbar-light"
 			style="background-color: #68C5DB;">
 			<div class="container-fluid">
@@ -25,8 +26,13 @@
 								<li><a class="dropdown-item" href="allCollection.do">Collection</a></li>
 								<li><a class="dropdown-item" href="allUser.do">User</a></li>
 								<li><a class="dropdown-item" href="allPurchases.do">Purchases</a></li>
+								<c:if test="${empty user}">
 								<li><a class="dropdown-item" href="login.do">Login</a></li>
+								</c:if>
+								<c:if test="${not empty user}">
+								<li><a class="dropdown-item" href="account.do">Account</a></li>
 								<li><a class="dropdown-item" href="logout.do">Logout</a></li>
+								</c:if>
 								
 							</ul></li>
 
