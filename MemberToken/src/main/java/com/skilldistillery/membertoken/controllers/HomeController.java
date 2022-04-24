@@ -8,9 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.skilldistillery.membertoken.data.UserDAO;
+import com.skilldistillery.membertoken.entities.ActualItem;
 import com.skilldistillery.membertoken.entities.Business;
-import com.skilldistillery.membertoken.entities.Content;
 import com.skilldistillery.membertoken.entities.Collection;
+import com.skilldistillery.membertoken.entities.Content;
 import com.skilldistillery.membertoken.entities.MemberToken;
 
 @Controller
@@ -24,10 +25,30 @@ public class HomeController {
 		model.addAttribute("DEBUG", dao.findById(1));
 		return "home";
 	}
+	
+	/*
+	 * Actual Item
+	 */
+	
+	@RequestMapping(path = { "/allActualItem", "allActualItem.do" })
+	public String indexActualItem(Model model) {
+		List<ActualItem> actualItemList = dao.findAllActualItem();
+		model.addAttribute("allActualItem", actualItemList);
+		return "allActualItem";
+	}
+
+	@RequestMapping(path = "getActualItem.do")
+	public String showActualItem(Integer actualItemId, Model model) {
+		actualItemId = Integer.valueOf(actualItemId);
+		ActualItem actualItem = dao.findActualItemById(actualItemId);
+		model.addAttribute("actualItem", actualItem);
+		return "showActualItem";
+	}
 
 	/*
 	 * Token
 	 */
+	
 	@RequestMapping(path = { "/all", "all.do" })
 	public String index(Model model) {
 		List<MemberToken> tkns = dao.findAllTokens();
@@ -46,6 +67,7 @@ public class HomeController {
 	/*
 	 * Business
 	 */
+	
 	@RequestMapping(path = { "/allBusinesses", "allBusinesses.do" })
 	public String indexBusiness(Model model) {
 		List<Business> business = dao.findAllBusinesses();
@@ -64,6 +86,7 @@ public class HomeController {
 	/*
 	 * Content
 	 */
+	
 	@RequestMapping(path = { "/allContent", "allContent.do" })
 	public String indexContent(Model model) {
 		List<Content> content = dao.findAllContent();

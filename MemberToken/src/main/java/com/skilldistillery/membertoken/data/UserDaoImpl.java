@@ -8,9 +8,10 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.membertoken.entities.ActualItem;
 import com.skilldistillery.membertoken.entities.Business;
-import com.skilldistillery.membertoken.entities.Content;
 import com.skilldistillery.membertoken.entities.Collection;
+import com.skilldistillery.membertoken.entities.Content;
 import com.skilldistillery.membertoken.entities.MemberToken;
 import com.skilldistillery.membertoken.entities.User;
 
@@ -25,6 +26,24 @@ public class UserDaoImpl implements UserDAO {
 	public User findById(int userId) {
 		return em.find(User.class, userId);
 	}
+	
+	/*
+	 * Actual Item
+	 */
+	
+	@Override
+	public List<ActualItem> findAllActualItem() {
+		String jpql = "SELECT item FROM ActualItem item";
+		return em.createQuery(jpql, ActualItem.class).getResultList();
+	}
+
+	@Override
+	public ActualItem findActualItemById(Integer actualItemId) {
+		actualItemId = Integer.valueOf(actualItemId);
+		String jpql = "SELECT item FROM ActualItem item WHERE item.id = :actualItemId";
+		return em.createQuery(jpql, ActualItem.class).setParameter("actualItemId", actualItemId).getResultList().get(0);
+	}
+	
 
 	/*
 	 * Token
