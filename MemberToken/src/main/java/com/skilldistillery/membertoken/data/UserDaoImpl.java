@@ -110,8 +110,8 @@ public class UserDaoImpl implements UserDAO {
 	@Override
 	public ContentResource findContentResourceById(Integer contentResourceId) {
 		Integer crId = Integer.valueOf(contentResourceId);
-		String jpql = "SELECT cr FROM ContentResource cr WHERE cr.id = :crid";
-		return em.createQuery(jpql, ContentResource.class).setParameter("crid", crId).getResultList().get(0);
+		String jpql = "SELECT cr FROM ContentResource cr WHERE cr.id = :crId";
+		return em.createQuery(jpql, ContentResource.class).setParameter("crId", crId).getResultList().get(0);
 	}
 	
 	/*
