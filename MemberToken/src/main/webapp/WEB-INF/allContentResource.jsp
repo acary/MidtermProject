@@ -37,7 +37,7 @@
 				<c:forEach var="cr" items="${allContentResource}">
 					<tr>
 						<td>${cr.id}</td>
-						<td><a href="getContentResource.do?crid=${cr.id}">${cr.title}</a></td>
+						<td><a href="getContentResource.do?crId=${cr.id}">${cr.title}</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>

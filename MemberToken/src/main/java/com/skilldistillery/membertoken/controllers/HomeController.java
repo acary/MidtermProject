@@ -116,9 +116,9 @@ public class HomeController {
 	}
 
 	@RequestMapping(path = "getContentResource.do")
-	public String showContentResource(Integer contentResourceId, Model model) {
-		contentResourceId = Integer.valueOf(contentResourceId);
-		ContentResource contentResource = dao.findContentResourceById(contentResourceId);
+	public String showContentResource(Integer crId, Model model) {
+		crId = Integer.valueOf(crId);
+		ContentResource contentResource = dao.findContentResourceById(crId);
 		model.addAttribute("contentResource", contentResource);
 		return "showContentResource";
 	}
