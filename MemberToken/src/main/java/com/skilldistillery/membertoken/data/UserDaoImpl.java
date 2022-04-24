@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.membertoken.entities.Business;
+import com.skilldistillery.membertoken.entities.Content;
 import com.skilldistillery.membertoken.entities.MemberToken;
 import com.skilldistillery.membertoken.entities.User;
 
@@ -55,5 +56,20 @@ public class UserDaoImpl implements UserDAO {
 		String jpql = "SELECT bus FROM Business bus WHERE bus.id = :bid";
 		return em.createQuery(jpql, Business.class).setParameter("bid", busId).getResultList().get(0);
 	}
+	/*
+	 * Content
+	 */
+	@Override
+	public List<Content> findAllContent() {
+		String jpql = "SELECT content FROM Content content";
+		return em.createQuery(jpql, Content.class).getResultList();
+	}
 
+	@Override
+	public Content findContentById(Integer cid) {
+		Integer contId = Integer.valueOf(cid);
+		String jpql = "SELECT cont FROM Content cont WHERE cont.id = :cid";
+		return em.createQuery(jpql, Content.class).setParameter("cid", contId).getResultList().get(0);
+	}
+	
 }

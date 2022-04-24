@@ -9,19 +9,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.skilldistillery.membertoken.data.UserDAO;
 import com.skilldistillery.membertoken.entities.Business;
+import com.skilldistillery.membertoken.entities.Content;
 import com.skilldistillery.membertoken.entities.MemberToken;
 
 @Controller
 public class HomeController {
-	
+
 	@Autowired
 	private UserDAO dao;
-	
-	@RequestMapping(path = {"/", "home.do"})
+
+	@RequestMapping(path = { "/", "home.do" })
 	public String home(Model model) {
 		model.addAttribute("DEBUG", dao.findById(1));
 		return "home";
 	}
+
 	/*
 	 * Token
 	 */
@@ -40,7 +42,6 @@ public class HomeController {
 		return "showToken";
 	}
 
-	
 	/*
 	 * Business
 	 */
@@ -57,5 +58,23 @@ public class HomeController {
 		Business business = dao.findBusinessById(bid);
 		model.addAttribute("business", business);
 		return "showBusiness";
+	}
+
+	/*
+	 * Content
+	 */
+	@RequestMapping(path = { "/allContent", "allContent.do" })
+	public String indexContent(Model model) {
+		List<Content> content = dao.findAllContent();
+		model.addAttribute("allContent", content);
+		return "allContent";
+	}
+
+	@RequestMapping(path = "getContent.do")
+	public String showContent(Integer cid, Model model) {
+		cid = Integer.valueOf(cid);
+		Content content = dao.findContentById(cid);
+		model.addAttribute("content", content);
+		return "showContent";
 	}
 }

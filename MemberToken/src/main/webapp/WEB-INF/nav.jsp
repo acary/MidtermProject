@@ -18,9 +18,8 @@
 								Search </a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 								<li><a class="dropdown-item" href="all.do">All Tokens</a></li>
-								<li><a class="dropdown-item" href="all.do">Token By ID</a></li>
 								<li><a class="dropdown-item" href="allBusinesses.do">All Businesses</a></li>
-								<li><a class="dropdown-item" href="allBusinesses.do">Business By Id</a></li>
+								<li><a class="dropdown-item" href="allContent.do">All Content</a></li>
 							</ul></li>
 
 						<li class="nav-item dropdown"><a
