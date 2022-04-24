@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.skilldistillery.membertoken.data.UserDAO;
 import com.skilldistillery.membertoken.entities.Business;
 import com.skilldistillery.membertoken.entities.Content;
+import com.skilldistillery.membertoken.entities.Collection;
 import com.skilldistillery.membertoken.entities.MemberToken;
 
 @Controller
@@ -76,5 +77,24 @@ public class HomeController {
 		Content content = dao.findContentById(cid);
 		model.addAttribute("content", content);
 		return "showContent";
+	}
+	
+	/*
+	 * Collection
+	 */
+	
+	@RequestMapping(path = { "/allCollection", "allCollection.do" })
+	public String indexCollection(Model model) {
+		List<Collection> colList = dao.findAllCollection();
+		model.addAttribute("allCollection", colList);
+		return "allCollection";
+	}
+
+	@RequestMapping(path = "getCollection.do")
+	public String showCollection(Integer cid, Model model) {
+		cid = Integer.valueOf(cid);
+		Collection col = dao.findCollectionById(cid);
+		model.addAttribute("collection", col);
+		return "showCollection";
 	}
 }

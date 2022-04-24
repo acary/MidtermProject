@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.membertoken.entities.Business;
 import com.skilldistillery.membertoken.entities.Content;
+import com.skilldistillery.membertoken.entities.Collection;
 import com.skilldistillery.membertoken.entities.MemberToken;
 import com.skilldistillery.membertoken.entities.User;
 
@@ -28,6 +29,7 @@ public class UserDaoImpl implements UserDAO {
 	/*
 	 * Token
 	 */
+	
 	@Override
 	public List<MemberToken> findAllTokens() {
 		String jpql = "SELECT tkn FROM MemberToken tkn";
@@ -44,6 +46,7 @@ public class UserDaoImpl implements UserDAO {
 	/*
 	 * Business
 	 */
+	
 	@Override
 	public List<Business> findAllBusinesses() {
 		String jpql = "SELECT business FROM Business business";
@@ -56,9 +59,11 @@ public class UserDaoImpl implements UserDAO {
 		String jpql = "SELECT bus FROM Business bus WHERE bus.id = :bid";
 		return em.createQuery(jpql, Business.class).setParameter("bid", busId).getResultList().get(0);
 	}
+	
 	/*
 	 * Content
 	 */
+	
 	@Override
 	public List<Content> findAllContent() {
 		String jpql = "SELECT content FROM Content content";
@@ -70,6 +75,23 @@ public class UserDaoImpl implements UserDAO {
 		Integer contId = Integer.valueOf(cid);
 		String jpql = "SELECT cont FROM Content cont WHERE cont.id = :cid";
 		return em.createQuery(jpql, Content.class).setParameter("cid", contId).getResultList().get(0);
+	}
+	
+	/*
+	 * Collection
+	 */
+	
+	@Override
+	public List<Collection> findAllCollection() {
+		String jpql = "SELECT c FROM Collection c";
+		return em.createQuery(jpql, Collection.class).getResultList();
+	}
+
+	@Override
+	public Collection findCollectionById(Integer cid) {
+		Integer colId = Integer.valueOf(cid);
+		String jpql = "SELECT c FROM Collection c WHERE c.id = :cid";
+		return em.createQuery(jpql, Collection.class).setParameter("cid", colId).getResultList().get(0);
 	}
 	
 }

@@ -20,6 +20,7 @@
 								<li><a class="dropdown-item" href="all.do">All Tokens</a></li>
 								<li><a class="dropdown-item" href="allBusinesses.do">All Businesses</a></li>
 								<li><a class="dropdown-item" href="allContent.do">All Content</a></li>
+								<li><a class="dropdown-item" href="allCollection.do">All Collection</a></li>
 							</ul></li>
 
 						<li class="nav-item dropdown"><a
