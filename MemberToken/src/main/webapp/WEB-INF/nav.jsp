@@ -25,6 +25,7 @@
 								<li><a class="dropdown-item" href="allCollection.do">Collection</a></li>
 								<li><a class="dropdown-item" href="allUser.do">User</a></li>
 								<li><a class="dropdown-item" href="allPurchases.do">Purchases</a></li>
+								<li><a class="dropdown-item" href="login.do">Login</a></li>
 								
 							</ul></li>
 

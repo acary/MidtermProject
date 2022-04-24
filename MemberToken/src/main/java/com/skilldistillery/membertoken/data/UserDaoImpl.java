@@ -157,5 +157,18 @@ public class UserDaoImpl implements UserDAO {
 		return em.createQuery(jpql, Purchase.class).setParameter("pid", purId).getResultList().get(0);
 	}
 	
+	/*
+	 * Login
+	 */
+	
+	@Override
+	public User findUserByEmailAndPass(String email, String password) {
+		User u = null;
+		
+		String jpql = "SELECT u FROM User u WHERE u.email = :email AND u.password = :pass";
+		u = em.createQuery(jpql, User.class).setParameter("email", email).setParameter("pass", password).getResultList().get(0);
+		return u;
+	}
+	
 	
 }

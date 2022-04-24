@@ -77,5 +77,11 @@ public interface UserDAO {
 	Purchase findPurchasesById(Integer pid);
 
 	List<Purchase> findAllPurchases();
+	
+	/*
+	 * Login
+	 */
+
+	User findUserByEmailAndPass(String email, String password);
 
 }
