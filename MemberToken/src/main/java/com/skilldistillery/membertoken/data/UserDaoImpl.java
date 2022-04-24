@@ -168,7 +168,7 @@ public class UserDaoImpl implements UserDAO {
 		String jpql = "SELECT u FROM User u WHERE u.email = :email AND u.password = :pass";
 		
 		try {
-			u = em.createQuery(jpql, User.class).setParameter("email", email).setParameter("pass", password).getResultList().get(0);
+			u = em.createQuery(jpql, User.class).setParameter("email", email).setParameter("pass", password).getSingleResult();
 		} catch (Exception e) {
 			u = null;
 		}

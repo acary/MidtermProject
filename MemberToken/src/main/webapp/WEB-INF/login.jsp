@@ -17,7 +17,7 @@
 	<main class="container">
 		<h1>Log In</h1>
 		<div class="form-group">
-			<form action="login.do" method="POST" class="container-sm">
+			<form action="login.do" method="post" class="container-sm">
 				<input type="text" name="email" class="form-control" id="exampleInputEmail1"
 				placeholder="Email"> 
 				<input type="password" name="password" class="form-control" id="exampleInputPassword1"

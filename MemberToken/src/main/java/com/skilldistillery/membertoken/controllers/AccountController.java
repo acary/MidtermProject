@@ -13,6 +13,7 @@ public class AccountController {
 		if(session.getAttribute("user") == null) {
 		return "redirect:login";
 		}
+		session.getAttribute("user");
 		return "account";
 	}
 }

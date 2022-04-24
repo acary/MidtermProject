@@ -27,7 +27,7 @@
 						alt="stock profile picture" width="250px" height="250px">
 				</c:otherwise>
 			</c:choose>
-			<h3>${user.firstName} </h3> <h3>${user.lastName}</h3>
+			<h3>${user.firstName} ${user.lastName}</h3> 
 		</div>
 
 		<div class="container p-2">
