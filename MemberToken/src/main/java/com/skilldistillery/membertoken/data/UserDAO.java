@@ -8,6 +8,7 @@ import com.skilldistillery.membertoken.entities.Collection;
 import com.skilldistillery.membertoken.entities.Content;
 import com.skilldistillery.membertoken.entities.ContentResource;
 import com.skilldistillery.membertoken.entities.MemberToken;
+import com.skilldistillery.membertoken.entities.Purchase;
 import com.skilldistillery.membertoken.entities.User;
 
 public interface UserDAO {
@@ -67,10 +68,14 @@ public interface UserDAO {
 	List<ContentResource> findAllContentResource();
 
 	ContentResource findContentResourceById(Integer contentResourceId);
+
 	
 	/*
-	 * Content Resource
+	 * Purchase
 	 */
 	
+	Purchase findPurchasesById(Integer pid);
+
+	List<Purchase> findAllPurchases();
 
 }

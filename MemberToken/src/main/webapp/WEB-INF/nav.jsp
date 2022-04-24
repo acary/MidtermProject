@@ -24,6 +24,7 @@
 								<li><a class="dropdown-item" href="allContentResource.do">Content Resource</a></li>
 								<li><a class="dropdown-item" href="allCollection.do">Collection</a></li>
 								<li><a class="dropdown-item" href="allUser.do">User</a></li>
+								<li><a class="dropdown-item" href="allPurchases.do">Purchases</a></li>
 								
 							</ul></li>
 

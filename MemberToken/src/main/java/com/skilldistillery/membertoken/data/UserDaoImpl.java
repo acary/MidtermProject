@@ -14,6 +14,7 @@ import com.skilldistillery.membertoken.entities.Collection;
 import com.skilldistillery.membertoken.entities.Content;
 import com.skilldistillery.membertoken.entities.ContentResource;
 import com.skilldistillery.membertoken.entities.MemberToken;
+import com.skilldistillery.membertoken.entities.Purchase;
 import com.skilldistillery.membertoken.entities.User;
 
 @Service
@@ -141,5 +142,20 @@ public class UserDaoImpl implements UserDAO {
 		String jpql = "SELECT c FROM Collection c WHERE c.id = :cid";
 		return em.createQuery(jpql, Collection.class).setParameter("cid", colId).getResultList().get(0);
 	}
+	/*
+	 * Purchase
+	 */
+	@Override
+	public List<Purchase> findAllPurchases() {
+		String jpql = "SELECT p FROM Purchase p";
+		return em.createQuery(jpql, Purchase.class).getResultList();
+	}
+	@Override
+	public Purchase findPurchasesById(Integer pid) {
+		Integer purId = Integer.valueOf(pid);
+		String jpql = "SELECT p FROM Purchase p WHERE p.id = :pid";
+		return em.createQuery(jpql, Purchase.class).setParameter("pid", purId).getResultList().get(0);
+	}
+	
 	
 }

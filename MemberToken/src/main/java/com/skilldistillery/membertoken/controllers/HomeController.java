@@ -14,6 +14,7 @@ import com.skilldistillery.membertoken.entities.Collection;
 import com.skilldistillery.membertoken.entities.Content;
 import com.skilldistillery.membertoken.entities.ContentResource;
 import com.skilldistillery.membertoken.entities.MemberToken;
+import com.skilldistillery.membertoken.entities.Purchase;
 import com.skilldistillery.membertoken.entities.User;
 
 @Controller
@@ -158,6 +159,24 @@ public class HomeController {
 		model.addAttribute("user", user);
 		return "showUser";
 	}
+	/*
+	 * Purchase
+	 */
+	@RequestMapping(path = { "/allPurchases", "allPurchases.do" })
+	public String indexPurchases(Model model) {
+		List<Purchase> purchases = dao.findAllPurchases();
+		model.addAttribute("purchases", purchases);
+		return "allPurchases"; 
+	}
+
+	@RequestMapping(path = "getPurchase.do")
+	public String showPurchase(Integer pid, Model model) {
+		pid = Integer.valueOf(pid);
+		Purchase purchase = dao.findPurchasesById(pid);
+		model.addAttribute("purchase", purchase);
+		return "showPurchase"; 
+	}
+	
 	
 	
 }
