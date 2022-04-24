@@ -12,6 +12,7 @@ import com.skilldistillery.membertoken.entities.ActualItem;
 import com.skilldistillery.membertoken.entities.Business;
 import com.skilldistillery.membertoken.entities.Collection;
 import com.skilldistillery.membertoken.entities.Content;
+import com.skilldistillery.membertoken.entities.ContentResource;
 import com.skilldistillery.membertoken.entities.MemberToken;
 
 @Controller
@@ -100,6 +101,25 @@ public class HomeController {
 		Content content = dao.findContentById(cid);
 		model.addAttribute("content", content);
 		return "showContent";
+	}
+	
+	/*
+	 * Content Resource
+	 */
+	
+	@RequestMapping(path = { "/allContentResource", "allContentResource.do" })
+	public String indexContentResource(Model model) {
+		List<ContentResource> contentResourceList = dao.findAllContentResource();
+		model.addAttribute("allContentResource", contentResourceList);
+		return "allContentResource";
+	}
+
+	@RequestMapping(path = "getContentResource.do")
+	public String showContentResource(Integer contentResourceId, Model model) {
+		contentResourceId = Integer.valueOf(contentResourceId);
+		ContentResource contentResource = dao.findContentResourceById(contentResourceId);
+		model.addAttribute("contentResource", contentResource);
+		return "showContentResource";
 	}
 	
 	/*

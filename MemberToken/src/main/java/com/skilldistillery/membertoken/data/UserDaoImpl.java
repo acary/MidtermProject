@@ -12,6 +12,7 @@ import com.skilldistillery.membertoken.entities.ActualItem;
 import com.skilldistillery.membertoken.entities.Business;
 import com.skilldistillery.membertoken.entities.Collection;
 import com.skilldistillery.membertoken.entities.Content;
+import com.skilldistillery.membertoken.entities.ContentResource;
 import com.skilldistillery.membertoken.entities.MemberToken;
 import com.skilldistillery.membertoken.entities.User;
 
@@ -94,6 +95,23 @@ public class UserDaoImpl implements UserDAO {
 		Integer contId = Integer.valueOf(cid);
 		String jpql = "SELECT cont FROM Content cont WHERE cont.id = :cid";
 		return em.createQuery(jpql, Content.class).setParameter("cid", contId).getResultList().get(0);
+	}
+	
+	/*
+	 * Content Resource
+	 */
+	
+	@Override
+	public List<ContentResource> findAllContentResource() {
+		String jpql = "SELECT cr FROM ContentResource cr";
+		return em.createQuery(jpql, ContentResource.class).getResultList();
+	}
+
+	@Override
+	public ContentResource findContentResourceById(Integer contentResourceId) {
+		Integer crId = Integer.valueOf(contentResourceId);
+		String jpql = "SELECT cr FROM ContentResource cr WHERE cr.id = :crid";
+		return em.createQuery(jpql, ContentResource.class).setParameter("crid", crId).getResultList().get(0);
 	}
 	
 	/*

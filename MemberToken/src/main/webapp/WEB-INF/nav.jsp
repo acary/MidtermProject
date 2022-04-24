@@ -21,6 +21,7 @@
 								<li><a class="dropdown-item" href="all.do">Tokens</a></li>
 								<li><a class="dropdown-item" href="allBusinesses.do">Businesses</a></li>
 								<li><a class="dropdown-item" href="allContent.do">Content</a></li>
+								<li><a class="dropdown-item" href="allContentResource.do">Content Resource</a></li>
 								<li><a class="dropdown-item" href="allCollection.do">Collection</a></li>
 							</ul></li>
 

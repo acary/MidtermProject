@@ -6,6 +6,7 @@ import com.skilldistillery.membertoken.entities.ActualItem;
 import com.skilldistillery.membertoken.entities.Business;
 import com.skilldistillery.membertoken.entities.Collection;
 import com.skilldistillery.membertoken.entities.Content;
+import com.skilldistillery.membertoken.entities.ContentResource;
 import com.skilldistillery.membertoken.entities.MemberToken;
 import com.skilldistillery.membertoken.entities.User;
 
@@ -56,5 +57,13 @@ public interface UserDAO {
 	Collection findCollectionById(Integer cid);
 
 	List<Collection> findAllCollection();
+
+	/*
+	 * Content Resource
+	 */
+	
+	List<ContentResource> findAllContentResource();
+
+	ContentResource findContentResourceById(Integer contentResourceId);
 
 }
