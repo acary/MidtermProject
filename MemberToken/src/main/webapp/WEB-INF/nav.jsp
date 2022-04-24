@@ -23,6 +23,8 @@
 								<li><a class="dropdown-item" href="allContent.do">Content</a></li>
 								<li><a class="dropdown-item" href="allContentResource.do">Content Resource</a></li>
 								<li><a class="dropdown-item" href="allCollection.do">Collection</a></li>
+								<li><a class="dropdown-item" href="allUser.do">User</a></li>
+								
 							</ul></li>
 
 						<li class="nav-item dropdown"><a

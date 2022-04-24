@@ -24,7 +24,9 @@ public interface UserDAO {
 	 * User
 	 */
 
-	User findById(int userId);
+	User findUserById(int userId);
+	
+	List <User> findAllUsers();
 
 	/*
 	 * Token
@@ -65,5 +67,10 @@ public interface UserDAO {
 	List<ContentResource> findAllContentResource();
 
 	ContentResource findContentResourceById(Integer contentResourceId);
+	
+	/*
+	 * Content Resource
+	 */
+	
 
 }

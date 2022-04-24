@@ -23,8 +23,19 @@ public class UserDaoImpl implements UserDAO {
 	@PersistenceContext
 	private EntityManager em;
 
+	/*
+	 * User
+	 */
+
 	@Override
-	public User findById(int userId) {
+	public List <User> findAllUsers() {
+		String jpql = "SELECT user FROM User user";
+		return em.createQuery(jpql, User.class).getResultList();
+	}
+	
+
+	@Override
+	public User findUserById(int userId) {
 		return em.find(User.class, userId);
 	}
 	

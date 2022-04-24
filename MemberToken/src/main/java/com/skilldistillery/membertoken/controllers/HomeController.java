@@ -14,6 +14,7 @@ import com.skilldistillery.membertoken.entities.Collection;
 import com.skilldistillery.membertoken.entities.Content;
 import com.skilldistillery.membertoken.entities.ContentResource;
 import com.skilldistillery.membertoken.entities.MemberToken;
+import com.skilldistillery.membertoken.entities.User;
 
 @Controller
 public class HomeController {
@@ -23,7 +24,7 @@ public class HomeController {
 
 	@RequestMapping(path = { "/", "home.do" })
 	public String home(Model model) {
-		model.addAttribute("DEBUG", dao.findById(1));
+		model.addAttribute("DEBUG", dao.findUserById(1));
 		return "home";
 	}
 	
@@ -140,4 +141,23 @@ public class HomeController {
 		model.addAttribute("collection", col);
 		return "showCollection";
 	}
+	/*
+	 * User
+	 */
+	@RequestMapping(path = { "/allUser", "allUser.do" })
+	public String indexUsers(Model model) {
+		List<User> users = dao.findAllUsers();
+		model.addAttribute("users", users);
+		return "allUsers";
+	}
+
+	@RequestMapping(path = "getUser.do")
+	public String showUser(Integer uid, Model model) {
+		uid = Integer.valueOf(uid);
+		User user = dao.findUserById(uid);
+		model.addAttribute("user", user);
+		return "showUser";
+	}
+	
+	
 }
