@@ -2,6 +2,7 @@ package com.skilldistillery.membertoken.data;
 
 import java.util.List;
 
+import com.skilldistillery.membertoken.entities.Business;
 import com.skilldistillery.membertoken.entities.MemberToken;
 import com.skilldistillery.membertoken.entities.User;
 
@@ -18,4 +19,8 @@ public interface UserDAO {
 	List<MemberToken> findAllTokens();
 
 	MemberToken findTokenById(Integer tid);
+
+	List<Business> findAllBusinesses();
+
+	Business findBusinessById(Integer bid);
 }

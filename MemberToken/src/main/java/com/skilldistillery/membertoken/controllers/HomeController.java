@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.skilldistillery.membertoken.data.UserDAO;
+import com.skilldistillery.membertoken.entities.Business;
 import com.skilldistillery.membertoken.entities.MemberToken;
 
 @Controller
@@ -21,7 +22,9 @@ public class HomeController {
 		model.addAttribute("DEBUG", dao.findById(1));
 		return "home";
 	}
-	
+	/*
+	 * Token
+	 */
 	@RequestMapping(path = { "/all", "all.do" })
 	public String index(Model model) {
 		List<MemberToken> tkns = dao.findAllTokens();
@@ -37,4 +40,22 @@ public class HomeController {
 		return "showToken";
 	}
 
+	
+	/*
+	 * Business
+	 */
+	@RequestMapping(path = { "/allBusinesses", "allBusinesses.do" })
+	public String indexBusiness(Model model) {
+		List<Business> business = dao.findAllBusinesses();
+		model.addAttribute("allBusinesses", business);
+		return "allBusinesses";
+	}
+
+	@RequestMapping(path = "getBusiness.do")
+	public String showBusiness(Integer bid, Model model) {
+		bid = Integer.valueOf(bid);
+		Business business = dao.findBusinessById(bid);
+		model.addAttribute("business", business);
+		return "showBusiness";
+	}
 }

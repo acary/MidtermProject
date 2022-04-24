@@ -19,9 +19,10 @@
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 								<li><a class="dropdown-item" href="all.do">All Tokens</a></li>
 								<li><a class="dropdown-item" href="all.do">Token By ID</a></li>
-								<li><a class="dropdown-item" href="all.do">Token By
-										Keyword</a></li>
+								<li><a class="dropdown-item" href="allBusinesses.do">All Businesses</a></li>
+								<li><a class="dropdown-item" href="allBusinesses.do">Business By Id</a></li>
 							</ul></li>
+
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 							role="button" data-bs-toggle="dropdown" aria-expanded="false">
