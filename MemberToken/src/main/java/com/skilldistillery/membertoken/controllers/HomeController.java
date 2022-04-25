@@ -190,27 +190,10 @@ public class HomeController {
 		return "collection/showCollection";
 	}
 	
-	
-	/*
-	 * User
-	 */
-	@RequestMapping(path = { "/allUser", "allUser.do" })
-	public String indexUsers(Model model) {
-		List<User> users = dao.findAllUsers();
-		model.addAttribute("users", users);
-		return "user/allUsers";
-	}
-
-	@RequestMapping(path = "getUser.do")
-	public String showUser(Integer uid, Model model) {
-		uid = Integer.valueOf(uid);
-		User user = dao.findUserById(uid);
-		model.addAttribute("user", user);
-		return "user/showUser";
-	}
 	/*
 	 * Purchase
 	 */
+	
 	@RequestMapping(path = { "/allPurchases", "allPurchases.do" })
 	public String indexPurchases(Model model) {
 		List<Purchase> purchases = dao.findAllPurchases();
@@ -224,6 +207,18 @@ public class HomeController {
 		Purchase purchase = dao.findPurchasesById(pid);
 		model.addAttribute("purchase", purchase);
 		return "purchase/showPurchase"; 
+	}
+	
+	@RequestMapping(path = "createPurchase.do", method = RequestMethod.GET)
+	public String startCreatePurchase(Model model) {
+		return "purchase/createPurchase";
+	}
+
+	@RequestMapping(path = "createPurchase.do", method = RequestMethod.POST)
+	public String createPurchase(Purchase purchase, Model model) {
+		Purchase newPurchase = dao.createPurchase(purchase);
+		model.addAttribute("purchase", newPurchase);
+		return "purchase/showPurchase";
 	}
 	
 	/*
@@ -248,18 +243,50 @@ public class HomeController {
 	/*
 	 * User
 	 */
-	@RequestMapping(path = { "newUser.do" })
-	public String toAddUserForm(Model model) {
-		return "user/newUserForm";
-
+	
+	/*
+	 * User
+	 */
+	@RequestMapping(path = { "/allUser", "allUser.do" })
+	public String indexUsers(Model model) {
+		List<User> users = dao.findAllUsers();
+		model.addAttribute("users", users);
+		return "user/allUsers";
 	}
+	
+	@RequestMapping(path = "createUser.do", method = RequestMethod.GET)
+	public String startCreateUser(Model model) {
+		return "user/createUser";
+	}
+
+	@RequestMapping(path = "createUser.do", method = RequestMethod.POST)
+	public String createUser(User user, Model model) {
+		User newUser = dao.createUser(user);
+		model.addAttribute("user", newUser);
+		return "user/showUser";
+	}
+	
 	@RequestMapping(path = { "addUser.do" })
 	public String addUser( User user, RedirectAttributes redir) {
 		user = dao.addUser(user);
 		redir.addFlashAttribute("user",user);
 		return "redirect:userAdded.do";
+	}
+	
+	@RequestMapping(path = "getUser.do")
+	public String showUser(Integer uid, Model model) {
+		uid = Integer.valueOf(uid);
+		User user = dao.findUserById(uid);
+		model.addAttribute("user", user);
+		return "user/showUser";
+	}
+	
+	@RequestMapping(path = { "newUser.do" })
+	public String toAddUserForm(Model model) {
+		return "user/newUserForm";
 
 	}
+
 	@RequestMapping(path = { "userAdded.do" })
 	public String userAdded( ) {
 		return "user/login";

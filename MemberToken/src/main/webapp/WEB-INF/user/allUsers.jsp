@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MBR bus - All Users</title>
+<title>MBR TKN - All Users</title>
 <jsp:include page="../bootstrapHead.jsp" />
 </head>
 <body>
@@ -20,7 +20,7 @@
 		<div class="btn-group" role="group"
 			aria-label="Search jobs">
 			<a href="allUser.do"><button type="button" class="btn btn-outline-primary">Show All</button></a>
-			<a href=""><button type="button" class="btn btn-outline-primary disabled">ID Search</button></a>
+			<a href="createUser.do"><button type="button" class="btn btn-outline-primary">Create User</button></a>
 			<a href=""><button type="button" class="btn btn-outline-primary disabled">Keyword Search</button></a>
 		</div>
 

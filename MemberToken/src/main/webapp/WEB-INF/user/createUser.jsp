@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Purchase Details</title>
+<title>Create User</title>
 <jsp:include page="../bootstrapHead.jsp" />
 </head>
 <body>
@@ -13,20 +13,21 @@
 		<jsp:include page="../nav.jsp" />
 	</div>
 	<div class="container">
-		<h1>Purchase Details</h1>
+		<h1>Create User</h1>
 
 		<div>
-			<h5>${purchase.id}</h5>
-			<h5>${purchase.ratingComment}</h5>
-			
-			<br>
-			<p>${purchase.dateTimePurchased}</p>
-			
-			<hr>
-			
-			<a href=""><button type="button" class="btn btn-primary">Update</button></a>
-			<a href=""><button type="button" class="btn btn-danger">Delete</button></a>
+			<form action="createUser.do" method="post">
+				<input type="hidden" name="active" value="1">
+				<label
+					for="email" class="form-label">Email</label> <input
+					type="text" name="email" class="form-control form-control-lg" />
+				
+				<br>
+				<input type="submit" class="btn btn-primary m-2"
+					value="Add User" />
+			</form>
 		</div>
+
 	</div>
 
 	<jsp:include page="../footer.jsp" />
