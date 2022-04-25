@@ -24,7 +24,7 @@
 			<hr>
 			
 			<a href="updateBusiness.do?bid=${business.id}"><button type="button" class="btn btn-primary">Update</button></a>
-			<a href=""><button type="button" class="btn btn-danger">Delete</button></a>
+			<a href="deleteBusiness.do?bid=${business.id}"><button type="button" class="btn btn-danger">Delete</button></a>
 		</div>
 	</div>
 

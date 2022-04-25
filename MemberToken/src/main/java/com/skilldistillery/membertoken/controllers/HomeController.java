@@ -132,7 +132,18 @@ public class HomeController {
 		model.addAttribute("business", dao.updateBusiness(bid, business));
 		return "business/showBusiness";
 	}
-
+	
+	@RequestMapping(path = "deleteBusiness.do", method = RequestMethod.GET)
+	public String deleteBusiness(String bid, Model model) {
+		Integer businessId = Integer.valueOf(bid);
+		Business item = dao.findBusinessById(businessId);
+		if (item != null) {
+			dao.deleteBusiness(item.getId());
+		}
+		return "redirect:all";
+	}
+	
+	
 	/*
 	 * Content
 	 */

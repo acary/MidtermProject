@@ -117,6 +117,20 @@ public class UserDaoImpl implements UserDAO {
 		updatedBus.setDescription(bus.getDescription());
 		return updatedBus;
 	}
+	@Override
+	public boolean deleteBusiness(int bid) {
+		boolean isDeleted = false;
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		Business item = em.find(Business.class, bid);
+		if (item != null) {
+			em.remove(item);
+		}
+		isDeleted = !em.contains(item);
+		em.getTransaction().commit();
+		em.close();
+		return isDeleted;
+	}
 
 	/*
 	 * Content
@@ -338,5 +352,7 @@ public class UserDaoImpl implements UserDAO {
 		em.getTransaction().commit();
 		return user;
 	}
+
+	
 
 }
