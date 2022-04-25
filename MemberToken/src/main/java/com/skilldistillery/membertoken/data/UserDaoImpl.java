@@ -93,8 +93,14 @@ public class UserDaoImpl implements UserDAO {
 		em.flush();
 		em.getTransaction().commit();
 		return business;
-		
+	}
 	
+	@Override 
+	public Business updateBusiness(int bid, Business bus) {
+		Business updatedBus = em.find(Business.class, bid);
+		updatedBus.setName(bus.getName());
+		
+		return updatedBus;
 	}
 	
 	/*

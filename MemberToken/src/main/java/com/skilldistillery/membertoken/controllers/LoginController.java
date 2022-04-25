@@ -26,7 +26,7 @@ public class LoginController {
 		if(session.getAttribute("user") != null) {
 			mv.setViewName("redirect:home.do");
 		} else {
-//			mv.addObject("userCommandObject", new User());
+			mv.addObject("userCommandObject", new User());
 			
 			mv.setViewName("user/login");		
 		}
@@ -38,12 +38,12 @@ public class LoginController {
 	@RequestMapping(path = "login.do", method= RequestMethod.POST )
 	public String tryLogIn(User user, HttpSession session) {
 			User u = dao.findUserByEmailAndPass(user.getEmail(), user.getPassword());
+			
 			if (u == null) {
 				return "redirect:login.do";
 			} 
 			session.setAttribute("user", u);
 			
-			// Check if user is associated with businesses, get first one
 			Business business = dao.findBusinessById(1);
 			session.setAttribute("business", business);
 			
@@ -54,7 +54,7 @@ public class LoginController {
 			session.setAttribute("contentItem", cr);
 					
 			
-			return "redirect:account.do";
+			return "user/account";
 	}
 
 	@RequestMapping("logout.do") 

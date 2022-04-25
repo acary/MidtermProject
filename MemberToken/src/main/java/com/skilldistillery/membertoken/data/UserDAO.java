@@ -43,6 +43,8 @@ public interface UserDAO {
 	
 	public Business createBusiness(Business business);
 
+	Business updateBusiness(int bid, Business bus);
+	
 	/*
 	 * Content
 	 */
@@ -102,6 +104,7 @@ public interface UserDAO {
 	List <User> findAllUsers();
 
 	User createUser(User user);
+
 
 
 }

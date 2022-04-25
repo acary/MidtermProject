@@ -109,6 +109,19 @@ public class HomeController {
 		model.addAttribute("business", newBusiness);
 		return "business/showBusiness";
 	}
+	
+	@RequestMapping(path = "updateBusiness.do", method = RequestMethod.GET)
+	public String startUpdateBusiness(Integer bid, Model model) {
+		Business business = dao.findBusinessById(bid);
+		model.addAttribute("actualItem", business);
+		return "business/updateBusiness";
+	}
+
+	@RequestMapping(path = "updateBusiness.do", method = RequestMethod.POST)
+	public String updateBusiness(int bid, Business business, Model model) {
+		model.addAttribute("business", dao.updateBusiness(bid, business));
+		return "business/showBusiness";
+	}
 
 	/*
 	 * Content
