@@ -20,9 +20,9 @@
 			<form action="updateContentResource.do" method="post">
 
 				<input type="hidden" name="cid" value="${contentResource.id}"> <label
-					for="name" class="form-label">Content Resource Name</label> <input type="text"
-					name="name" class="form-control form-control-lg" />
-				<div id="ContentResourceNameHelp" class="form-text">${contentResource.name}</div>
+					for="title" class="form-label">Content Resource Title</label> <input type="text"
+					name="title" class="form-control form-control-lg" />
+				<div id="ContentResourceTitleHelp" class="form-text">${contentResource.title}</div>
 				<label
 					for="description" class="form-label">Content Resource Description</label> 
 					<input type="text" name="description" class="form-control form-control-lg" />
