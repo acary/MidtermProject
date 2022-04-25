@@ -78,6 +78,16 @@ public class HomeController {
 		model.addAttribute("actualItem", item);
 		return "actualitem/showActualItem";
 	}
+	
+	@RequestMapping(path = "deleteActualItem.do", method = RequestMethod.GET)
+	public String deleteActualItem(String aid, Model model) {
+		Integer actualItemId = Integer.valueOf(aid);
+		ActualItem item = dao.findActualItemById(actualItemId);
+		if (item != null) {
+			dao.deleteActualItem(item.getId());
+		}
+		return "redirect:all";
+	}
 
 	/*
 	 * Business
@@ -298,15 +308,39 @@ public class HomeController {
 		model.addAttribute("allTokens", tkns);
 		return "token/allTokens";
 	}
+	
+	@RequestMapping(path = "createToken.do", method = RequestMethod.GET)
+	public String startCreateToken(Model model) {
+		return "token/createToken";
+	}
+
+	@RequestMapping(path = "createToken.do", method = RequestMethod.POST)
+	public String createToken(MemberToken token, Model model) {
+		MemberToken newToken = dao.createToken(token);
+		model.addAttribute("token", newToken);
+		return "token/showToken";
+	}
 
 	@RequestMapping(path = "getToken.do")
 	public String showToken(Integer tid, Model model) {
 		tid = Integer.valueOf(tid);
 		MemberToken tkn = dao.findTokenById(tid);
-		model.addAttribute("tkn", tkn);
+		model.addAttribute("token", tkn);
 		return "token/showToken";
 	}
 	
+	@RequestMapping(path = "updateToken.do", method = RequestMethod.GET)
+	public String startUpdateToken(Integer tid, Model model) {
+		MemberToken token = dao.findTokenById(tid);
+		model.addAttribute("token", token);
+		return "token/updateToken";
+	}
+
+	@RequestMapping(path = "updateToken.do", method = RequestMethod.POST)
+	public String updateToken(int tid, MemberToken token, Model model) {
+		model.addAttribute("token", dao.updateToken(tid, token));
+		return "token/updateToken";
+	}
 	
 	/*
 	 * User

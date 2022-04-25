@@ -16,14 +16,14 @@
 		<h1>Token Details</h1>
 
 		<div>
-			<h5>${tkn.tokenName}</h5>
+			<h5>${token.tokenName}</h5>
 			
 			<br>
-			<p>${tkn.description}</p>
+			<p>${token.description}</p>
 			
 			<hr>
 			
-			<a href="updateMemberToken.do?tid=${tkn.id}"><button type="button" class="btn btn-primary">Update</button></a>
+			<a href="updateToken.do?tid=${token.id}"><button type="button" class="btn btn-primary">Update</button></a>
 			<a href=""><button type="button" class="btn btn-danger">Delete</button></a>
 		</div>
 	</div>

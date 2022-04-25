@@ -24,14 +24,8 @@ public interface UserDAO {
 	public ActualItem createActualItem(ActualItem actualItem);
 	
 	public int updateActualItem(ActualItem actualItem);
-
-	/*
-	 * Token
-	 */
-
-	List<MemberToken> findAllTokens();
-
-	MemberToken findTokenById(Integer tid);
+	
+	boolean deleteActualItem(int aid);
 
 	/*
 	 * Business
@@ -81,8 +75,6 @@ public interface UserDAO {
 	
 	ContentResource updateContentResource(int cid, ContentResource contentResource);
 	
-
-	
 	/*
 	 * Purchase
 	 */
@@ -100,6 +92,18 @@ public interface UserDAO {
 	User findUserByEmailAndPass(String email, String password);
 	
 	/*
+	 * Token
+	 */
+
+	List<MemberToken> findAllTokens();
+
+	MemberToken findTokenById(Integer tid);
+	
+	MemberToken updateToken(int tid, MemberToken token);
+	
+	MemberToken createToken(MemberToken token);
+	
+	/*
 	 * User
 	 */
 	
@@ -110,12 +114,5 @@ public interface UserDAO {
 	List <User> findAllUsers();
 
 	User createUser(User user);
-
-
-	
-
-	
-
-
 
 }

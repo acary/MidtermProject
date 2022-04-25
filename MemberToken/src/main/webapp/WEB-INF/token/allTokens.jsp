@@ -20,7 +20,7 @@
 		<div class="btn-group" role="group"
 			aria-label="Search jobs">
 			<a href="all.do"><button type="button" class="btn btn-outline-primary">Show All</button></a>
-			<a href=""><button type="button" class="btn btn-outline-primary disabled">ID Search</button></a>
+			<a href="createToken.do"><button type="button" class="btn btn-outline-primary">Create Token</button></a>
 			<a href=""><button type="button" class="btn btn-outline-primary disabled">Keyword Search</button></a>
 		</div>
 

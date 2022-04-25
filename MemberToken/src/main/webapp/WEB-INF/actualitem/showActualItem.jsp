@@ -24,7 +24,7 @@
 			<hr>
 
 			<a href="updateActualItem.do?aid=${actualItem.id}"><button type="button" class="btn btn-primary">Update</button></a>
-			<a href=""><button type="button" class="btn btn-danger">Delete</button></a>
+			<a href="deleteActualItem.do?aid=${actualItem.id}"><button type="button" class="btn btn-danger">Delete</button></a>
 		</div>
 	</div>
 

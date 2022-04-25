@@ -38,7 +38,6 @@ public class LoginController {
 	@RequestMapping(path = "login.do", method= RequestMethod.POST )
 	public String tryLogIn(User user, HttpSession session) {
 			User u = dao.findUserByEmailAndPass(user.getEmail(), user.getPassword());
-			
 			if (u == null) {
 				return "redirect:login.do";
 			} 
@@ -53,8 +52,7 @@ public class LoginController {
 			Content cr = dao.findContentById(1);
 			session.setAttribute("contentItem", cr);
 					
-			
-			return "user/account";
+			return "redirect:account.do";
 	}
 
 	@RequestMapping("logout.do") 

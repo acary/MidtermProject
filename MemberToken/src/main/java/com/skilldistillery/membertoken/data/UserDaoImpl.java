@@ -66,6 +66,21 @@ public class UserDaoImpl implements UserDAO {
 		em.close();
 		return count;
 	}
+	
+	@Override
+	public boolean deleteActualItem(int aid) {
+		boolean isDeleted = false;
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		ActualItem item = em.find(ActualItem.class, aid);
+		if (item != null) {
+			em.remove(item);
+		}
+		isDeleted = !em.contains(item);
+		em.getTransaction().commit();
+		em.close();
+		return isDeleted;
+	}
 
 	/*
 	 * Business
@@ -270,6 +285,24 @@ public class UserDaoImpl implements UserDAO {
 		Integer tknId = Integer.valueOf(tid);
 		String jpql = "SELECT tkn FROM MemberToken tkn WHERE tkn.id = :tid";
 		return em.createQuery(jpql, MemberToken.class).setParameter("tid", tknId).getResultList().get(0);
+	}
+	
+	@Override
+	public MemberToken updateToken(int tid, MemberToken token) {
+		MemberToken updatedTkn = em.find(MemberToken.class, tid);
+		updatedTkn.setTokenName(token.getTokenName());
+		updatedTkn.setDescription(token.getDescription());
+		return updatedTkn;
+	}
+	
+	@Override
+	public MemberToken createToken(MemberToken token) {
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		em.persist(token);
+		em.flush();
+		em.getTransaction().commit();
+		return token;
 	}
 
 	/*
