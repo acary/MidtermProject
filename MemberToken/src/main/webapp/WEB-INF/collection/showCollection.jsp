@@ -23,7 +23,7 @@
 
 			<hr>
 
-			<a href="updateCollection?cid=${collection.id}"><button type="button" class="btn btn-primary">Update</button></a>
+			<a href="updateCollection.do?cid=${collection.id}"><button type="button" class="btn btn-primary">Update</button></a>
 			<a href=""><button type="button" class="btn btn-danger">Delete</button></a>
 		</div>
 	</div>
