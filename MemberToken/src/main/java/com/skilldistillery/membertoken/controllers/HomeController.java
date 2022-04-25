@@ -186,6 +186,18 @@ public class HomeController {
 		model.addAttribute("contentResource", newContentResource);
 		return "contentresource/showContentResource";
 	}
+	@RequestMapping(path = "updateContentResource.do", method = RequestMethod.GET)
+	public String startUpdateContentResource(Integer cid, Model model) {
+		ContentResource contentResource = dao.findContentResourceById(cid);
+		model.addAttribute("contentResource", contentResource);
+		return "contentresource/updateContentResource";
+	}
+
+	@RequestMapping(path = "updateContentResource.do", method = RequestMethod.POST)
+	public String updateContentResource(int cid, ContentResource contentResource, Model model) {
+		model.addAttribute("contentResource", dao.updateContentResource(cid, contentResource));
+		return "contentresource/updateContentResource";
+	}
 	
 	
 	
@@ -284,9 +296,6 @@ public class HomeController {
 		return "token/showToken";
 	}
 	
-	/*
-	 * User
-	 */
 	
 	/*
 	 * User

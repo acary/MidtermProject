@@ -77,6 +77,8 @@ public interface UserDAO {
 	
 	ContentResource createContentResource(ContentResource contentResource);
 	
+	ContentResource updateContentResource(int cid, ContentResource contentResource);
+	
 
 	
 	/*
@@ -106,6 +108,8 @@ public interface UserDAO {
 	List <User> findAllUsers();
 
 	User createUser(User user);
+
+	
 
 	
 

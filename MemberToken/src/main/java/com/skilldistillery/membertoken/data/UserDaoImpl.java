@@ -159,6 +159,14 @@ public class UserDaoImpl implements UserDAO {
 		
 	
 	}
+	@Override
+	public ContentResource updateContentResource(int cid, ContentResource contentResource) {
+		
+		ContentResource updatedContentResource = em.find(ContentResource.class, cid);
+		updatedContentResource.setTitle(contentResource.getTitle());
+		updatedContentResource.setDescription(contentResource.getDescription());
+		return updatedContentResource;
+	}
 	/*
 	 * Collection
 	 */
@@ -286,6 +294,8 @@ public class UserDaoImpl implements UserDAO {
 		em.getTransaction().commit();
 		return user;
 	}
+
+
 
 	
 }
