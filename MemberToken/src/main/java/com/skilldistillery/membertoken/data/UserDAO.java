@@ -81,6 +81,8 @@ public interface UserDAO {
 
 	List<Purchase> findAllPurchases();
 	
+	Purchase createPurchase(Purchase purchase);
+	
 	/*
 	 * Login
 	 */
@@ -97,7 +99,7 @@ public interface UserDAO {
 	
 	List <User> findAllUsers();
 
-	
+	User createUser(User user);
 
 
 }

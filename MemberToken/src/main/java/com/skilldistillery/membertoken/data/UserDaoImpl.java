@@ -201,6 +201,16 @@ public class UserDaoImpl implements UserDAO {
 		return em.createQuery(jpql, Purchase.class).setParameter("pid", purId).getResultList().get(0);
 	}
 	
+	@Override
+	public Purchase createPurchase(Purchase purchase) {
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		em.persist(purchase);
+		em.flush();
+		em.getTransaction().commit();
+		return purchase;
+	}
+	
 	/*
 	 * Token
 	 */
@@ -231,18 +241,25 @@ public class UserDaoImpl implements UserDAO {
 
 	@Override
 	public User findUserById(int userId) {
-		// TODO Auto-generated method stub
-		return null;
+		Integer uid = Integer.valueOf(userId);
+		String jpql = "SELECT u FROM User u WHERE u.id = :uid";
+		return em.createQuery(jpql, User.class).setParameter("uid", uid).getResultList().get(0);
 	}
 
 	@Override
 	public List<User> findAllUsers() {
-		// TODO Auto-generated method stub
-		return null;
+		String jpql = "SELECT u FROM User u";
+		return em.createQuery(jpql, User.class).getResultList();
 	}
-	
-	
 
-	
-	
+	@Override
+	public User createUser(User user) {
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		em.persist(user);
+		em.flush();
+		em.getTransaction().commit();
+		return user;
+	}
+
 }

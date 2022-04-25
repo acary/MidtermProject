@@ -20,7 +20,7 @@
 		<div class="btn-group" role="group"
 			aria-label="Search jobs">
 			<a href="allActualItem.do"><button type="button" class="btn btn-outline-primary">Show All</button></a>
-			<a href="createActualItem.do"><button type="button" class="btn btn-outline-primary">New Actual Item</button></a>
+			<a href="createActualItem.do"><button type="button" class="btn btn-outline-primary">Create Actual Item</button></a>
 			<a href=""><button type="button" class="btn btn-outline-primary disabled">Keyword Search</button></a>
 		</div>
 
