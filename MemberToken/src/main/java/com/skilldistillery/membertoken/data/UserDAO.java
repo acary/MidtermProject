@@ -20,14 +20,8 @@ public interface UserDAO {
 	List<ActualItem> findAllActualItem();
 
 	ActualItem findActualItemById(Integer actualItemId);
-
-	/*
-	 * User
-	 */
-
-	User findUserById(int userId);
 	
-	List <User> findAllUsers();
+	public ActualItem createActualItem(ActualItem actualItem);
 
 	/*
 	 * Token
@@ -84,10 +78,14 @@ public interface UserDAO {
 	 */
 
 	User findUserByEmailAndPass(String email, String password);
-
+	
 	/*
-	 * Add new user
+	 * User
 	 */
 	
 	User addUser(User user);
+
+	User findUserById(int userId);
+	
+	List <User> findAllUsers();
 }

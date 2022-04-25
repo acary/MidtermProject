@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skilldistillery.membertoken.data.UserDAO;
@@ -46,6 +47,18 @@ public class HomeController {
 		actualItemId = Integer.valueOf(actualItemId);
 		ActualItem actualItem = dao.findActualItemById(actualItemId);
 		model.addAttribute("actualItem", actualItem);
+		return "actualitem/showActualItem";
+	}
+	
+	@RequestMapping(path = "createActualItem.do", method = RequestMethod.GET)
+	public String startCreateActualItem(Model model) {
+		return "actualitem/createActualItem";
+	}
+
+	@RequestMapping(path = "createActualItem.do", method = RequestMethod.POST)
+	public String createActualItem(ActualItem actualItem, Model model) {
+		ActualItem actualItemAdded = dao.createActualItem(actualItem);
+		model.addAttribute("actualItem", actualItemAdded);
 		return "actualitem/showActualItem";
 	}
 

@@ -3,6 +3,8 @@ package com.skilldistillery.membertoken.data;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
@@ -20,25 +22,11 @@ import com.skilldistillery.membertoken.entities.User;
 @Service
 @Transactional
 public class UserDaoImpl implements UserDAO {
+	
+	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("JPAMemberToken");
 
 	@PersistenceContext
 	private EntityManager em;
-
-	/*
-	 * User
-	 */
-
-	@Override
-	public List <User> findAllUsers() {
-		String jpql = "SELECT user FROM User user";
-		return em.createQuery(jpql, User.class).getResultList();
-	}
-	
-
-	@Override
-	public User findUserById(int userId) {
-		return em.find(User.class, userId);
-	}
 	
 	/*
 	 * Actual Item
@@ -57,22 +45,14 @@ public class UserDaoImpl implements UserDAO {
 		return em.createQuery(jpql, ActualItem.class).setParameter("actualItemId", actualItemId).getResultList().get(0);
 	}
 	
-
-	/*
-	 * Token
-	 */
-	
 	@Override
-	public List<MemberToken> findAllTokens() {
-		String jpql = "SELECT tkn FROM MemberToken tkn";
-		return em.createQuery(jpql, MemberToken.class).getResultList();
-	}
-
-	@Override
-	public MemberToken findTokenById(Integer tid) {
-		Integer tknId = Integer.valueOf(tid);
-		String jpql = "SELECT tkn FROM MemberToken tkn WHERE tkn.id = :tid";
-		return em.createQuery(jpql, MemberToken.class).setParameter("tid", tknId).getResultList().get(0);
+	public ActualItem createActualItem(ActualItem actualItem) {
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		em.persist(actualItem);
+		em.flush();
+		em.getTransaction().commit();
+		return actualItem;
 	}
 
 	/*
@@ -142,20 +122,6 @@ public class UserDaoImpl implements UserDAO {
 		String jpql = "SELECT c FROM Collection c WHERE c.id = :cid";
 		return em.createQuery(jpql, Collection.class).setParameter("cid", colId).getResultList().get(0);
 	}
-	/*
-	 * Purchase
-	 */
-	@Override
-	public List<Purchase> findAllPurchases() {
-		String jpql = "SELECT p FROM Purchase p";
-		return em.createQuery(jpql, Purchase.class).getResultList();
-	}
-	@Override
-	public Purchase findPurchasesById(Integer pid) {
-		Integer purId = Integer.valueOf(pid);
-		String jpql = "SELECT p FROM Purchase p WHERE p.id = :pid";
-		return em.createQuery(jpql, Purchase.class).setParameter("pid", purId).getResultList().get(0);
-	}
 	
 	/*
 	 * Login
@@ -174,27 +140,60 @@ public class UserDaoImpl implements UserDAO {
 		}
 		return u;
 	}
+	
 	/*
-	 * Add new user
+	 * Purchase
 	 */
+	@Override
+	public List<Purchase> findAllPurchases() {
+		String jpql = "SELECT p FROM Purchase p";
+		return em.createQuery(jpql, Purchase.class).getResultList();
+	}
+	@Override
+	public Purchase findPurchasesById(Integer pid) {
+		Integer purId = Integer.valueOf(pid);
+		String jpql = "SELECT p FROM Purchase p WHERE p.id = :pid";
+		return em.createQuery(jpql, Purchase.class).setParameter("pid", purId).getResultList().get(0);
+	}
+	
+	/*
+	 * Token
+	 */
+	
+	@Override
+	public List<MemberToken> findAllTokens() {
+		String jpql = "SELECT tkn FROM MemberToken tkn";
+		return em.createQuery(jpql, MemberToken.class).getResultList();
+	}
 
+	@Override
+	public MemberToken findTokenById(Integer tid) {
+		Integer tknId = Integer.valueOf(tid);
+		String jpql = "SELECT tkn FROM MemberToken tkn WHERE tkn.id = :tid";
+		return em.createQuery(jpql, MemberToken.class).setParameter("tid", tknId).getResultList().get(0);
+	}
+	
+	/*
+	 * User
+	 */
 
 	@Override
 	public User addUser(User user) {
-		
-		
-	em.persist(user);
-		
-		
+		em.persist(user);
 		em.flush();
-		
-		
 		return user;
-		
-		
 	}
-	
-	
-	
+
+	@Override
+	public User findUserById(int userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<User> findAllUsers() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }
