@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.membertoken.data.UserDAO;
 import com.skilldistillery.membertoken.entities.Business;
+import com.skilldistillery.membertoken.entities.MemberToken;
 import com.skilldistillery.membertoken.entities.User;
 
 @Controller
@@ -44,6 +45,9 @@ public class LoginController {
 			
 			Business business = dao.findBusinessById(1);
 			session.setAttribute("business", business);
+			
+			MemberToken mt = dao.findTokenById(1);
+			session.setAttribute("token", mt);
 			
 			return "user/account";
 	}
