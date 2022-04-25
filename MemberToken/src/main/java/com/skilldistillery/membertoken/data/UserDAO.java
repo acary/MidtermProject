@@ -64,6 +64,8 @@ public interface UserDAO {
 	List<Collection> findAllCollection();
 
 	Collection createCollection(Collection collection);
+	
+	Collection updateCollection(int cid, Collection collection);
 
 	/*
 	 * Content Resource
@@ -104,6 +106,8 @@ public interface UserDAO {
 	List <User> findAllUsers();
 
 	User createUser(User user);
+
+	
 
 
 

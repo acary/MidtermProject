@@ -185,6 +185,13 @@ public class UserDaoImpl implements UserDAO {
 		em.getTransaction().commit();
 		return collection;
 	}
+	@Override 
+	public Collection updateCollection(int cid, Collection col) {
+		Collection updatedCol= em.find(Collection.class, cid);
+		updatedCol.setName(col.getName());
+		updatedCol.setDescription(col.getDescription());
+		return updatedCol;
+	}
 	
 	/*
 	 * Login
@@ -280,4 +287,5 @@ public class UserDaoImpl implements UserDAO {
 		return user;
 	}
 
+	
 }

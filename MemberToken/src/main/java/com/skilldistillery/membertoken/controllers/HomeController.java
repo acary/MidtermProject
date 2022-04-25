@@ -220,6 +220,20 @@ public class HomeController {
 		return "collection/showCollection";
 	}
 	
+	@RequestMapping(path = "updateCollection.do", method = RequestMethod.GET)
+	public String startUpdateCollection(Integer cid, Model model) {
+		Collection collection = dao.findCollectionById(cid);
+		model.addAttribute("collection", collection);
+		return "collection/updateCollection";
+	}
+
+	@RequestMapping(path = "updateCollection.do", method = RequestMethod.POST)
+	public String updateBusiness(int cid, Collection collection, Model model) {
+		model.addAttribute("collection", dao.updateCollection(cid, collection));
+		return "collection/showCollection";
+	}
+	
+	
 	/*
 	 * Purchase
 	 */
