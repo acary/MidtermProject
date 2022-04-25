@@ -23,7 +23,7 @@
 			
 			<hr>
 			
-			<a href=""><button type="button" class="btn btn-primary">Update</button></a>
+			<a href="updateContentResource.do?cid=${contentResource.id}"><button type="button" class="btn btn-primary">Update</button></a>
 			<a href=""><button type="button" class="btn btn-danger">Delete</button></a>
 		</div>
 	</div>
