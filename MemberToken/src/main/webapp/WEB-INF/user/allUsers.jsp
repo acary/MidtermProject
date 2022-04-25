@@ -6,20 +6,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MBR TKN - All Collections</title>
-<jsp:include page="bootstrapHead.jsp" />
+<title>MBR bus - All Users</title>
+<jsp:include page="../bootstrapHead.jsp" />
 </head>
 <body>
 	<div class="container">
-		<jsp:include page="nav.jsp" />
+		<jsp:include page="../nav.jsp" />
 	</div>
 
 	<main class="container">
-		<h1>Collections</h1>
+		<h1>Users</h1>
 
 		<div class="btn-group" role="group"
 			aria-label="Search jobs">
-			<a href="allCollection.do"><button type="button" class="btn btn-outline-primary">Show All</button></a>
+			<a href="allUser.do"><button type="button" class="btn btn-outline-primary">Show All</button></a>
 			<a href=""><button type="button" class="btn btn-outline-primary disabled">ID Search</button></a>
 			<a href=""><button type="button" class="btn btn-outline-primary disabled">Keyword Search</button></a>
 		</div>
@@ -30,14 +30,14 @@
 			<thead class="table-dark">
 				<tr>
 					<th>ID</th>
-					<th>Title</th>
+					<th>Email</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="col" items="${allCollection}">
+				<c:forEach var="user" items="${users}">
 					<tr>
-						<td>${col.id}</td>
-						<td><a href="getCollection.do?cid=${col.id}">${col.name}</a></td>
+						<td>${user.id}</td>
+						<td><a href="getUser.do?uid=${user.id}">${user.email}</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -45,6 +45,6 @@
 
 	</main>
 
-	<jsp:include page="footer.jsp" />
+	<jsp:include page="../footer.jsp" />
 </body>
 </html>

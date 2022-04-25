@@ -5,29 +5,29 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Collection Details</title>
-<jsp:include page="bootstrapHead.jsp" />
+<title>Business Details</title>
+<jsp:include page="../bootstrapHead.jsp" />
 </head>
 <body>
 	<div class="container">
-		<jsp:include page="nav.jsp" />
+		<jsp:include page="../nav.jsp" />
 	</div>
 	<div class="container">
-		<h1>Collection Details</h1>
+		<h1>Business Details</h1>
 
 		<div>
-			<h5>${collection.name}</h5>
-
+			<h5>${bus.name}</h5>
+			
 			<br>
-			<p>${collection.description}</p>
-
+			<p>${bus.description}</p>
+			
 			<hr>
-
+			
 			<a href=""><button type="button" class="btn btn-primary">Update</button></a>
 			<a href=""><button type="button" class="btn btn-danger">Delete</button></a>
 		</div>
 	</div>
 
-	<jsp:include page="footer.jsp" />
+	<jsp:include page="../footer.jsp" />
 </body>
 </html>

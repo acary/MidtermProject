@@ -5,21 +5,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Business Details</title>
-<jsp:include page="bootstrapHead.jsp" />
+<title>Content Resource Details</title>
+<jsp:include page="../bootstrapHead.jsp" />
 </head>
 <body>
 	<div class="container">
-		<jsp:include page="nav.jsp" />
+		<jsp:include page="../nav.jsp" />
 	</div>
 	<div class="container">
-		<h1>Business Details</h1>
+		<h1>Content Resource Details</h1>
 
 		<div>
-			<h5>${bus.name}</h5>
+			<h5>${contentResource.title}</h5>
 			
 			<br>
-			<p>${bus.description}</p>
+			<p>${contentResource.description}</p>
 			
 			<hr>
 			
@@ -28,6 +28,6 @@
 		</div>
 	</div>
 
-	<jsp:include page="footer.jsp" />
+	<jsp:include page="../footer.jsp" />
 </body>
 </html>

@@ -6,20 +6,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MBR TKN - All Content</title>
-<jsp:include page="bootstrapHead.jsp" />
+<title>MBR TKN - All Businesses</title>
+<jsp:include page="../bootstrapHead.jsp" />
 </head>
 <body>
 	<div class="container">
-		<jsp:include page="nav.jsp" />
+		<jsp:include page="../nav.jsp" />
 	</div>
 
 	<main class="container">
-		<h1>Content</h1>
+		<h1>Businesses</h1>
 
 		<div class="btn-group" role="group"
 			aria-label="Search jobs">
-			<a href="allContent.do"><button type="button" class="btn btn-outline-primary">Show All</button></a>
+			<a href="allBusinesses.do"><button type="button" class="btn btn-outline-primary">Show All</button></a>
 			<a href=""><button type="button" class="btn btn-outline-primary disabled">ID Search</button></a>
 			<a href=""><button type="button" class="btn btn-outline-primary disabled">Keyword Search</button></a>
 		</div>
@@ -34,10 +34,10 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="cont" items="${allContent}">
+				<c:forEach var="bus" items="${allBusinesses}">
 					<tr>
-						<td>${cont.id}</td>
-						<td><a href="getContent.do?cid=${cont.id}">${cont.title}</a></td>
+						<td>${bus.id}</td>
+						<td><a href="getToken.do?tid=${bus.id}">${bus.name}</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -45,6 +45,6 @@
 
 	</main>
 
-	<jsp:include page="footer.jsp" />
+	<jsp:include page="../footer.jsp" />
 </body>
 </html>

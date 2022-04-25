@@ -7,15 +7,15 @@
 <head>
 <meta charset="UTF-8">
 <title>MBR TKN - All Actual Items</title>
-<jsp:include page="bootstrapHead.jsp" />
+<jsp:include page="../bootstrapHead.jsp" />
 </head>
 <body>
 	<div class="container">
-		<jsp:include page="nav.jsp" />
+		<jsp:include page="../nav.jsp" />
 	</div>
 
 	<main class="container">
-		<h1>New User Sign Up</h1>
+		<h1>Sign Up</h1>
 		<div class="form-group">
 			<form action="addUser.do" method="POST" class="container-sm">
 			<input type="text" name="firstName" class="form-control" id="firstName"
@@ -35,6 +35,6 @@
 
 	</main>
 
-	<jsp:include page="footer.jsp" />
+	<jsp:include page="../footer.jsp" />
 </body>
 </html>

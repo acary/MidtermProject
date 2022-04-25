@@ -6,20 +6,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MBR TKN - All Content Resources</title>
-<jsp:include page="bootstrapHead.jsp" />
+<title>MBR TKN - All Collections</title>
+<jsp:include page="../bootstrapHead.jsp" />
 </head>
 <body>
 	<div class="container">
-		<jsp:include page="nav.jsp" />
+		<jsp:include page="../nav.jsp" />
 	</div>
 
 	<main class="container">
-		<h1>Content Resources</h1>
+		<h1>Collections</h1>
 
 		<div class="btn-group" role="group"
 			aria-label="Search jobs">
-			<a href="allContentResource.do"><button type="button" class="btn btn-outline-primary">Show All</button></a>
+			<a href="allCollection.do"><button type="button" class="btn btn-outline-primary">Show All</button></a>
 			<a href=""><button type="button" class="btn btn-outline-primary disabled">ID Search</button></a>
 			<a href=""><button type="button" class="btn btn-outline-primary disabled">Keyword Search</button></a>
 		</div>
@@ -34,10 +34,10 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="cr" items="${allContentResource}">
+				<c:forEach var="col" items="${allCollection}">
 					<tr>
-						<td>${cr.id}</td>
-						<td><a href="getContentResource.do?crId=${cr.id}">${cr.title}</a></td>
+						<td>${col.id}</td>
+						<td><a href="getCollection.do?cid=${col.id}">${col.name}</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -45,6 +45,6 @@
 
 	</main>
 
-	<jsp:include page="footer.jsp" />
+	<jsp:include page="../footer.jsp" />
 </body>
 </html>

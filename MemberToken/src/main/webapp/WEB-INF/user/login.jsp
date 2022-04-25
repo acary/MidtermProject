@@ -7,11 +7,11 @@
 <head>
 <meta charset="UTF-8">
 <title>MBR TKN - Login</title>
-<jsp:include page="bootstrapHead.jsp" />
+<jsp:include page="../bootstrapHead.jsp" />
 </head>
 <body>
 	<div class="container">
-		<jsp:include page="nav.jsp" />
+		<jsp:include page="../nav.jsp" />
 	</div>
 
 	<main class="container">
@@ -29,6 +29,6 @@
 
 	</main>
 
-	<jsp:include page="footer.jsp" />
+	<jsp:include page="../footer.jsp" />
 </body>
 </html>

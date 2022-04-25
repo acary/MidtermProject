@@ -5,21 +5,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Token Details</title>
-<jsp:include page="bootstrapHead.jsp" />
+<title>Purchase Details</title>
+<jsp:include page="../bootstrapHead.jsp" />
 </head>
 <body>
 	<div class="container">
-		<jsp:include page="nav.jsp" />
+		<jsp:include page="../nav.jsp" />
 	</div>
 	<div class="container">
-		<h1>Token Details</h1>
+		<h1>Purchase Details</h1>
 
 		<div>
-			<h5>${tkn.tokenName}</h5>
+			<h5>${purchase.id}</h5>
 			
 			<br>
-			<p>${tkn.description}</p>
+			<p>${purchase.dateTimePurchased}</p>
 			
 			<hr>
 			
@@ -28,6 +28,6 @@
 		</div>
 	</div>
 
-	<jsp:include page="footer.jsp" />
+	<jsp:include page="../footer.jsp" />
 </body>
 </html>

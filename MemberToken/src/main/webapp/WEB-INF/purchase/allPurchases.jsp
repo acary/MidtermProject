@@ -6,20 +6,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MBR TKN - All Businesses</title>
-<jsp:include page="bootstrapHead.jsp" />
+<title>MBR TKN - All Purchases</title>
+<jsp:include page="../bootstrapHead.jsp" />
 </head>
 <body>
 	<div class="container">
-		<jsp:include page="nav.jsp" />
+		<jsp:include page="../nav.jsp" />
 	</div>
 
 	<main class="container">
-		<h1>Businesses</h1>
+		<h1>Purchases</h1>
 
 		<div class="btn-group" role="group"
 			aria-label="Search jobs">
-			<a href="allBusinesses.do"><button type="button" class="btn btn-outline-primary">Show All</button></a>
+			<a href="allPurchases.do"><button type="button" class="btn btn-outline-primary">Show All</button></a>
 			<a href=""><button type="button" class="btn btn-outline-primary disabled">ID Search</button></a>
 			<a href=""><button type="button" class="btn btn-outline-primary disabled">Keyword Search</button></a>
 		</div>
@@ -30,14 +30,14 @@
 			<thead class="table-dark">
 				<tr>
 					<th>ID</th>
-					<th>Title</th>
+					<th>Date</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="bus" items="${allBusinesses}">
+				<c:forEach var="purch" items="${purchases}">
 					<tr>
-						<td>${bus.id}</td>
-						<td><a href="getToken.do?tid=${bus.id}">${bus.name}</a></td>
+						<td>${purch.id}</td>
+						<td><a href="getPurchase.do?pid=${purch.id}">${purch.dateTimePurchased}</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -45,6 +45,6 @@
 
 	</main>
 
-	<jsp:include page="footer.jsp" />
+	<jsp:include page="../footer.jsp" />
 </body>
 </html>

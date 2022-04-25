@@ -5,29 +5,29 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Content Details</title>
-<jsp:include page="bootstrapHead.jsp" />
+<title>User Details</title>
+<jsp:include page="../bootstrapHead.jsp" />
 </head>
 <body>
 	<div class="container">
-		<jsp:include page="nav.jsp" />
+		<jsp:include page="../nav.jsp" />
 	</div>
 	<div class="container">
-		<h1>Content Details</h1>
+		<h1>User Details</h1>
 
 		<div>
-			<h5>${content.title}</h5>
-			
+			<h5>${user.email}</h5>
+
 			<br>
-			<p>${content.description}</p>
-			
+			<p>${user.aboutMe}</p>
+
 			<hr>
-			
+
 			<a href=""><button type="button" class="btn btn-primary">Update</button></a>
 			<a href=""><button type="button" class="btn btn-danger">Delete</button></a>
 		</div>
 	</div>
 
-	<jsp:include page="footer.jsp" />
+	<jsp:include page="../footer.jsp" />
 </body>
 </html>

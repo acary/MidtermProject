@@ -5,21 +5,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>User Details</title>
-<jsp:include page="bootstrapHead.jsp" />
+<title>Actual Item Details</title>
+<jsp:include page="../bootstrapHead.jsp" />
 </head>
 <body>
 	<div class="container">
-		<jsp:include page="nav.jsp" />
+		<jsp:include page="../nav.jsp" />
 	</div>
 	<div class="container">
-		<h1>User Details</h1>
+		<h1>Actual Item Details</h1>
 
 		<div>
-			<h5>${user.email}</h5>
+			<h5>${actualItem.name}</h5>
 
 			<br>
-			<p>${user.aboutMe}</p>
+			<p>${actualItem.description}</p>
 
 			<hr>
 
@@ -28,6 +28,6 @@
 		</div>
 	</div>
 
-	<jsp:include page="footer.jsp" />
+	<jsp:include page="../footer.jsp" />
 </body>
 </html>

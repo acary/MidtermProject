@@ -6,20 +6,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MBR TKN - All Actual Items</title>
-<jsp:include page="bootstrapHead.jsp" />
+<title>MBR TKN - All Content</title>
+<jsp:include page="../bootstrapHead.jsp" />
 </head>
 <body>
 	<div class="container">
-		<jsp:include page="nav.jsp" />
+		<jsp:include page="../nav.jsp" />
 	</div>
 
 	<main class="container">
-		<h1>Actual Items</h1>
+		<h1>Content</h1>
 
 		<div class="btn-group" role="group"
 			aria-label="Search jobs">
-			<a href="allActualItem.do"><button type="button" class="btn btn-outline-primary">Show All</button></a>
+			<a href="allContent.do"><button type="button" class="btn btn-outline-primary">Show All</button></a>
 			<a href=""><button type="button" class="btn btn-outline-primary disabled">ID Search</button></a>
 			<a href=""><button type="button" class="btn btn-outline-primary disabled">Keyword Search</button></a>
 		</div>
@@ -34,10 +34,10 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="item" items="${allActualItem}">
+				<c:forEach var="cont" items="${allContent}">
 					<tr>
-						<td>${item.id}</td>
-						<td><a href="getActualItem.do?actualItemId=${item.id}">${item.name}</a></td>
+						<td>${cont.id}</td>
+						<td><a href="getContent.do?cid=${cont.id}">${cont.title}</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -45,6 +45,6 @@
 
 	</main>
 
-	<jsp:include page="footer.jsp" />
+	<jsp:include page="../footer.jsp" />
 </body>
 </html>

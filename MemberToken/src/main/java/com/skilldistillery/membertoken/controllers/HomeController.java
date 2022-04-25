@@ -38,7 +38,7 @@ public class HomeController {
 	public String indexActualItem(Model model) {
 		List<ActualItem> actualItemList = dao.findAllActualItem();
 		model.addAttribute("allActualItem", actualItemList);
-		return "allActualItem";
+		return "actualitem/allActualItem";
 	}
 
 	@RequestMapping(path = "getActualItem.do")
@@ -46,26 +46,7 @@ public class HomeController {
 		actualItemId = Integer.valueOf(actualItemId);
 		ActualItem actualItem = dao.findActualItemById(actualItemId);
 		model.addAttribute("actualItem", actualItem);
-		return "showActualItem";
-	}
-
-	/*
-	 * Token
-	 */
-	
-	@RequestMapping(path = { "/all", "all.do" })
-	public String index(Model model) {
-		List<MemberToken> tkns = dao.findAllTokens();
-		model.addAttribute("allTokens", tkns);
-		return "allTokens";
-	}
-
-	@RequestMapping(path = "getToken.do")
-	public String showToken(Integer tid, Model model) {
-		tid = Integer.valueOf(tid);
-		MemberToken tkn = dao.findTokenById(tid);
-		model.addAttribute("tkn", tkn);
-		return "showToken";
+		return "actualitem/showActualItem";
 	}
 
 	/*
@@ -76,7 +57,7 @@ public class HomeController {
 	public String indexBusiness(Model model) {
 		List<Business> business = dao.findAllBusinesses();
 		model.addAttribute("allBusinesses", business);
-		return "allBusinesses";
+		return "business/allBusinesses";
 	}
 
 	@RequestMapping(path = "getBusiness.do")
@@ -84,7 +65,7 @@ public class HomeController {
 		bid = Integer.valueOf(bid);
 		Business business = dao.findBusinessById(bid);
 		model.addAttribute("business", business);
-		return "showBusiness";
+		return "business/showBusiness";
 	}
 
 	/*
@@ -95,7 +76,7 @@ public class HomeController {
 	public String indexContent(Model model) {
 		List<Content> content = dao.findAllContent();
 		model.addAttribute("allContent", content);
-		return "allContent";
+		return "content/allContent";
 	}
 
 	@RequestMapping(path = "getContent.do")
@@ -103,7 +84,7 @@ public class HomeController {
 		cid = Integer.valueOf(cid);
 		Content content = dao.findContentById(cid);
 		model.addAttribute("content", content);
-		return "showContent";
+		return "content/showContent";
 	}
 
 	
@@ -115,7 +96,7 @@ public class HomeController {
 	public String indexContentResource(Model model) {
 		List<ContentResource> contentResourceList = dao.findAllContentResource();
 		model.addAttribute("allContentResource", contentResourceList);
-		return "allContentResource";
+		return "contentresource/allContentResource";
 	}
 
 	@RequestMapping(path = "getContentResource.do")
@@ -123,7 +104,7 @@ public class HomeController {
 		crId = Integer.valueOf(crId);
 		ContentResource contentResource = dao.findContentResourceById(crId);
 		model.addAttribute("contentResource", contentResource);
-		return "showContentResource";
+		return "contentresource/showContentResource";
 	}
 	
 	/*
@@ -134,7 +115,7 @@ public class HomeController {
 	public String indexCollection(Model model) {
 		List<Collection> colList = dao.findAllCollection();
 		model.addAttribute("allCollection", colList);
-		return "allCollection";
+		return "collection/allCollection";
 	}
 
 	@RequestMapping(path = "getCollection.do")
@@ -142,7 +123,7 @@ public class HomeController {
 		cid = Integer.valueOf(cid);
 		Collection col = dao.findCollectionById(cid);
 		model.addAttribute("collection", col);
-		return "showCollection";
+		return "collection/showCollection";
 	}
 	/*
 	 * User
@@ -151,7 +132,7 @@ public class HomeController {
 	public String indexUsers(Model model) {
 		List<User> users = dao.findAllUsers();
 		model.addAttribute("users", users);
-		return "allUsers";
+		return "user/allUsers";
 	}
 
 	@RequestMapping(path = "getUser.do")
@@ -159,7 +140,7 @@ public class HomeController {
 		uid = Integer.valueOf(uid);
 		User user = dao.findUserById(uid);
 		model.addAttribute("user", user);
-		return "showUser";
+		return "user/showUser";
 	}
 	/*
 	 * Purchase
@@ -168,7 +149,7 @@ public class HomeController {
 	public String indexPurchases(Model model) {
 		List<Purchase> purchases = dao.findAllPurchases();
 		model.addAttribute("purchases", purchases);
-		return "allPurchases"; 
+		return "purchase/allPurchases"; 
 	}
 
 	@RequestMapping(path = "getPurchase.do")
@@ -176,34 +157,46 @@ public class HomeController {
 		pid = Integer.valueOf(pid);
 		Purchase purchase = dao.findPurchasesById(pid);
 		model.addAttribute("purchase", purchase);
-		return "showPurchase"; 
+		return "purchase/showPurchase"; 
 	}
+	
 	/*
-	 * New User
+	 * Token
+	 */
+	
+	@RequestMapping(path = { "/all", "all.do" })
+	public String index(Model model) {
+		List<MemberToken> tkns = dao.findAllTokens();
+		model.addAttribute("allTokens", tkns);
+		return "token/allTokens";
+	}
+
+	@RequestMapping(path = "getToken.do")
+	public String showToken(Integer tid, Model model) {
+		tid = Integer.valueOf(tid);
+		MemberToken tkn = dao.findTokenById(tid);
+		model.addAttribute("tkn", tkn);
+		return "token/showToken";
+	}
+	
+	/*
+	 * User
 	 */
 	@RequestMapping(path = { "newUser.do" })
 	public String toAddUserForm(Model model) {
-
-		return "newUserForm";
+		return "user/newUserForm";
 
 	}
 	@RequestMapping(path = { "addUser.do" })
 	public String addUser( User user, RedirectAttributes redir) {
-		
 		user = dao.addUser(user);
-	
 		redir.addFlashAttribute("user",user);
-		
 		return "redirect:userAdded.do";
 
 	}
 	@RequestMapping(path = { "userAdded.do" })
 	public String userAdded( ) {
-		
-	
-		return "login";
+		return "user/login";
 	}
-	
-	
 	
 }
