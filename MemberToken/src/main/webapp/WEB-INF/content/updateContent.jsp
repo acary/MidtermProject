@@ -20,9 +20,9 @@
 			<form action="updateContent.do" method="post">
 
 				<input type="hidden" name="cid" value="${content.id}"> <label
-					for="name" class="form-label">Content Name</label> <input type="text"
-					name="name" class="form-control form-control-lg" />
-				<div id="ContentNameHelp" class="form-text">${content.name}</div>
+					for="title" class="form-label">Content Title</label> <input type="text"
+					name="title" class="form-control form-control-lg" />
+				<div id="ContentTitleHelp" class="form-text">${content.title}</div>
 				<label
 					for="description" class="form-label">Content Description</label> 
 					<input type="text" name="description" class="form-control form-control-lg" />

@@ -55,6 +55,8 @@ public interface UserDAO {
 
 	Content createContent(Content content);
 	
+	Content updateContent(int cid, Content content);
+	
 	/*
 	 * Collection
 	 */
@@ -108,6 +110,7 @@ public interface UserDAO {
 	List <User> findAllUsers();
 
 	User createUser(User user);
+
 
 	
 

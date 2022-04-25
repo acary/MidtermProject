@@ -153,7 +153,18 @@ public class HomeController {
 		model.addAttribute("content", cont);
 		return "content/showContent";
 	}
+	@RequestMapping(path = "updateContent.do", method = RequestMethod.GET)
+	public String startUpdateContent(Integer cid, Model model) {
+		Content content = dao.findContentById(cid);
+		model.addAttribute("content", content);
+		return "content/updateContent";
+	}
 
+	@RequestMapping(path = "updateContent.do", method = RequestMethod.POST)
+	public String updateContent(int cid, Content content, Model model) {
+		model.addAttribute("content", dao.updateContent(cid, content));
+		return "content/updateContent";
+	}
 	
 	/*
 	 * Content Resource

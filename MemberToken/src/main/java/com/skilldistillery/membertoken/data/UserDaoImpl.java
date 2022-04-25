@@ -22,16 +22,16 @@ import com.skilldistillery.membertoken.entities.User;
 @Service
 @Transactional
 public class UserDaoImpl implements UserDAO {
-	
+
 	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("JPAMemberToken");
 
 	@PersistenceContext
 	private EntityManager em;
-	
+
 	/*
 	 * Actual Item
 	 */
-	
+
 	@Override
 	public List<ActualItem> findAllActualItem() {
 		String jpql = "SELECT item FROM ActualItem item";
@@ -44,7 +44,7 @@ public class UserDaoImpl implements UserDAO {
 		String jpql = "SELECT item FROM ActualItem item WHERE item.id = :actualItemId";
 		return em.createQuery(jpql, ActualItem.class).setParameter("actualItemId", actualItemId).getResultList().get(0);
 	}
-	
+
 	@Override
 	public ActualItem createActualItem(ActualItem actualItem) {
 		EntityManager em = emf.createEntityManager();
@@ -54,7 +54,7 @@ public class UserDaoImpl implements UserDAO {
 		em.getTransaction().commit();
 		return actualItem;
 	}
-	
+
 	@Override
 	public int updateActualItem(ActualItem actualItem) {
 		int count = 0;
@@ -70,7 +70,7 @@ public class UserDaoImpl implements UserDAO {
 	/*
 	 * Business
 	 */
-	
+
 	@Override
 	public List<Business> findAllBusinesses() {
 		String jpql = "SELECT business FROM Business business";
@@ -82,9 +82,9 @@ public class UserDaoImpl implements UserDAO {
 		Integer busId = Integer.valueOf(bid);
 		String jpql = "SELECT bus FROM Business bus WHERE bus.id = :bid";
 		return em.createQuery(jpql, Business.class).setParameter("bid", busId).getResultList().get(0);
-		
+
 	}
-	
+
 	@Override
 	public Business createBusiness(Business business) {
 		EntityManager em = emf.createEntityManager();
@@ -94,19 +94,19 @@ public class UserDaoImpl implements UserDAO {
 		em.getTransaction().commit();
 		return business;
 	}
-	
-	@Override 
+
+	@Override
 	public Business updateBusiness(int bid, Business bus) {
 		Business updatedBus = em.find(Business.class, bid);
 		updatedBus.setName(bus.getName());
 		updatedBus.setDescription(bus.getDescription());
 		return updatedBus;
 	}
-	
+
 	/*
 	 * Content
 	 */
-	
+
 	@Override
 	public List<Content> findAllContent() {
 		String jpql = "SELECT content FROM Content content";
@@ -119,7 +119,7 @@ public class UserDaoImpl implements UserDAO {
 		String jpql = "SELECT cont FROM Content cont WHERE cont.id = :cid";
 		return em.createQuery(jpql, Content.class).setParameter("cid", contId).getResultList().get(0);
 	}
-	
+
 	@Override
 	public Content createContent(Content content) {
 		EntityManager em = emf.createEntityManager();
@@ -127,14 +127,22 @@ public class UserDaoImpl implements UserDAO {
 		em.persist(content);
 		em.flush();
 		em.getTransaction().commit();
+
 		return content;
 	}
-	
-	
+
+	@Override
+	public Content updateContent(int cid, Content content) {
+		Content updatedContent = em.find(Content.class, cid);
+		updatedContent.setTitle(content.getTitle());
+		updatedContent.setDescription(content.getDescription());
+		return updatedContent;
+	}
+
 	/*
 	 * Content Resource
 	 */
-	
+
 	@Override
 	public List<ContentResource> findAllContentResource() {
 		String jpql = "SELECT cr FROM ContentResource cr";
@@ -147,7 +155,7 @@ public class UserDaoImpl implements UserDAO {
 		String jpql = "SELECT cr FROM ContentResource cr WHERE cr.id = :crId";
 		return em.createQuery(jpql, ContentResource.class).setParameter("crId", crId).getResultList().get(0);
 	}
-	
+
 	@Override
 	public ContentResource createContentResource(ContentResource contentResource) {
 		EntityManager em = emf.createEntityManager();
@@ -156,12 +164,12 @@ public class UserDaoImpl implements UserDAO {
 		em.flush();
 		em.getTransaction().commit();
 		return contentResource;
-		
-	
+
 	}
+
 	@Override
 	public ContentResource updateContentResource(int cid, ContentResource contentResource) {
-		
+
 		ContentResource updatedContentResource = em.find(ContentResource.class, cid);
 		updatedContentResource.setTitle(contentResource.getTitle());
 		updatedContentResource.setDescription(contentResource.getDescription());
@@ -170,7 +178,7 @@ public class UserDaoImpl implements UserDAO {
 	/*
 	 * Collection
 	 */
-	
+
 	@Override
 	public List<Collection> findAllCollection() {
 		String jpql = "SELECT c FROM Collection c";
@@ -183,7 +191,7 @@ public class UserDaoImpl implements UserDAO {
 		String jpql = "SELECT c FROM Collection c WHERE c.id = :cid";
 		return em.createQuery(jpql, Collection.class).setParameter("cid", colId).getResultList().get(0);
 	}
-	
+
 	@Override
 	public Collection createCollection(Collection collection) {
 		EntityManager em = emf.createEntityManager();
@@ -193,32 +201,34 @@ public class UserDaoImpl implements UserDAO {
 		em.getTransaction().commit();
 		return collection;
 	}
-	@Override 
+
+	@Override
 	public Collection updateCollection(int cid, Collection col) {
-		Collection updatedCol= em.find(Collection.class, cid);
+		Collection updatedCol = em.find(Collection.class, cid);
 		updatedCol.setName(col.getName());
 		updatedCol.setDescription(col.getDescription());
 		return updatedCol;
 	}
-	
+
 	/*
 	 * Login
 	 */
-	
+
 	@Override
 	public User findUserByEmailAndPass(String email, String password) {
 		User u = null;
-		
+
 		String jpql = "SELECT u FROM User u WHERE u.email = :email AND u.password = :pass";
-		
+
 		try {
-			u = em.createQuery(jpql, User.class).setParameter("email", email).setParameter("pass", password).getSingleResult();
+			u = em.createQuery(jpql, User.class).setParameter("email", email).setParameter("pass", password)
+					.getSingleResult();
 		} catch (Exception e) {
 			u = null;
 		}
 		return u;
 	}
-	
+
 	/*
 	 * Purchase
 	 */
@@ -227,13 +237,14 @@ public class UserDaoImpl implements UserDAO {
 		String jpql = "SELECT p FROM Purchase p";
 		return em.createQuery(jpql, Purchase.class).getResultList();
 	}
+
 	@Override
 	public Purchase findPurchasesById(Integer pid) {
 		Integer purId = Integer.valueOf(pid);
 		String jpql = "SELECT p FROM Purchase p WHERE p.id = :pid";
 		return em.createQuery(jpql, Purchase.class).setParameter("pid", purId).getResultList().get(0);
 	}
-	
+
 	@Override
 	public Purchase createPurchase(Purchase purchase) {
 		EntityManager em = emf.createEntityManager();
@@ -243,11 +254,11 @@ public class UserDaoImpl implements UserDAO {
 		em.getTransaction().commit();
 		return purchase;
 	}
-	
+
 	/*
 	 * Token
 	 */
-	
+
 	@Override
 	public List<MemberToken> findAllTokens() {
 		String jpql = "SELECT tkn FROM MemberToken tkn";
@@ -260,7 +271,7 @@ public class UserDaoImpl implements UserDAO {
 		String jpql = "SELECT tkn FROM MemberToken tkn WHERE tkn.id = :tid";
 		return em.createQuery(jpql, MemberToken.class).setParameter("tid", tknId).getResultList().get(0);
 	}
-	
+
 	/*
 	 * User
 	 */
@@ -295,7 +306,4 @@ public class UserDaoImpl implements UserDAO {
 		return user;
 	}
 
-
-
-	
 }
