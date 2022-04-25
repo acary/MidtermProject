@@ -20,7 +20,7 @@
 		<div class="btn-group" role="group"
 			aria-label="Search jobs">
 			<a href="allContentResource.do"><button type="button" class="btn btn-outline-primary">Show All</button></a>
-			<a href=""><button type="button" class="btn btn-outline-primary disabled">ID Search</button></a>
+			<a href="createContentResource.do"><button type="button" class="btn btn-outline-primary ">Create Content Resource</button></a>
 			<a href=""><button type="button" class="btn btn-outline-primary disabled">Keyword Search</button></a>
 		</div>
 

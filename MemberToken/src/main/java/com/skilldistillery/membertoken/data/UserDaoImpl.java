@@ -130,6 +130,17 @@ public class UserDaoImpl implements UserDAO {
 		return em.createQuery(jpql, ContentResource.class).setParameter("crId", crId).getResultList().get(0);
 	}
 	
+	@Override
+	public ContentResource createContentResource(ContentResource contentResource) {
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		em.persist(contentResource);
+		em.flush();
+		em.getTransaction().commit();
+		return contentResource;
+		
+	
+	}
 	/*
 	 * Collection
 	 */

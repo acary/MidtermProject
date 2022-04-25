@@ -144,6 +144,21 @@ public class HomeController {
 		return "contentresource/showContentResource";
 	}
 	
+	
+	@RequestMapping(path = "createContentResource.do", method = RequestMethod.GET)
+	public String startCreateContentResource(Model model) {
+		return "contentresource/createContentResource";
+	}
+
+	@RequestMapping(path = "createContentResource.do", method = RequestMethod.POST)
+	public String CreateContentResource(ContentResource contentResource, Model model) {
+		ContentResource newContentResource = dao.createContentResource(contentResource);
+		model.addAttribute("contentResource", newContentResource);
+		return "contentresource/showContentResource";
+	}
+	
+	
+	
 	/*
 	 * Collection
 	 */

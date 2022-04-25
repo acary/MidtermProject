@@ -68,6 +68,9 @@ public interface UserDAO {
 	List<ContentResource> findAllContentResource();
 
 	ContentResource findContentResourceById(Integer contentResourceId);
+	
+	ContentResource createContentResource(ContentResource contentResource);
+	
 
 	
 	/*
@@ -93,6 +96,8 @@ public interface UserDAO {
 	User findUserById(int userId);
 	
 	List <User> findAllUsers();
+
+	
 
 
 }
