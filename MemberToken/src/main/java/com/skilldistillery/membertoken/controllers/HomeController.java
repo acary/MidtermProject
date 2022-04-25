@@ -137,10 +137,14 @@ public class HomeController {
 	public String deleteBusiness(String bid, Model model) {
 		Integer businessId = Integer.valueOf(bid);
 		Business item = dao.findBusinessById(businessId);
-		if (item != null) {
-			dao.deleteBusiness(item.getId());
+		try {
+			if (item != null) {
+				dao.deleteBusiness(item.getId());
+			}
+			return "redirect:all";
+		} catch (Exception e) {
+			return "redirect:all";
 		}
-		return "redirect:all";
 	}
 	
 	
@@ -186,7 +190,19 @@ public class HomeController {
 		model.addAttribute("content", dao.updateContent(cid, content));
 		return "content/updateContent";
 	}
-	
+	@RequestMapping(path = "deleteContent.do", method = RequestMethod.GET)
+	public String deleteContent(String cid, Model model) {
+		Integer contentId = Integer.valueOf(cid);
+		Business item = dao.findBusinessById(contentId);
+		try {
+			if (item != null) {
+				dao.deleteContent(item.getId());
+			}
+			return "redirect:all";
+		} catch (Exception e) {
+			return "redirect:all";
+		}
+	}
 	/*
 	 * Content Resource
 	 */

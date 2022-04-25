@@ -123,13 +123,17 @@ public class UserDaoImpl implements UserDAO {
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
 		Business item = em.find(Business.class, bid);
-		if (item != null) {
-			em.remove(item);
+		try {
+			if (item != null) {
+				em.remove(item);
+			}
+			isDeleted = !em.contains(item);
+			em.getTransaction().commit();
+			em.close();
+			return isDeleted;
+		} catch (Exception e) {
+			return false;
 		}
-		isDeleted = !em.contains(item);
-		em.getTransaction().commit();
-		em.close();
-		return isDeleted;
 	}
 
 	/*
@@ -166,6 +170,25 @@ public class UserDaoImpl implements UserDAO {
 		updatedContent.setTitle(content.getTitle());
 		updatedContent.setDescription(content.getDescription());
 		return updatedContent;
+	}
+	
+	@Override
+	public boolean deleteContent(int cid) {
+		boolean isDeleted = false;
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		Business item = em.find(Business.class, cid);
+		try {
+			if (item != null) {
+				em.remove(item);
+			}
+			isDeleted = !em.contains(item);
+			em.getTransaction().commit();
+			em.close();
+			return isDeleted;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 
 	/*
@@ -352,6 +375,8 @@ public class UserDaoImpl implements UserDAO {
 		em.getTransaction().commit();
 		return user;
 	}
+
+	
 
 	
 
