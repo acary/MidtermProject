@@ -20,7 +20,7 @@
 		<div class="btn-group" role="group"
 			aria-label="Search jobs">
 			<a href="allBusinesses.do"><button type="button" class="btn btn-outline-primary">Show All</button></a>
-			<a href=""><button type="button" class="btn btn-outline-primary disabled">ID Search</button></a>
+			<a href="createBusiness.do"><button type="button" class="btn btn-outline-primary ">Create Business</button></a>
 			<a href=""><button type="button" class="btn btn-outline-primary disabled">Keyword Search</button></a>
 		</div>
 
@@ -34,10 +34,10 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="bus" items="${allBusinesses}">
+				<c:forEach var="business" items="${allBusinesses}">
 					<tr>
-						<td>${bus.id}</td>
-						<td><a href="getToken.do?tid=${bus.id}">${bus.name}</a></td>
+						<td>${business.id}</td>
+						<td><a href="getBusiness.do?bid=${business.id}">${business.name}</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>

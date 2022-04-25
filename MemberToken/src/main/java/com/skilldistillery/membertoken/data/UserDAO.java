@@ -38,6 +38,8 @@ public interface UserDAO {
 	List<Business> findAllBusinesses();
 
 	Business findBusinessById(Integer bid);
+	
+	public Business createBusiness(Business business);
 
 	/*
 	 * Content

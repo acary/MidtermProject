@@ -80,6 +80,18 @@ public class HomeController {
 		model.addAttribute("business", business);
 		return "business/showBusiness";
 	}
+	
+	@RequestMapping(path = "createBusiness.do", method = RequestMethod.GET)
+	public String startCreateBusiness(Model model) {
+		return "business/createBusiness";
+	}
+
+	@RequestMapping(path = "createBusiness.do", method = RequestMethod.POST)
+	public String createBusiness(Business business, Model model) {
+		Business newBusiness = dao.createBusiness(business);
+		model.addAttribute("business", newBusiness);
+		return "business/showBusiness";
+	}
 
 	/*
 	 * Content

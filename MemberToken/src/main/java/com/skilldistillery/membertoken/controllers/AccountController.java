@@ -11,9 +11,9 @@ public class AccountController {
 	@RequestMapping("account.do")
 	public String account(HttpSession session) {
 		if(session.getAttribute("user") == null) {
-		return "redirect:login";
+		return "redirect:user/login";
 		}
 		session.getAttribute("user");
-		return "account";
+		return "user/account";
 	}
 }

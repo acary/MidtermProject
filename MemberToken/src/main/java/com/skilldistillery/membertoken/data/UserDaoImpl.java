@@ -70,6 +70,19 @@ public class UserDaoImpl implements UserDAO {
 		Integer busId = Integer.valueOf(bid);
 		String jpql = "SELECT bus FROM Business bus WHERE bus.id = :bid";
 		return em.createQuery(jpql, Business.class).setParameter("bid", busId).getResultList().get(0);
+		
+	}
+	
+	@Override
+	public Business createBusiness(Business business) {
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		em.persist(business);
+		em.flush();
+		em.getTransaction().commit();
+		return business;
+		
+	
 	}
 	
 	/*
@@ -195,5 +208,9 @@ public class UserDaoImpl implements UserDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	
+
+	
 	
 }

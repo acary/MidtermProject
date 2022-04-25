@@ -32,6 +32,7 @@ public class User {
 	private String password;
 	
 	private boolean active;
+	
 	private String role;
 	
 	@Column(name="profile_image_url")

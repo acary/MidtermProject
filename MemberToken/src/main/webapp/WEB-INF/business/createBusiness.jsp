@@ -16,16 +16,15 @@
 		<h1>Business Details</h1>
 
 		<div>
-			<h5>${business.name}</h5>
-			
-			<br>
-			<p>${business.description}</p>
-			
-			<hr>
-			
-			<a href=""><button type="button" class="btn btn-primary">Update</button></a>
-			<a href=""><button type="button" class="btn btn-danger">Delete</button></a>
+			<form action="createBusiness.do" method="post">
+				<input type="hidden" name="user.id" value="${user.id}"> <label
+					for="name" class="form-label">Business Name</label> <input
+					type="text" name="name" class="form-control form-control-lg" /> <br>
+				<input type="submit" class="btn btn-primary m-2"
+					value="Add Business" />
+			</form>
 		</div>
+
 	</div>
 
 	<jsp:include page="../footer.jsp" />

@@ -24,7 +24,8 @@ public class LoginController {
 			mv.setViewName("redirect:home.do");
 		} else {
 			mv.addObject("userCommandObject", new User());
-			mv.setViewName("login");		
+			
+			mv.setViewName("user/login.do");		
 		}
 		return mv;
 	}
@@ -39,7 +40,7 @@ public class LoginController {
 				return "redirect:login.do";
 			} 
 			session.setAttribute("user", u);
-			return "account";
+			return "user/account";
 	}
 
 	@RequestMapping("logout.do") 
