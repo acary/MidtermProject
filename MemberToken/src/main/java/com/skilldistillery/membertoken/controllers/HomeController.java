@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skilldistillery.membertoken.data.UserDAO;
 import com.skilldistillery.membertoken.entities.ActualItem;
@@ -175,6 +176,31 @@ public class HomeController {
 		Purchase purchase = dao.findPurchasesById(pid);
 		model.addAttribute("purchase", purchase);
 		return "showPurchase"; 
+	}
+	/*
+	 * New User
+	 */
+	@RequestMapping(path = { "newUser.do" })
+	public String toAddUserForm(Model model) {
+
+		return "newUserForm";
+
+	}
+	@RequestMapping(path = { "addUser.do" })
+	public String addUser( User user, RedirectAttributes redir) {
+		
+		user = dao.addUser(user);
+	
+		redir.addFlashAttribute("user",user);
+		
+		return "redirect:userAdded.do";
+
+	}
+	@RequestMapping(path = { "userAdded.do" })
+	public String userAdded( ) {
+		
+	
+		return "account";
 	}
 	
 	

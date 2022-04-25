@@ -174,6 +174,27 @@ public class UserDaoImpl implements UserDAO {
 		}
 		return u;
 	}
+	/*
+	 * Add new user
+	 */
+
+
+	@Override
+	public User addUser(User user) {
+		
+		
+	em.persist(user);
+		
+		
+		em.flush();
+		
+		
+		return user;
+		
+		
+	}
+	
+	
 	
 	
 }

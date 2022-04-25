@@ -42,6 +42,7 @@
 								Add New</a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 								<li><a class="dropdown-item" href="">Token</a></li>
+								<li><a class="dropdown-item" href="newUser.do">User</a></li>
 							</ul></li>
 					</ul>
 				</div>

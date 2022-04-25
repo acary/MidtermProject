@@ -84,4 +84,9 @@ public interface UserDAO {
 
 	User findUserByEmailAndPass(String email, String password);
 
+	/*
+	 * Add new user
+	 */
+	
+	User addUser(User user);
 }
