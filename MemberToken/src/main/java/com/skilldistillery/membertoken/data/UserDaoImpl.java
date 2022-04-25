@@ -8,9 +8,11 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.membertoken.entities.ActualItem;
 import com.skilldistillery.membertoken.entities.Business;
-import com.skilldistillery.membertoken.entities.Content;
 import com.skilldistillery.membertoken.entities.Collection;
+import com.skilldistillery.membertoken.entities.Content;
+import com.skilldistillery.membertoken.entities.ContentResource;
 import com.skilldistillery.membertoken.entities.MemberToken;
 import com.skilldistillery.membertoken.entities.Purchase;
 import com.skilldistillery.membertoken.entities.User;
@@ -22,10 +24,39 @@ public class UserDaoImpl implements UserDAO {
 	@PersistenceContext
 	private EntityManager em;
 
+	/*
+	 * User
+	 */
+
 	@Override
-	public User findById(int userId) {
+	public List <User> findAllUsers() {
+		String jpql = "SELECT user FROM User user";
+		return em.createQuery(jpql, User.class).getResultList();
+	}
+	
+
+	@Override
+	public User findUserById(int userId) {
 		return em.find(User.class, userId);
 	}
+	
+	/*
+	 * Actual Item
+	 */
+	
+	@Override
+	public List<ActualItem> findAllActualItem() {
+		String jpql = "SELECT item FROM ActualItem item";
+		return em.createQuery(jpql, ActualItem.class).getResultList();
+	}
+
+	@Override
+	public ActualItem findActualItemById(Integer actualItemId) {
+		actualItemId = Integer.valueOf(actualItemId);
+		String jpql = "SELECT item FROM ActualItem item WHERE item.id = :actualItemId";
+		return em.createQuery(jpql, ActualItem.class).setParameter("actualItemId", actualItemId).getResultList().get(0);
+	}
+	
 
 	/*
 	 * Token
@@ -79,6 +110,23 @@ public class UserDaoImpl implements UserDAO {
 	}
 	
 	/*
+	 * Content Resource
+	 */
+	
+	@Override
+	public List<ContentResource> findAllContentResource() {
+		String jpql = "SELECT cr FROM ContentResource cr";
+		return em.createQuery(jpql, ContentResource.class).getResultList();
+	}
+
+	@Override
+	public ContentResource findContentResourceById(Integer contentResourceId) {
+		Integer crId = Integer.valueOf(contentResourceId);
+		String jpql = "SELECT cr FROM ContentResource cr WHERE cr.id = :crId";
+		return em.createQuery(jpql, ContentResource.class).setParameter("crId", crId).getResultList().get(0);
+	}
+	
+	/*
 	 * Collection
 	 */
 	
@@ -94,18 +142,59 @@ public class UserDaoImpl implements UserDAO {
 		String jpql = "SELECT c FROM Collection c WHERE c.id = :cid";
 		return em.createQuery(jpql, Collection.class).setParameter("cid", colId).getResultList().get(0);
 	}
-
+	/*
+	 * Purchase
+	 */
 	@Override
 	public List<Purchase> findAllPurchases() {
 		String jpql = "SELECT p FROM Purchase p";
 		return em.createQuery(jpql, Purchase.class).getResultList();
 	}
-
 	@Override
 	public Purchase findPurchasesById(Integer pid) {
 		Integer purId = Integer.valueOf(pid);
 		String jpql = "SELECT p FROM Purchase p WHERE p.id = :pid";
 		return em.createQuery(jpql, Purchase.class).setParameter("pid", purId).getResultList().get(0);
 	}
+	
+	/*
+	 * Login
+	 */
+	
+	@Override
+	public User findUserByEmailAndPass(String email, String password) {
+		User u = null;
+		
+		String jpql = "SELECT u FROM User u WHERE u.email = :email AND u.password = :pass";
+		
+		try {
+			u = em.createQuery(jpql, User.class).setParameter("email", email).setParameter("pass", password).getSingleResult();
+		} catch (Exception e) {
+			u = null;
+		}
+		return u;
+	}
+	/*
+	 * Add new user
+	 */
+
+
+	@Override
+	public User addUser(User user) {
+		
+		
+	em.persist(user);
+		
+		
+		em.flush();
+		
+		
+		return user;
+		
+		
+	}
+	
+	
+	
 	
 }

@@ -6,11 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skilldistillery.membertoken.data.UserDAO;
+import com.skilldistillery.membertoken.entities.ActualItem;
 import com.skilldistillery.membertoken.entities.Business;
+import com.skilldistillery.membertoken.entities.Collection;
 import com.skilldistillery.membertoken.entities.Content;
+import com.skilldistillery.membertoken.entities.ContentResource;
 import com.skilldistillery.membertoken.entities.MemberToken;
+import com.skilldistillery.membertoken.entities.Purchase;
+import com.skilldistillery.membertoken.entities.User;
 
 @Controller
 public class HomeController {
@@ -20,8 +26,27 @@ public class HomeController {
 
 	@RequestMapping(path = { "/", "home.do" })
 	public String home(Model model) {
-		model.addAttribute("DEBUG", dao.findById(1));
+		model.addAttribute("DEBUG", dao.findUserById(1));
 		return "home";
+	}
+	
+	/*
+	 * Actual Item
+	 */
+	
+	@RequestMapping(path = { "/allActualItem", "allActualItem.do" })
+	public String indexActualItem(Model model) {
+		List<ActualItem> actualItemList = dao.findAllActualItem();
+		model.addAttribute("allActualItem", actualItemList);
+		return "allActualItem";
+	}
+
+	@RequestMapping(path = "getActualItem.do")
+	public String showActualItem(Integer actualItemId, Model model) {
+		actualItemId = Integer.valueOf(actualItemId);
+		ActualItem actualItem = dao.findActualItemById(actualItemId);
+		model.addAttribute("actualItem", actualItem);
+		return "showActualItem";
 	}
 
 	/*
@@ -80,4 +105,105 @@ public class HomeController {
 		model.addAttribute("content", content);
 		return "showContent";
 	}
+
+	
+	/*
+	 * Content Resource
+	 */
+	
+	@RequestMapping(path = { "/allContentResource", "allContentResource.do" })
+	public String indexContentResource(Model model) {
+		List<ContentResource> contentResourceList = dao.findAllContentResource();
+		model.addAttribute("allContentResource", contentResourceList);
+		return "allContentResource";
+	}
+
+	@RequestMapping(path = "getContentResource.do")
+	public String showContentResource(Integer crId, Model model) {
+		crId = Integer.valueOf(crId);
+		ContentResource contentResource = dao.findContentResourceById(crId);
+		model.addAttribute("contentResource", contentResource);
+		return "showContentResource";
+	}
+	
+	/*
+	 * Collection
+	 */
+	
+	@RequestMapping(path = { "/allCollection", "allCollection.do" })
+	public String indexCollection(Model model) {
+		List<Collection> colList = dao.findAllCollection();
+		model.addAttribute("allCollection", colList);
+		return "allCollection";
+	}
+
+	@RequestMapping(path = "getCollection.do")
+	public String showCollection(Integer cid, Model model) {
+		cid = Integer.valueOf(cid);
+		Collection col = dao.findCollectionById(cid);
+		model.addAttribute("collection", col);
+		return "showCollection";
+	}
+	/*
+	 * User
+	 */
+	@RequestMapping(path = { "/allUser", "allUser.do" })
+	public String indexUsers(Model model) {
+		List<User> users = dao.findAllUsers();
+		model.addAttribute("users", users);
+		return "allUsers";
+	}
+
+	@RequestMapping(path = "getUser.do")
+	public String showUser(Integer uid, Model model) {
+		uid = Integer.valueOf(uid);
+		User user = dao.findUserById(uid);
+		model.addAttribute("user", user);
+		return "showUser";
+	}
+	/*
+	 * Purchase
+	 */
+	@RequestMapping(path = { "/allPurchases", "allPurchases.do" })
+	public String indexPurchases(Model model) {
+		List<Purchase> purchases = dao.findAllPurchases();
+		model.addAttribute("purchases", purchases);
+		return "allPurchases"; 
+	}
+
+	@RequestMapping(path = "getPurchase.do")
+	public String showPurchase(Integer pid, Model model) {
+		pid = Integer.valueOf(pid);
+		Purchase purchase = dao.findPurchasesById(pid);
+		model.addAttribute("purchase", purchase);
+		return "showPurchase"; 
+	}
+	/*
+	 * New User
+	 */
+	@RequestMapping(path = { "newUser.do" })
+	public String toAddUserForm(Model model) {
+
+		return "newUserForm";
+
+	}
+	@RequestMapping(path = { "addUser.do" })
+	public String addUser( User user, RedirectAttributes redir) {
+		
+		user = dao.addUser(user);
+	
+		redir.addFlashAttribute("user",user);
+		
+		return "redirect:userAdded.do";
+
+	}
+	@RequestMapping(path = { "userAdded.do" })
+	public String userAdded( ) {
+		
+	
+		return "login";
+	}
+	
+	
+	
 }

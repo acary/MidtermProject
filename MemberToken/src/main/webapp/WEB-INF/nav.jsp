@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 		<nav class="navbar navbar-expand-lg navbar-light"
 			style="background-color: #68C5DB;">
 			<div class="container-fluid">
@@ -15,21 +16,32 @@
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 							role="button" data-bs-toggle="dropdown" aria-expanded="false">
-								Search </a>
+								All </a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li><a class="dropdown-item" href="all.do">All Tokens</a></li>
-								<li><a class="dropdown-item" href="allBusinesses.do">All Businesses</a></li>
-								<li><a class="dropdown-item" href="allContent.do">All Content</a></li>
-								<li><a class="dropdown-item" href="allCollection.do">All Collection</a></li>
+								<li><a class="dropdown-item" href="allActualItem.do">Actual Items</a></li>
+								<li><a class="dropdown-item" href="allBusinesses.do">Businesses</a></li>
+								<li><a class="dropdown-item" href="allContent.do">Content</a></li>
+								<li><a class="dropdown-item" href="allContentResource.do">Content Resources</a></li>
+								<li><a class="dropdown-item" href="allCollection.do">Collections</a></li>
+								<li><a class="dropdown-item" href="allPurchases.do">Purchases</a></li>
+								<li><a class="dropdown-item" href="all.do">Tokens</a></li>
+								<li><a class="dropdown-item" href="allUser.do">Users</a></li>
 							</ul></li>
-
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-							role="button" data-bs-toggle="dropdown" aria-expanded="false">
-								Add New</a>
-							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li><a class="dropdown-item" href="">Token</a></li>
-							</ul></li>
+							
+						<c:if test="${empty user}">	
+							<li class="nav-item">
+					          <a class="nav-link" href="login.do">Login</a>
+					        </li>
+				        </c:if>
+				        
+				        <c:if test="${not empty user}">	
+							<li class="nav-item">
+					          <a class="nav-link" href="account.do">Account</a>
+					        </li>
+					        <li class="nav-item">
+					          <a class="nav-link" href="logout.do">Logout</a>
+					        </li>
+				        </c:if>
 					</ul>
 				</div>
 			</div>
