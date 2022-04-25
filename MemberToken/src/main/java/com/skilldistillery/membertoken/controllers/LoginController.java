@@ -26,7 +26,7 @@ public class LoginController {
 		if(session.getAttribute("user") != null) {
 			mv.setViewName("redirect:home.do");
 		} else {
-			mv.addObject("userCommandObject", new User());
+//			mv.addObject("userCommandObject", new User());
 			
 			mv.setViewName("user/login");		
 		}
