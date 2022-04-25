@@ -111,6 +111,18 @@ public class HomeController {
 		model.addAttribute("content", content);
 		return "content/showContent";
 	}
+	
+	@RequestMapping(path = "createContent.do", method = RequestMethod.GET)
+	public String startContent(Model model) {
+		return "content/createContent";
+	}
+
+	@RequestMapping(path = "createContent.do", method = RequestMethod.POST)
+	public String createContent(Content content, Model model) {
+		Content cont = dao.createContent(content);
+		model.addAttribute("content", cont);
+		return "content/showContent";
+	}
 
 	
 	/*

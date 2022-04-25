@@ -49,6 +49,8 @@ public interface UserDAO {
 
 	Content findContentById(Integer cid);
 
+	Content createContent(Content content);
+	
 	/*
 	 * Collection
 	 */
@@ -91,5 +93,6 @@ public interface UserDAO {
 	User findUserById(int userId);
 	
 	List <User> findAllUsers();
+
 
 }
