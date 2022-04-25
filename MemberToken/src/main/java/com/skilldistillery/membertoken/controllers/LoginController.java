@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.membertoken.data.UserDAO;
+import com.skilldistillery.membertoken.entities.Business;
 import com.skilldistillery.membertoken.entities.User;
 
 @Controller
@@ -25,7 +26,7 @@ public class LoginController {
 		} else {
 			mv.addObject("userCommandObject", new User());
 			
-			mv.setViewName("user/login.do");		
+			mv.setViewName("user/login");		
 		}
 		return mv;
 	}
@@ -40,6 +41,10 @@ public class LoginController {
 				return "redirect:login.do";
 			} 
 			session.setAttribute("user", u);
+			
+			Business business = dao.findBusinessById(1);
+			session.setAttribute("business", business);
+			
 			return "user/account";
 	}
 
