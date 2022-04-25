@@ -39,7 +39,7 @@ public class LoginController {
 				return "redirect:login.do";
 			} 
 			session.setAttribute("user", u);
-			return "home";
+			return "account";
 	}
 
 	@RequestMapping("logout.do") 

@@ -19,33 +19,29 @@
 								All </a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 								<li><a class="dropdown-item" href="allActualItem.do">Actual Items</a></li>
-								<li><a class="dropdown-item" href="all.do">Tokens</a></li>
 								<li><a class="dropdown-item" href="allBusinesses.do">Businesses</a></li>
 								<li><a class="dropdown-item" href="allContent.do">Content</a></li>
-								<li><a class="dropdown-item" href="allContentResource.do">Content Resource</a></li>
-								<li><a class="dropdown-item" href="allCollection.do">Collection</a></li>
-								<li><a class="dropdown-item" href="allUser.do">User</a></li>
+								<li><a class="dropdown-item" href="allContentResource.do">Content Resources</a></li>
+								<li><a class="dropdown-item" href="allCollection.do">Collections</a></li>
 								<li><a class="dropdown-item" href="allPurchases.do">Purchases</a></li>
-								<c:if test="${empty user}">
-								<li><a class="dropdown-item" href="login.do">Login</a></li>
-								</c:if>
-								<c:if test="${not empty user}">
-								<li><a class="dropdown-item" href="account.do">Account</a></li>
-								<li><a class="dropdown-item" href="logout.do">Logout</a></li>
-								</c:if>
-								
+								<li><a class="dropdown-item" href="all.do">Tokens</a></li>
+								<li><a class="dropdown-item" href="allUser.do">Users</a></li>
 							</ul></li>
-
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-							role="button" data-bs-toggle="dropdown" aria-expanded="false">
-								Add New</a>
-							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li><a class="dropdown-item" href="">Token</a></li>
-								<c:if test="${empty user }">
-								<li><a class="dropdown-item" href="newUser.do">User</a></li>
-								</c:if>
-							</ul></li>
+							
+						<c:if test="${empty user}">	
+							<li class="nav-item">
+					          <a class="nav-link" href="login.do">Login</a>
+					        </li>
+				        </c:if>
+				        
+				        <c:if test="${not empty user}">	
+							<li class="nav-item">
+					          <a class="nav-link" href="account.do">Account</a>
+					        </li>
+					        <li class="nav-item">
+					          <a class="nav-link" href="logout.do">Logout</a>
+					        </li>
+				        </c:if>
 					</ul>
 				</div>
 			</div>

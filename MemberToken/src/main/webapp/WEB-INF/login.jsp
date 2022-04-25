@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MBR TKN - All Actual Items</title>
+<title>MBR TKN - Login</title>
 <jsp:include page="bootstrapHead.jsp" />
 </head>
 <body>
@@ -15,12 +15,12 @@
 	</div>
 
 	<main class="container">
-		<h1>Log In</h1>
+		<h1>Login</h1>
 		<div class="form-group">
 			<form action="login.do" method="post" class="container-sm">
-				<input type="text" name="email" class="form-control" id="exampleInputEmail1"
+				<input type="text" name="email" class="form-control m-1" id="exampleInputEmail1"
 				placeholder="Email"> 
-				<input type="password" name="password" class="form-control" id="exampleInputPassword1"
+				<input type="password" name="password" class="form-control m-1" id="exampleInputPassword1"
 				placeholder="Password"> 
 				<input type="submit" value="Log In"
 					class="btn btn-outline-primary">
