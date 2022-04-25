@@ -6,6 +6,7 @@ import com.skilldistillery.membertoken.entities.Business;
 import com.skilldistillery.membertoken.entities.Content;
 import com.skilldistillery.membertoken.entities.Collection;
 import com.skilldistillery.membertoken.entities.MemberToken;
+import com.skilldistillery.membertoken.entities.Purchase;
 import com.skilldistillery.membertoken.entities.User;
 
 public interface UserDAO {
@@ -33,4 +34,8 @@ public interface UserDAO {
 	Collection findCollectionById(Integer cid);
 
 	List<Collection> findAllCollection();
+
+	Purchase findPurchasesById(Integer pid);
+
+	List<Purchase> findAllPurchases();
 }
