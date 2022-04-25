@@ -150,6 +150,20 @@ public class HomeController {
 		model.addAttribute("collection", col);
 		return "collection/showCollection";
 	}
+	
+	@RequestMapping(path = "createCollection.do", method = RequestMethod.GET)
+	public String startCreateCollection(Model model) {
+		return "collection/createCollection";
+	}
+
+	@RequestMapping(path = "createCollection.do", method = RequestMethod.POST)
+	public String createCollection(Collection collection, Model model) {
+		Collection newCollection = dao.createCollection(collection);
+		model.addAttribute("collection", newCollection);
+		return "collection/showCollection";
+	}
+	
+	
 	/*
 	 * User
 	 */

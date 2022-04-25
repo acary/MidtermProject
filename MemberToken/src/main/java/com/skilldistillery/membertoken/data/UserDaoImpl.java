@@ -136,6 +136,18 @@ public class UserDaoImpl implements UserDAO {
 		return em.createQuery(jpql, Collection.class).setParameter("cid", colId).getResultList().get(0);
 	}
 	
+	@Override
+	public Collection createCollection(Collection collection) {
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		em.persist(collection);
+		em.flush();
+		em.getTransaction().commit();
+		return collection;
+		
+	
+	}
+	
 	/*
 	 * Login
 	 */
