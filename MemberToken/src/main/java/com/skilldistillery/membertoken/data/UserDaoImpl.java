@@ -99,7 +99,7 @@ public class UserDaoImpl implements UserDAO {
 	public Business updateBusiness(int bid, Business bus) {
 		Business updatedBus = em.find(Business.class, bid);
 		updatedBus.setName(bus.getName());
-		
+		updatedBus.setDescription(bus.getDescription());
 		return updatedBus;
 	}
 	

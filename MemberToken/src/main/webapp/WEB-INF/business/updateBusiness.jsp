@@ -23,6 +23,10 @@
 					for="name" class="form-label">Business Name</label> <input type="text"
 					name="name" class="form-control form-control-lg" />
 				<div id="ActualItemNameHelp" class="form-text">${business.name}</div>
+				<label
+					for="description" class="form-label">Business Description</label> 
+					<input type="text" name="description" class="form-control form-control-lg" />
+				<div id="DescriptionHelp" class="form-text">${business.description}</div>
 				<br> <input type="submit" class="btn btn-primary m-2"
 					value="Update Business" />
 			</form>

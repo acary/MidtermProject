@@ -113,7 +113,7 @@ public class HomeController {
 	@RequestMapping(path = "updateBusiness.do", method = RequestMethod.GET)
 	public String startUpdateBusiness(Integer bid, Model model) {
 		Business business = dao.findBusinessById(bid);
-		model.addAttribute("actualItem", business);
+		model.addAttribute("business", business);
 		return "business/updateBusiness";
 	}
 
