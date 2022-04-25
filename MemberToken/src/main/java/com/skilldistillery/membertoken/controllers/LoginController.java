@@ -25,7 +25,7 @@ public class LoginController {
 		} else {
 			mv.addObject("userCommandObject", new User());
 			
-			mv.setViewName("user/login.do");		
+			mv.setViewName("user/login");		
 		}
 		return mv;
 	}
