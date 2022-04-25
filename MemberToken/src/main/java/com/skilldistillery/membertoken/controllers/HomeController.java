@@ -200,7 +200,7 @@ public class HomeController {
 	public String userAdded( ) {
 		
 	
-		return "account";
+		return "login";
 	}
 	
 	

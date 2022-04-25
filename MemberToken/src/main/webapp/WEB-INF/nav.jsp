@@ -42,7 +42,9 @@
 								Add New</a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 								<li><a class="dropdown-item" href="">Token</a></li>
+								<c:if test="${empty user }">
 								<li><a class="dropdown-item" href="newUser.do">User</a></li>
+								</c:if>
 							</ul></li>
 					</ul>
 				</div>
