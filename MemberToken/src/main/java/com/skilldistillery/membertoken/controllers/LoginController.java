@@ -15,7 +15,7 @@ import com.skilldistillery.membertoken.entities.User;
 public class LoginController {
 	
 	@Autowired
-	UserDAO dao;
+	private UserDAO dao;
 	
 	@RequestMapping("login.do")
 	public ModelAndView logIn(HttpSession session) {
@@ -34,12 +34,12 @@ public class LoginController {
 	@RequestMapping(path = "login.do", method= RequestMethod.POST )
 	public String tryLogIn(User user, HttpSession session) {
 			User u = dao.findUserByEmailAndPass(user.getEmail(), user.getPassword());
-			System.out.println(user == null);
+			
 			if (u == null) {
 				return "redirect:login.do";
 			} 
 			session.setAttribute("user", u);
-			return "account";
+			return "home";
 	}
 
 	@RequestMapping("logout.do") 
