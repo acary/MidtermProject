@@ -54,6 +54,18 @@ public class UserDaoImpl implements UserDAO {
 		em.getTransaction().commit();
 		return actualItem;
 	}
+	
+	@Override
+	public int updateActualItem(ActualItem actualItem) {
+		int count = 0;
+		EntityManager em = emf.createEntityManager();
+		String jpql = "UPDATE ActualItem item SET name = item.name WHERE id = :id";
+		em.getTransaction().begin();
+		count = em.createQuery(jpql).setParameter("id", actualItem.getId()).executeUpdate();
+		em.getTransaction().commit();
+		em.close();
+		return count;
+	}
 
 	/*
 	 * Business

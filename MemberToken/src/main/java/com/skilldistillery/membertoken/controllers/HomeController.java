@@ -61,6 +61,23 @@ public class HomeController {
 		model.addAttribute("actualItem", actualItemAdded);
 		return "actualitem/showActualItem";
 	}
+	
+	@RequestMapping(path = "updateActualItem.do", method = RequestMethod.GET)
+	public String startUpdateActualItem(Integer aid, Model model) {
+		ActualItem item = dao.findActualItemById(aid);
+		model.addAttribute("actualItem", item);
+		return "actualitem/updateActualItem";
+	}
+
+	@RequestMapping(path = "updateActualItem.do", method = RequestMethod.POST)
+	public String updateActualItem(String aid, String name, String uri, Model model) {
+		Integer itemId = Integer.valueOf(aid);
+		ActualItem item = dao.findActualItemById(itemId);
+		item.setName(name);
+		dao.updateActualItem(item);
+		model.addAttribute("actualItem", item);
+		return "actualitem/showActualItem";
+	}
 
 	/*
 	 * Business

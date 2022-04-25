@@ -22,6 +22,8 @@ public interface UserDAO {
 	ActualItem findActualItemById(Integer actualItemId);
 	
 	public ActualItem createActualItem(ActualItem actualItem);
+	
+	public int updateActualItem(ActualItem actualItem);
 
 	/*
 	 * Token
