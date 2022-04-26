@@ -8,14 +8,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.skilldistillery.membertoken.data.UserDAO;
+import com.skilldistillery.membertoken.data.CollectionDAO;
 import com.skilldistillery.membertoken.entities.Collection;
 
 @Controller
 public class CollectionController {
 
 	@Autowired
-	private UserDAO dao;
+	private CollectionDAO dao;
 	
 	@RequestMapping(path = { "/allCollection", "allCollection.do" })
 	public String indexCollection(Model model) {

@@ -8,14 +8,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.skilldistillery.membertoken.data.UserDAO;
+import com.skilldistillery.membertoken.data.ActualItemDAO;
 import com.skilldistillery.membertoken.entities.ActualItem;
 
 @Controller
 public class ActualItemController {
 	
 	@Autowired
-	private UserDAO dao;
+	private ActualItemDAO dao;
 	
 	@RequestMapping(path = { "/allActualItem", "allActualItem.do" })
 	public String indexActualItem(Model model) {

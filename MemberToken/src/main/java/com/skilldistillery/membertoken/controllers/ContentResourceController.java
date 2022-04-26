@@ -8,14 +8,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.skilldistillery.membertoken.data.UserDAO;
+import com.skilldistillery.membertoken.data.ContentResourceDAO;
 import com.skilldistillery.membertoken.entities.ContentResource;
 
 @Controller
 public class ContentResourceController {
 
 	@Autowired
-	private UserDAO dao; 
+	private ContentResourceDAO dao; 
 	
 	@RequestMapping(path = { "/allContentResource", "allContentResource.do" })
 	public String indexContentResource(Model model) {

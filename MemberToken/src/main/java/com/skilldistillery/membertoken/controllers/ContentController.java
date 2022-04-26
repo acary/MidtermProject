@@ -8,7 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.skilldistillery.membertoken.data.UserDAO;
+import com.skilldistillery.membertoken.data.BusinessDAO;
+import com.skilldistillery.membertoken.data.ContentDAO;
 import com.skilldistillery.membertoken.entities.Business;
 import com.skilldistillery.membertoken.entities.Content;
 
@@ -16,7 +17,10 @@ import com.skilldistillery.membertoken.entities.Content;
 public class ContentController {
 	
 	@Autowired
-	private UserDAO dao;
+	private ContentDAO dao;
+	
+	@Autowired
+	private BusinessDAO businessDao;
 	
 	@RequestMapping(path = { "/allContent", "allContent.do" })
 	public String indexContent(Model model) {
@@ -59,7 +63,7 @@ public class ContentController {
 	@RequestMapping(path = "deleteContent.do", method = RequestMethod.GET)
 	public String deleteContent(String cid, Model model) {
 		Integer contentId = Integer.valueOf(cid);
-		Business item = dao.findBusinessById(contentId);
+		Business item = businessDao.findBusinessById(contentId);
 		try {
 			if (item != null) {
 				dao.deleteContent(item.getId());
