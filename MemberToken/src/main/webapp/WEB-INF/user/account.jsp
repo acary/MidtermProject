@@ -127,6 +127,7 @@
 											<th>ID</th>
 											<th>Name</th>
 											<th>Description</th>
+											<th>Access Code</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -135,6 +136,7 @@
 												<td>${bus.id}</td>
 												<td><a href="getBusiness.do?bid=${bus.id}">${bus.name}</a></td>
 												<td>${bus.description}</td>
+												<td>ACCESS</td>
 											</tr>
 										</c:forEach>
 									</tbody>
