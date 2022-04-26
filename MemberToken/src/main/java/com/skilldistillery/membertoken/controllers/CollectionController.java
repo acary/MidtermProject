@@ -52,9 +52,23 @@ public class CollectionController {
 	}
 
 	@RequestMapping(path = "updateCollection.do", method = RequestMethod.POST)
-	public String updateBusiness(int cid, Collection collection, Model model) {
-		model.addAttribute("collection", dao.updateCollection(cid, collection));
+	public String updateCollection(int cid, String description, String imageUrl, Collection collection, Model model) {
+		Collection newCollection = dao.findCollectionById(cid);
+		newCollection.setDescription(description);;
+		newCollection.setImageUrl(imageUrl);
+		collection = dao.updateCollection(cid, newCollection);
+		model.addAttribute("collection", collection);
 		return "collection/showCollection";
+	}
+	
+	@RequestMapping(path = { "/viewCollections", "viewCollections.do" })
+	public String viewCollections(Model model) {
+		List<Collection> colList = dao.findAllCollection();
+		Collection featured = colList.get(0);
+		colList.remove(0);
+		model.addAttribute("featured", featured);
+		model.addAttribute("collections", colList);
+		return "collection/viewCollections";
 	}
 
 }

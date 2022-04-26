@@ -1,28 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MBR TKN: Collect Unique Assets and Gain Access!</title>
-<jsp:include page="bootstrapHead.jsp" />
+<title>MBR TKN - All Collections</title>
+<jsp:include page="../bootstrapHead.jsp" />
 </head>
 <body>
-
 	<div class="container">
-		<jsp:include page="nav.jsp" />
+		<jsp:include page="../nav.jsp" />
 	</div>
 	
 	<div class="container">
-	    <div class="p-5 mb-4 bg-light rounded-3" style="background-image: url(${featuredCollection.imageUrl});">
+	
+		<!-- FEATURED COLLECTION -->
+		 <div class="p-5 m-1 bg-light rounded-3" style="background-image: url(${featured.imageUrl});">
 	      <div class="container-fluid py-5">
-	        <h1 class="display-5 fw-bold">MBR TKN</h1>
-	        <p class="col-md-8 fs-4">Member tokens are unique digital assets that show support for your favorite brands, musicians, designers and creators. Browse collections to find your new favorites and upcoming launches.</p>
-	        <a href="viewCollections.do"><button class="btn btn-primary btn-lg" type="button">Collections</button></a>
+	        <h1 class="display-5 fw-bold">${featured.name}</h1>
+	        <p class="col-md-8 fs-4">${featured.description}</p>
+	        <a href="getCollection.do?cid=${featured.id}"><button class="btn btn-primary btn-lg" type="button">View Collection</button></a>
 	      </div>
 	    </div>
 	
+		<!-- COLLECTIONS -->
+		<c:forEach var="col" items="${collections}">
+			<div class="p-5 m-1 bg-light rounded-3" style="background-image: url(${col.imageUrl});">
+		      <div class="container-fluid py-5">
+		        <h1 class="display-5 fw-bold">${col.name}</h1>
+		        <p class="col-md-8 fs-4">${col.description}</p>
+		        <a href="getCollection.do?cid=${col.id}"><button class="btn btn-primary btn-lg" type="button">View Collection</button></a>
+		      </div>
+		    </div>
+		</c:forEach>
+	
+		<!--  INFORMATION -->
 	    <div class="row align-items-md-stretch">
 	      <div class="col-md-6">
 	        <div class="h-100 p-5 text-white bg-dark rounded-3">
@@ -41,6 +55,6 @@
 	    </div>
     </div>
 
-	<jsp:include page="footer.jsp" />
+	<jsp:include page="../footer.jsp" />
 </body>
 </html>
