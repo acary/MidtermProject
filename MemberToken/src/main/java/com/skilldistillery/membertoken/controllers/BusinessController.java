@@ -17,6 +17,7 @@ public class BusinessController {
 	@Autowired
 	private BusinessDAO dao;
 	
+	
 	@RequestMapping(path = { "/allBusinesses", "allBusinesses.do" })
 	public String indexBusiness(Model model) {
 		List<Business> business = dao.findAllBusinesses();
