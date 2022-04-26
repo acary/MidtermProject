@@ -19,7 +19,8 @@
 		<!-- FEATURED COLLECTION -->
 		 <div class="p-5 m-1 bg-light rounded-3" style="background-image: url(${featured.imageUrl});">
 	      <div class="container-fluid py-5">
-	        <h1 class="display-5 fw-bold">${featured.name}</h1>
+	        <p class="display-3 fw-bold brandText text-wrap" style="width: 20rem;">${featured.name}</p>
+	        <p class="display-6 fw-bold brandText text-wrap" style="width: 20rem;">${featured.business.name}</p>
 	        <p class="col-md-8 fs-4">${featured.description}</p>
 	        <a href="viewCollection.do?cid=${featured.id}"><button class="btn btn-primary btn-lg" type="button">View Collection</button></a>
 	      </div>
@@ -29,7 +30,8 @@
 		<c:forEach var="col" items="${collections}">
 			<div class="p-5 m-1 bg-light rounded-3" style="background-image: url(${col.imageUrl});">
 		      <div class="container-fluid py-5">
-		        <h1 class="display-5 fw-bold">${col.name}</h1>
+		        <p class="display-3 fw-bold brandText text-wrap" style="width: 20rem;">${col.name}</p>
+		        <p class="display-6 fw-bold brandText text-wrap" style="width: 20rem;">${col.business.name}</p>
 		        <p class="col-md-8 fs-4">${col.description}</p>
 		        <a href="viewCollection.do?cid=${col.id}"><button class="btn btn-primary btn-lg" type="button">View Collection</button></a>
 		      </div>
