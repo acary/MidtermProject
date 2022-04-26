@@ -28,12 +28,12 @@
 								<c:choose>
 									<c:when test="${not empty user.profileImageUrl }">
 										<img src="${user.profileImageUrl}" alt="Admin"
-											class="rounded-circle p-1" width="140">
+											class="rounded-circle p-1" width="160" height="160">
 									</c:when>
 									<c:otherwise>
 										<img
 											src="https://static.vecteezy.com/system/resources/previews/002/318/271/original/user-profile-icon-free-vector.jpg"
-											alt="Admin" class="rounded-circle " width="140">
+											alt="Admin" class="rounded-circle " width="160" height="160">
 
 									</c:otherwise>
 								</c:choose>
