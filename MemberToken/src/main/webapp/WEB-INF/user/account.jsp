@@ -144,6 +144,7 @@
 										<tr>
 											<th>ID</th>
 											<th>Name</th>
+											<th>Member Token</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -151,6 +152,7 @@
 											<tr>
 												<td>${pur.id}</td>
 												<td><a href="getPurchase.do?pid=${pur.id}">${pur.dateTimePurchased}</a></td>
+												<td>${pur.memberToken.tokenName}</td>
 											</tr>
 										</c:forEach>
 									</tbody>
