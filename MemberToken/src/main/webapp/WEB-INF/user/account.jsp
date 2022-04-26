@@ -110,7 +110,8 @@
 						</div>
 					</div>
 				</div>
-				
+
+			
 					<div class="col-lg-8">
 						<div class="card">
 							<div class="card-body">
@@ -132,14 +133,43 @@
 									</tbody>
 								</table>
 							</div>
-						
+						</div>
 					</div>
-				</div>
+				
 			</div>
 
 		</div>
 	</div>
+	
+	<div class="col-lg-8">
+						<div class="card">
+							<div class="card-body">
+								<h4>Your purchases</h4>
+								<table class="table table-striped">
+									<thead class="table-dark">
+										<tr>
+											<th>ID</th>
+											<th>Name</th>
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach var="pur" items="${purchases}">
+											<tr>
+												<td>${pur.id}</td>
+												<td><a href="getPurchase.do?pid=${pur.id}">${pur.dateTimePurchased}</a></td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				
+			</div>
 
+		</div>
+	</div>
+	
 
 
 

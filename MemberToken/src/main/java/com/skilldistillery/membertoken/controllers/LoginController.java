@@ -12,11 +12,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.membertoken.data.BusinessDAO;
 import com.skilldistillery.membertoken.data.ContentDAO;
+import com.skilldistillery.membertoken.data.PurchaseDAO;
 import com.skilldistillery.membertoken.data.TokenDAO;
 import com.skilldistillery.membertoken.data.UserDAO;
 import com.skilldistillery.membertoken.entities.Business;
 import com.skilldistillery.membertoken.entities.Content;
 import com.skilldistillery.membertoken.entities.MemberToken;
+import com.skilldistillery.membertoken.entities.Purchase;
 import com.skilldistillery.membertoken.entities.User;
 
 @Controller
@@ -33,6 +35,9 @@ public class LoginController {
 
 	@Autowired
 	private TokenDAO tokenDao;
+	@Autowired
+	private PurchaseDAO purchaseDao;
+
 
 	@RequestMapping("login.do")
 	public ModelAndView logIn(HttpSession session) {
@@ -57,6 +62,9 @@ public class LoginController {
 
 		List<Business> businesses = businessDao.findBusinessByUserId(u);
 		session.setAttribute("businesses", businesses);
+		
+		List<Purchase> purchases = purchaseDao.findPurchasesByUserId(u);
+		session.setAttribute("purchases", purchases);
 
 		MemberToken mt = tokenDao.findTokenById(1);
 		session.setAttribute("token", mt);

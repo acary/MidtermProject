@@ -15,6 +15,12 @@
 	</div>
 
 
+
+
+
+
+
+
 	<div class="container">
 		<div class="main-body">
 			<div class="row">
@@ -25,8 +31,7 @@
 
 								<c:choose>
 									<c:when test="${not empty business.logoUrl}">
-										<img src="https://www.hydroflask.com/media/catalog/product/cache/9177cfe059281270017bc29637323e6d/w/3/w32bsw-snapper.jpg" alt="Admin"
-											class="rounded-circle p-1" width="140">
+										<img src="${business.logoUrl }" width="140">
 									</c:when>
 									<c:otherwise>
 										<img
@@ -40,7 +45,7 @@
 
 
 									<h4>${business.name}</h4>
-									<h4>${business.description}</h4>
+									<p>${business.description}</p>
 									<a href="updateBusiness.do?bid=${business.id}"><button
 											type="button" class="btn btn-primary disable">Update</button></a>
 									<a href="deleteBusiness.do?bid=${business.id}"><button
@@ -51,6 +56,7 @@
 						</div>
 					</div>
 				</div>
+				
 
 				<div class="col-lg-8">
 					<div class="card">
@@ -102,11 +108,7 @@
 			</div>
 		</div>
 	</div>
-
-
-
-
-
+	
 
 
 
