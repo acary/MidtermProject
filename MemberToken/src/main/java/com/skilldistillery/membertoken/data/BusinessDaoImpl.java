@@ -40,8 +40,11 @@ public class BusinessDaoImpl implements BusinessDAO {
 	public List<Business> findBusinessByUserId(User user) {
 		int uid = user.getId();
 		String jpql = "SELECT bus FROM Business bus WHERE bus.user.id = :uid";
-		return em.createQuery(jpql, Business.class).setParameter("uid", uid).getResultList();
-
+		List<Business> busList = em.createQuery(jpql, Business.class).setParameter("uid", uid).getResultList();
+		if (busList.isEmpty()) {
+			busList = null;
+		}
+		return busList;
 	}
 
 	@Override
