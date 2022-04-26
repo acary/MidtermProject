@@ -15,18 +15,23 @@
 	</div>
 
 	<main class="container">
-		<h1>Login</h1>
-		<div class="form-group">
-			<form action="login.do" method="post" class="container-sm">
-				<input type="text" name="email" class="form-control m-1" id="exampleInputEmail1"
-				placeholder="Email"> 
-				<input type="password" name="password" class="form-control m-1" id="exampleInputPassword1"
-				placeholder="Password"> 
-				<input type="submit" value="Log In"
-					class="btn btn-outline-primary">
-			</form>
-		</div>
 
+			<div class="form-signin">
+			  <form action="login.do" method="post">
+			    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+			
+			    <div class="form-floating">
+			      <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+			      <label for="floatingInput">Email address</label>
+			    </div>
+			    <div class="form-floating">
+			      <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
+			      <label for="floatingPassword">Password</label>
+			    </div>
+			    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+			  </form>
+			</div>
+			
 	</main>
 
 	<jsp:include page="../footer.jsp" />

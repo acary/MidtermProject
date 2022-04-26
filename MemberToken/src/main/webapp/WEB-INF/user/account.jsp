@@ -110,29 +110,40 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-8">
-					<div class="card">
-						<div class="card-body">
-							<h4>Your businesses</h4>
-							<table class="table table-striped">
-								<thead class="table-dark">
-									<tr>
-										<th>ID</th>
-										<th>Name</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach var="bus" items="${businesses}">
+				
+				<c:if test="${businesses == null }">
+					<div class="col-lg-8 my-2">
+						<p>You have no businesses listed. <a href="createBusiness.do">Create one here.</a></p>
+					</div>
+				</c:if>
+				<c:if test="${businesses != null }">
+					<div class="col-lg-8">
+						<div class="card">
+							<div class="card-body">
+								<h4>Your Businesses</h4>
+								<table class="table table-striped">
+									<thead class="table-dark">
 										<tr>
-											<td>${bus.id}</td>
-											<td><a href="getBusiness.do?bid=${bus.id}">${bus.name}</a></td>
+											<th>ID</th>
+											<th>Name</th>
+											<th>Description</th>
 										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
+									</thead>
+									<tbody>
+										<c:forEach var="bus" items="${businesses}">
+											<tr>
+												<td>${bus.id}</td>
+												<td><a href="getBusiness.do?bid=${bus.id}">${bus.name}</a></td>
+												<td>${bus.description}</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
 						</div>
 					</div>
-				</div>
+				</c:if>
+				
 			</div>
 			<div class="row">
 				<div class="col-lg-8">
