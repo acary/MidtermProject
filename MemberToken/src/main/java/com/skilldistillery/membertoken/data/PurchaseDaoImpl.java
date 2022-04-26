@@ -1,5 +1,6 @@
 package com.skilldistillery.membertoken.data;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -10,7 +11,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
-import com.skilldistillery.membertoken.entities.Business;
+import com.skilldistillery.membertoken.entities.MemberToken;
 import com.skilldistillery.membertoken.entities.Purchase;
 import com.skilldistillery.membertoken.entities.User;
 
@@ -45,7 +46,7 @@ public class PurchaseDaoImpl implements PurchaseDAO {
 		em.getTransaction().commit();
 		return purchase;
 	}
-	
+
 	@Override
 	public List<Purchase> findPurchasesByUserId(User user) {
 		int uid = user.getId();
@@ -53,6 +54,21 @@ public class PurchaseDaoImpl implements PurchaseDAO {
 		return em.createQuery(jpql, Purchase.class).setParameter("uid", uid).getResultList();
 
 	}
-	
+
+	@Override
+	public Purchase purchaseItem(User user, MemberToken token, LocalDateTime lt) {
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		Purchase newPurchase = new Purchase();
+
+		newPurchase.setCustomer(user);
+		newPurchase.setMemberToken(token);
+		newPurchase.setDateTimePurchased(lt);
+
+		em.persist(newPurchase);
+		em.getTransaction().commit();
+
+		return newPurchase;
+	}
 
 }

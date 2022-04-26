@@ -27,7 +27,9 @@
 			
 			<hr>
 			
+			
 			<a href="updateToken.do?tid=${token.id}"><button type="button" class="btn btn-primary">Update</button></a>
+			<a href="createUserPurchase.do"><button type="button" class="btn btn-primary">Purchase</button></a>
 			<a href=""><button type="button" class="btn btn-danger">Delete</button></a>
 		</div>
 	</div>
