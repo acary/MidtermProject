@@ -41,8 +41,6 @@
 								<div class="mt-3">
 									<h4>${user.firstName}${user.lastName}</h4>
 									<p class="text-secondary mb-1">${user.username}</p>
-									<button class="btn btn-primary">Follow</button>
-									<button class="btn btn-outline-primary">Message</button>
 								</div>
 							</div>
 
@@ -127,7 +125,6 @@
 											<th>ID</th>
 											<th>Name</th>
 											<th>Description</th>
-											<th>Access Code</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -136,7 +133,6 @@
 												<td>${bus.id}</td>
 												<td><a href="getBusiness.do?bid=${bus.id}">${bus.name}</a></td>
 												<td>${bus.description}</td>
-												<td>ACCESS</td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -158,6 +154,7 @@
 											<th>ID</th>
 											<th>Name</th>
 											<th>Member Token</th>
+											<th>Access Code</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -166,6 +163,7 @@
 												<td>${pur.id}</td>
 												<td><a href="getPurchase.do?pid=${pur.id}">${pur.dateTimePurchased}</a></td>
 												<td>${pur.memberToken.tokenName}</td>
+												<td>ACCESS</td>
 											</tr>
 										</c:forEach>
 									</tbody>
