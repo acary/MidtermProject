@@ -26,8 +26,6 @@ public class Business {
 	@Column(name="logo_image_url")
 	private String logoUrl;
 	
-
-	
 	@OneToMany(mappedBy="business")
 	private List<Collection> collections;
 	
