@@ -21,7 +21,7 @@
 	      <div class="container-fluid py-5">
 	        <h1 class="display-5 fw-bold">${featured.name}</h1>
 	        <p class="col-md-8 fs-4">${featured.description}</p>
-	        <a href="getCollection.do?cid=${featured.id}"><button class="btn btn-primary btn-lg" type="button">View Collection</button></a>
+	        <a href="viewCollection.do?cid=${featured.id}"><button class="btn btn-primary btn-lg" type="button">View Collection</button></a>
 	      </div>
 	    </div>
 	
@@ -31,7 +31,7 @@
 		      <div class="container-fluid py-5">
 		        <h1 class="display-5 fw-bold">${col.name}</h1>
 		        <p class="col-md-8 fs-4">${col.description}</p>
-		        <a href="getCollection.do?cid=${col.id}"><button class="btn btn-primary btn-lg" type="button">View Collection</button></a>
+		        <a href="viewCollection.do?cid=${col.id}"><button class="btn btn-primary btn-lg" type="button">View Collection</button></a>
 		      </div>
 		    </div>
 		</c:forEach>

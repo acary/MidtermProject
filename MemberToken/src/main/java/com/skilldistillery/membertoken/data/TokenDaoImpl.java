@@ -51,4 +51,10 @@ public class TokenDaoImpl implements TokenDAO {
 		em.getTransaction().commit();
 		return token;
 	}
+	
+	@Override
+	public List<MemberToken> findTokensByCollectionId(Integer cid) {
+		String jpql = "SELECT tkn FROM MemberToken tkn JOIN FETCH tkn.collection WHERE tkn.collection.id = :cid";
+		return em.createQuery(jpql, MemberToken.class).setParameter("cid", cid).getResultList();
+	}
 }
