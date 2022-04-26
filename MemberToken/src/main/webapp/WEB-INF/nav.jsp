@@ -12,7 +12,9 @@
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbarNav">
+					
 					<ul class="navbar-nav">
+						<c:if test="${user.role == 'admin' }">
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 							role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -27,7 +29,7 @@
 								<li><a class="dropdown-item" href="all.do">Tokens</a></li>
 								<li><a class="dropdown-item" href="allUser.do">Users</a></li>
 							</ul></li>
-							
+							</c:if>
 						<c:if test="${empty user}">	
 							<li class="nav-item">
 					          <a class="nav-link" href="login.do">Login</a>
