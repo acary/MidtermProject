@@ -2,6 +2,8 @@ package com.skilldistillery.membertoken.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +28,7 @@ public class BusinessController {
 	}
 
 	@RequestMapping(path = "getBusiness.do")
-	public String showBusiness(Integer bid, Model model) {
+	public String showBusiness(Integer bid, Model model, HttpSession session) {
 		bid = Integer.valueOf(bid);
 		Business business = dao.findBusinessById(bid);
 		model.addAttribute("business", business);

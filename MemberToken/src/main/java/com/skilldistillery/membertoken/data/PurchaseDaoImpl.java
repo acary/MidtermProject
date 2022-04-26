@@ -10,7 +10,9 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.membertoken.entities.Business;
 import com.skilldistillery.membertoken.entities.Purchase;
+import com.skilldistillery.membertoken.entities.User;
 
 @Service
 @Transactional
@@ -43,5 +45,14 @@ public class PurchaseDaoImpl implements PurchaseDAO {
 		em.getTransaction().commit();
 		return purchase;
 	}
+	
+	@Override
+	public List<Purchase> findPurchasesByUserId(User user) {
+		int uid = user.getId();
+		String jpql = "SELECT pur FROM Purchase pur WHERE pur.customer.id = :uid";
+		return em.createQuery(jpql, Purchase.class).setParameter("uid", uid).getResultList();
+
+	}
+	
 
 }
