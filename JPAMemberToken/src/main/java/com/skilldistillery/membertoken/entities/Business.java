@@ -91,7 +91,9 @@ public class Business {
 	@Override
 	public String toString() {
 		return "Business [id=" + id + ", name=" + name + ", description=" + description + ", logoUrl=" + logoUrl
-				;
+
+				+  "]";
+
 	}
 
 	@Override
