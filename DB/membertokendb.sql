@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` VARCHAR(45) NULL,
   `active` TINYINT NOT NULL DEFAULT 1,
   `role` VARCHAR(45) NULL,
-  `profile_image_url` VARCHAR(2000) NULL,
+  `profile_image_url` VARCHAR(4000) NULL,
   `about_me` TEXT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC),
@@ -44,11 +44,10 @@ DROP TABLE IF EXISTS `business` ;
 
 CREATE TABLE IF NOT EXISTS `business` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `logo_url` VARCHAR(2000) NULL,
   `description` TEXT NULL,
   `name` VARCHAR(45) NULL,
   `user_id` INT NOT NULL,
-  `image_url` VARCHAR(2000) NULL,
+  `logo_image_url` VARCHAR(2000) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_business_user1_idx` (`user_id` ASC),
   CONSTRAINT `fk_business_user1`
@@ -135,7 +134,7 @@ CREATE TABLE IF NOT EXISTS `content` (
   `title` VARCHAR(100) NULL,
   `description` VARCHAR(500) NULL,
   `text_content` VARCHAR(100) NULL,
-  `image_url` VARCHAR(150) NULL,
+  `image_url` VARCHAR(2000) NULL,
   `access_code` VARCHAR(45) NULL,
   `member_token_id` INT NOT NULL,
   `status` VARCHAR(100) NULL,
@@ -237,12 +236,12 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `membertokendb`;
-INSERT INTO `user` (`id`, `email`, `first_name`, `last_name`, `username`, `password`, `active`, `role`, `profile_image_url`, `about_me`) VALUES (1, 'nikefan@gmail.com', 'James', 'Toney', 'nikefan', 'nikefan', 1, 'user', NULL, NULL);
-INSERT INTO `user` (`id`, `email`, `first_name`, `last_name`, `username`, `password`, `active`, `role`, `profile_image_url`, `about_me`) VALUES (2, 'tacobellfan@gmail.com', 'Becca', 'Greene', 'tacobellfan', 'tacobellfan', DEFAULT, 'user', NULL, NULL);
-INSERT INTO `user` (`id`, `email`, `first_name`, `last_name`, `username`, `password`, `active`, `role`, `profile_image_url`, `about_me`) VALUES (3, 'adidasfan@gmail.com', 'Tim', 'Stanley', 'adidasfan', 'adidasfan', DEFAULT, 'user', NULL, NULL);
-INSERT INTO `user` (`id`, `email`, `first_name`, `last_name`, `username`, `password`, `active`, `role`, `profile_image_url`, `about_me`) VALUES (4, 'reebokfan@gmail.com', 'Stanley', 'Jacobson', 'reebokfan', 'reebokfan', DEFAULT, NULL, NULL, NULL);
-INSERT INTO `user` (`id`, `email`, `first_name`, `last_name`, `username`, `password`, `active`, `role`, `profile_image_url`, `about_me`) VALUES (5, 'bmwfan@bmw.com', 'Sarah', 'Miller', 'bmwfan', 'bmwfan', DEFAULT, NULL, NULL, NULL);
-INSERT INTO `user` (`id`, `email`, `first_name`, `last_name`, `username`, `password`, `active`, `role`, `profile_image_url`, `about_me`) VALUES (6, 'toroymoifan@gmail.com', 'Chris', 'Stevinson', 'toroymoifan', 'toroymoifan', DEFAULT, NULL, NULL, NULL);
+INSERT INTO `user` (`id`, `email`, `first_name`, `last_name`, `username`, `password`, `active`, `role`, `profile_image_url`, `about_me`) VALUES (1, 'nikefan@gmail.com', 'James', 'Toney', 'nikefan', 'nikefan', 1, 'user', 'https://upload.wikimedia.org/wikipedia/commons/6/64/James_Toney.jpg', 'Former profosional boxer, current coach and sportsware enthusiast.');
+INSERT INTO `user` (`id`, `email`, `first_name`, `last_name`, `username`, `password`, `active`, `role`, `profile_image_url`, `about_me`) VALUES (2, 'tacobellfan@gmail.com', 'Becca', 'Greene', 'tacobellfan', 'tacobellfan', 1, 'user', 'https://pbs.twimg.com/profile_images/1481616049963421699/7aKC7gEO_400x400.jpg', 'I am an enthusiastic, passionate individual. Every project I work on I go in full hearted. I am braniac researcher at heart and love to constantly be learning and improving myself. I spend much of my time researching and exploring the great things to be found in the world.');
+INSERT INTO `user` (`id`, `email`, `first_name`, `last_name`, `username`, `password`, `active`, `role`, `profile_image_url`, `about_me`) VALUES (3, 'adidasfan@gmail.com', 'Tim', 'Stanley', 'adidasfan', 'adidasfan', 1, 'user', 'https://otakukart.com/wp-content/uploads/2022/02/Tim-Stanley.jpg', 'I love juggling, biking, kites, board sports and may be the only person you know who has had his car repaired by Steve Jobs.');
+INSERT INTO `user` (`id`, `email`, `first_name`, `last_name`, `username`, `password`, `active`, `role`, `profile_image_url`, `about_me`) VALUES (4, 'reebokfan@gmail.com', 'John', 'Jacobson', 'reebokfan', 'reebokfan', 1, 'admin', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzHQv_th9wq3ivQ1CVk7UZRxhbPq64oQrg5Q&usqp=CAU', 'Running enthusiast always seeking new challenges. ');
+INSERT INTO `user` (`id`, `email`, `first_name`, `last_name`, `username`, `password`, `active`, `role`, `profile_image_url`, `about_me`) VALUES (5, 'bmwfan@bmw.com', 'Sarah', 'Miller', 'bmwfan', 'bmwfan', 1, 'user', 'https://www.csueastbay.edu/directory/profiles/files/images/sw/sarah-taylor.jpg', 'Professional web developer with a passion for cars and fashion. ');
+INSERT INTO `user` (`id`, `email`, `first_name`, `last_name`, `username`, `password`, `active`, `role`, `profile_image_url`, `about_me`) VALUES (6, 'toroymoifan@gmail.com', 'Chris', 'Stevinson', 'toroymoifan', 'toroymoifan', 1, 'user', 'https://skateparkoftampa.com/spot/headshots/4253.jpg', 'Favorite 2 things: skiing and attending concerts. Portland native');
 
 COMMIT;
 
@@ -252,12 +251,12 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `membertokendb`;
-INSERT INTO `business` (`id`, `logo_url`, `description`, `name`, `user_id`, `image_url`) VALUES (1, 'nike@nike.com', 'nike', 'Nike', 1, NULL);
-INSERT INTO `business` (`id`, `logo_url`, `description`, `name`, `user_id`, `image_url`) VALUES (2, 'tacobell@taco.com', 'taco', 'Taco Bell', 1, NULL);
-INSERT INTO `business` (`id`, `logo_url`, `description`, `name`, `user_id`, `image_url`) VALUES (3, 'adidas@adidas.com', 'adidas', 'Adidas', 1, NULL);
-INSERT INTO `business` (`id`, `logo_url`, `description`, `name`, `user_id`, `image_url`) VALUES (4, 'reebok@reebok.com', 'reebok', 'Reebok', 1, NULL);
-INSERT INTO `business` (`id`, `logo_url`, `description`, `name`, `user_id`, `image_url`) VALUES (5, 'bmw@bmw.com', 'bmw', 'BMW', 1, NULL);
-INSERT INTO `business` (`id`, `logo_url`, `description`, `name`, `user_id`, `image_url`) VALUES (6, 'toroymoi@toroymoi.com', 'toro y moi', 'Toro Y Moi', 1, NULL);
+INSERT INTO `business` (`id`, `description`, `name`, `user_id`, `logo_image_url`) VALUES (1, 'Our mission is what drives us to do everything possible to expand human potential. We do that by creating groundbreaking sport innovations, by making our products more sustainably, by building a creative and diverse global team and by making a positive impact in communities where we live and work.\n\nBased in Beaverton, Oregon, NIKE, Inc. includes the Nike, Converse, and Jordan brands.', 'Nike', 1, 'https://i.pinimg.com/474x/b7/83/64/b78364613ff5001b81077eadaa11cd2a--nike-hd-nike-wallpaper.jpg');
+INSERT INTO `business` (`id`, `description`, `name`, `user_id`, `logo_image_url`) VALUES (2, 'We take pride in making the best Mexican-style fast food, providing fast, friendly, & accurate service. We are the employer of choice offering team members opportunities for g', 'Taco Bell', 1, 'https://cdn.mos.cms.futurecdn.net/hgRu36yguybcDeZLsZybEA-1200-80.jpg');
+INSERT INTO `business` (`id`, `description`, `name`, `user_id`, `logo_image_url`) VALUES (3, 'Everything we do is rooted in sport. Sport plays an increasingly important role in more and more people’s lives, on and off the field of play. It is central to every culture and society and is core to our health and happiness.\n\nKey to our success and the execution of our strategy ‘Own the Game’, are our people and our culture. They bring our identity to life, defined by our purpose, mission, and attitude.', 'Adidas', 1, 'https://images.unsplash.com/photo-1555274175-75f4056dfd05?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8YWRpZGFzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60');
+INSERT INTO `business` (`id`, `description`, `name`, `user_id`, `logo_image_url`) VALUES (4, 'Reebok is an American-inspired, global brand that creates and markets sports and lifestyle products built upon a strong heritage and authenticity in sports, fitness and women’s categories. The brand is committed to designing products and marketing programs that reflect creativity and the desire to constantly challenge the status quo.', 'Reebok', 1, 'https://assets.fontsinuse.com/static/use-media-items/16/15511/full-1400x1190/5db1c13c/reebok_logo_1986.png');
+INSERT INTO `business` (`id`, `description`, `name`, `user_id`, `logo_image_url`) VALUES (5, 'The BMW Group, with its BMW, MINI and Rolls-Royce Motor Cars brands, is one of the world’s most successful premium manufacturers of cars and motorcycles. The company demonstrates its commitment to innovation, sustainability and product responsibility all the way from development to production. Its aim is to play an active and innovative role in shaping the face of mobility, now and in the future.\n\nThe BMW Group, with its BMW, MINI and Rolls-Royce Motor Cars brands, is one of the world’s most successful premium manufacturers of cars and motorcycles. The company demonstrates its commitment to innovation, sustainability and product responsibility all the way from development to production. Its aim is to play an active and innovative role in shaping the face of mobility, now and in the future.\n\nThe BMW Group, with its BMW, MINI and Rolls-Royce Motor Cars brands, is one of the world’s most successful premium manufacturers of cars and motorcycles. The company demonstrates its commitment to innovation, sustainability and product responsibility all the way from development to production. Its aim is to play an active and innovative role in shaping the face of mobility, now and in the future.\n\nThe BMW Group, with its BMW, MINI and Rolls-Royce Motor Cars brands, is one of the world’s most successful premium manufacturers of cars and motorcycles. The company demonstrates its commitment to innovation, sustainability and product responsibility all the way from development to production. Its aim is to play an active and innovative role in shaping the face of mobility, now and in the future.', 'BMW', 1, 'https://s3-prod-europe.autonews.com/s3fs-public/BMW%20NEW%20LOGO%20WEB.jpg');
+INSERT INTO `business` (`id`, `description`, `name`, `user_id`, `logo_image_url`) VALUES (6, 'Toro y Moi was one of the first artists to be called chillwave due to the underwater, laid-back sounds of his 2009 single \"Blessa,\" but that tag was soon left behind as each subsequent record and project tackled by Chaz Bundick (later Chaz Bear) headed off in an unpredictable direction. Whether digging into \'80s R&B, house music (on the Les Sins side project in 2014), space-age pop, prog, or guitar-heavy power pop (as on 2015\'s What For?), Bear is never satisfied to stick to a formula when he could experiment instead.', 'Toro Y Moi', 1, 'https://cdn.pastemagazine.com/www/articles/toroymoi_freelance_main.png');
 
 COMMIT;
 
@@ -267,12 +266,12 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `membertokendb`;
-INSERT INTO `collection` (`id`, `name`, `business_id`, `image_url`, `description`) VALUES (1, 'SNKRS', 1, NULL, NULL);
-INSERT INTO `collection` (`id`, `name`, `business_id`, `image_url`, `description`) VALUES (2, 'Tacotastic', 2, NULL, NULL);
-INSERT INTO `collection` (`id`, `name`, `business_id`, `image_url`, `description`) VALUES (3, 'Stripe Life', 3, NULL, NULL);
-INSERT INTO `collection` (`id`, `name`, `business_id`, `image_url`, `description`) VALUES (4, 'Money Heist', 4, NULL, NULL);
-INSERT INTO `collection` (`id`, `name`, `business_id`, `image_url`, `description`) VALUES (5, 'I8', 5, NULL, NULL);
-INSERT INTO `collection` (`id`, `name`, `business_id`, `image_url`, `description`) VALUES (6, 'MAHAL', 6, NULL, NULL);
+INSERT INTO `collection` (`id`, `name`, `business_id`, `image_url`, `description`) VALUES (1, 'SNKRS', 1, 'https://images.unsplash.com/photo-1600269452121-4f2416e55c28?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8c25lYWtlcnN8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60', NULL);
+INSERT INTO `collection` (`id`, `name`, `business_id`, `image_url`, `description`) VALUES (2, 'Tacotastic', 2, 'https://www.tacobell.com/images/2019-Blog-Wallpaper-10.jpg', NULL);
+INSERT INTO `collection` (`id`, `name`, `business_id`, `image_url`, `description`) VALUES (3, 'Stripe Life', 3, 'https://images.unsplash.com/photo-1608551279839-84c7ca889b80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8YWRpZGFzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60', NULL);
+INSERT INTO `collection` (`id`, `name`, `business_id`, `image_url`, `description`) VALUES (4, 'Money Heist', 4, 'https://www.nicekicks.com/files/2022/04/Reebok-Money-Heist-Collection-release-date-lead-2.jpg', NULL);
+INSERT INTO `collection` (`id`, `name`, `business_id`, `image_url`, `description`) VALUES (5, 'I8', 5, 'https://images.unsplash.com/photo-1542308160-57866b7c095c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGJtd3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60', NULL);
+INSERT INTO `collection` (`id`, `name`, `business_id`, `image_url`, `description`) VALUES (6, 'MAHAL', 6, 'https://www.nme.com/wp-content/uploads/2022/01/Toro-y-Moi-Mahal-2022.jpg', NULL);
 
 COMMIT;
 
@@ -333,6 +332,19 @@ INSERT INTO `purchase` (`id`, `date_time_purchased`, `member_token_id`, `user_id
 INSERT INTO `purchase` (`id`, `date_time_purchased`, `member_token_id`, `user_id`, `rating`, `rating_comment`) VALUES (4, '2022-04-21', 4, 4, NULL, NULL);
 INSERT INTO `purchase` (`id`, `date_time_purchased`, `member_token_id`, `user_id`, `rating`, `rating_comment`) VALUES (5, '2022-10-21', 5, 5, NULL, NULL);
 INSERT INTO `purchase` (`id`, `date_time_purchased`, `member_token_id`, `user_id`, `rating`, `rating_comment`) VALUES (6, '2022-10-21', 6, 6, NULL, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `favorite_token`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `membertokendb`;
+INSERT INTO `favorite_token` (`user_id`, `member_token_id`) VALUES (1, 2);
+INSERT INTO `favorite_token` (`user_id`, `member_token_id`) VALUES (2, 1);
+INSERT INTO `favorite_token` (`user_id`, `member_token_id`) VALUES (3, 3);
+INSERT INTO `favorite_token` (`user_id`, `member_token_id`) VALUES (4, 4);
 
 COMMIT;
 

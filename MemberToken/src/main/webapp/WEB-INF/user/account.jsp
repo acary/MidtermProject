@@ -32,13 +32,13 @@
 									<c:otherwise>
 									<img
 										src="https://static.vecteezy.com/system/resources/previews/002/318/271/original/user-profile-icon-free-vector.jpg"
-										alt="Admin" class="rounded-circle p-1" width="140">
+										alt="Admin" class="rounded-circle " width="140">
 										
 									</c:otherwise>
 								</c:choose>	
 							<hr class="my-4">
 									<div class="mt-3">
-										<h4>${user.firstName}${user.lastName}</h4>
+										<h4>${user.firstName} ${user.lastName}</h4>
 										<p class="text-secondary mb-1">${user.username}</p>
 										<button class="btn btn-primary">Follow</button>
 										<button class="btn btn-outline-primary">Message</button>
@@ -51,62 +51,67 @@
 				<div class="col-lg-8">
 					<div class="card">
 						<div class="card-body">
-							<div class="row mb-3">
-								<div class="col-sm-3">
-									<h6 class="mb-0">Full Name</h6>
+							<form action="updateUser.do" method="post">
+								<div class="row mb-3">
+									<div class="col-sm-3">
+										<h6 class="mb-0">First Name</h6>
+									</div>
+									<div class="col-sm-9 text-secondary">
+									<input type="hidden" value="${user.id}" name="uid">
+										<input type="text" class="form-control"
+											value="${user.firstName}" name="firstName">
+									</div>
 								</div>
-								<div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control" value="John Doe">
+								<div class="row mb-3">
+									<div class="col-sm-3">
+										<h6 class="mb-0">Last Name</h6>
+									</div>
+									<div class="col-sm-9 text-secondary">
+										<input type="text" class="form-control"
+											value="${user.lastName}" name="lastName">
+									</div>
 								</div>
-							</div>
-							<div class="row mb-3">
-								<div class="col-sm-3">
-									<h6 class="mb-0">Email</h6>
+								<div class="row mb-3">
+									<div class="col-sm-3">
+										<h6 class="mb-0">Email</h6>
+									</div>
+									<div class="col-sm-9 text-secondary">
+										<input type="text" class="form-control" value="${user.email}"
+											name="email">
+									</div>
 								</div>
-								<div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control"
-										value="john@example.com">
+								<div class="row mb-3">
+									<div class="col-sm-3">
+										<h6 class="mb-0">Username</h6>
+									</div>
+									<div class="col-sm-9 text-secondary">
+										<input type="text" class="form-control"
+											value="${user.username}" name="username">
+									</div>
 								</div>
-							</div>
-							<div class="row mb-3">
-								<div class="col-sm-3">
-									<h6 class="mb-0">Phone</h6>
+								<div class="row mb-3">
+									<div class="col-sm-3">
+										<h6 class="mb-0">Profile Img URL</h6>
+									</div>
+									<div class="col-sm-9 text-secondary">
+										<input type="text" class="form-control"
+											value="${user.profileImageUrl}" name="profileImageUrl">
+									</div> 
 								</div>
-								<div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control" value="(239) 816-9029">
+								<div class="row">
+									<div class="col-sm-3"></div>
+									<div class="col-sm-9 text-secondary">
+										<input type="submit" class="btn btn-primary px-4"
+											value="Save Changes">
+									</div>
 								</div>
-							</div>
-							<div class="row mb-3">
-								<div class="col-sm-3">
-									<h6 class="mb-0">Mobile</h6>
-								</div>
-								<div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control" value="(320) 380-4539">
-								</div>
-							</div>
-							<div class="row mb-3">
-								<div class="col-sm-3">
-									<h6 class="mb-0">Address</h6>
-								</div>
-								<div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control"
-										value="Bay Area, San Francisco, CA">
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-3"></div>
-								<div class="col-sm-9 text-secondary">
-									<input type="button" class="btn btn-primary px-4"
-										value="Save Changes">
-								</div>
-							</div>
+							</form>
 						</div>
 					</div>
 
 				</div>
 			</div>
 		</div>
-	</div>
 
 
 
