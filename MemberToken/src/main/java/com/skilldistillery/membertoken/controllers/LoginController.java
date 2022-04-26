@@ -1,5 +1,7 @@
 package com.skilldistillery.membertoken.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,8 +55,8 @@ public class LoginController {
 		}
 		session.setAttribute("user", u);
 
-		Business business = businessDao.findBusinessById(1);
-		session.setAttribute("business", business);
+		List<Business> businesses = businessDao.findBusinessByUserId(u);
+		session.setAttribute("businesses", businesses);
 
 		MemberToken mt = tokenDao.findTokenById(1);
 		session.setAttribute("token", mt);

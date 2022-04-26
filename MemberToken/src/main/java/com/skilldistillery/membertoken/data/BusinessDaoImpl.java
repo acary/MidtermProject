@@ -11,6 +11,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.membertoken.entities.Business;
+import com.skilldistillery.membertoken.entities.User;
 
 @Service
 @Transactional
@@ -32,6 +33,14 @@ public class BusinessDaoImpl implements BusinessDAO {
 		Integer busId = Integer.valueOf(bid);
 		String jpql = "SELECT bus FROM Business bus WHERE bus.id = :bid";
 		return em.createQuery(jpql, Business.class).setParameter("bid", busId).getResultList().get(0);
+
+	}
+	
+	@Override
+	public List<Business> findBusinessByUserId(User user) {
+		int uid = user.getId();
+		String jpql = "SELECT bus FROM Business bus WHERE bus.user.id = :uid";
+		return em.createQuery(jpql, Business.class).setParameter("uid", uid).getResultList();
 
 	}
 

@@ -71,4 +71,6 @@ public class UserController {
 		
 		return "redirect:account.do";
 	}
+
+	
 }
