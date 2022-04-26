@@ -23,11 +23,10 @@ public class Business {
 
 	private String description;
 	
-	@Column(name="logo_url")
+	@Column(name="logo_image_url")
 	private String logoUrl;
 	
-	@Column(name="image_url")
-	private String imageUrl;
+
 	
 	@OneToMany(mappedBy="business")
 	private List<Collection> collections;
@@ -72,13 +71,6 @@ public class Business {
 		this.logoUrl = logoUrl;
 	}
 
-	public String getImageUrl() {
-		return imageUrl;
-	}
-
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
-	}
 
 	public List<Collection> getCollections() {
 		return collections;
@@ -99,7 +91,7 @@ public class Business {
 	@Override
 	public String toString() {
 		return "Business [id=" + id + ", name=" + name + ", description=" + description + ", logoUrl=" + logoUrl
-				+ ", imageUrl=" + imageUrl + "]";
+				;
 	}
 
 	@Override
