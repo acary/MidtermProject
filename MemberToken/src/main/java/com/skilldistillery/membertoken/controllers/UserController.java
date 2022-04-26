@@ -2,6 +2,8 @@ package com.skilldistillery.membertoken.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -61,5 +63,12 @@ public class UserController {
 	@RequestMapping(path = { "userAdded.do" })
 	public String userAdded( ) {
 		return "user/login";
+	}
+	
+	@RequestMapping(path = "updateUser.do", method = RequestMethod.POST)
+	public String updateUser(User user, int uid, HttpSession session) {
+		session.setAttribute("user", dao.updateUser(uid, user));
+		
+		return "redirect:account.do";
 	}
 }
