@@ -38,7 +38,6 @@ public class LoginController {
 	@Autowired
 	private PurchaseDAO purchaseDao;
 
-
 	@RequestMapping("login.do")
 	public ModelAndView logIn(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
@@ -62,7 +61,7 @@ public class LoginController {
 
 		List<Business> businesses = businessDao.findBusinessByUserId(u);
 		session.setAttribute("businesses", businesses);
-		
+
 		List<Purchase> purchases = purchaseDao.findPurchasesByUserId(u);
 		session.setAttribute("purchases", purchases);
 
@@ -78,6 +77,7 @@ public class LoginController {
 	@RequestMapping("logout.do")
 	public String logout(HttpSession session) {
 		session.removeAttribute("user");
+		session.removeAttribute("businesses");
 		return "redirect:home.do";
 	}
 

@@ -32,7 +32,7 @@
 		      <div class="container-fluid py-5">
 		        <p class="display-6 fw-bold brandText text-wrap" style="width: 20rem;">${token.tokenName}</p>
 		        <p class="col-md-8 fs-4 brandText">${token.description}</p>
-		        <a href="getToken.do?tid=${token.id}"><button class="btn btn-primary btn-lg" type="button">View Token</button></a>
+		        <a href="viewToken.do?tid=${token.id}"><button class="btn btn-primary btn-lg" type="button">View Token</button></a>
 		      </div>
 		    </div>
 		</c:forEach>

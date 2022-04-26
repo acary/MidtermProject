@@ -16,14 +16,14 @@
 
 	<main class="container">
 		<h1>Businesses</h1>
-
+		<c:if test="${not empty user}">
 		<div class="btn-group" role="group"
 			aria-label="Search jobs">
 			<a href="allBusinesses.do"><button type="button" class="btn btn-outline-primary">Show All</button></a>
 			<a href="createBusiness.do"><button type="button" class="btn btn-outline-primary ">Create Business</button></a>
 			<a href=""><button type="button" class="btn btn-outline-primary disabled">Keyword Search</button></a>
 		</div>
-
+		</c:if>
 		<br><br>
 
 		<table class="table table-striped">
@@ -34,7 +34,7 @@
 				</tr>
 			</thead>
 			<tbody>
-			<c:if test="${user.role == 'admin'}">
+			<c:if test="${user.role == 'admin' || empty user}">
 				<c:forEach var="business" items="${allBusinesses}">
 					<tr>
 						<td>${business.id}</td>

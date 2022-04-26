@@ -64,4 +64,12 @@ public class TokenController {
 		model.addAttribute("token", token);
 		return "token/updateToken";
 	}
+	
+	@RequestMapping(path = "viewToken.do")
+	public String viewToken(Integer tid, Model model) {
+		tid = Integer.valueOf(tid);
+		MemberToken tkn = dao.findTokenById(tid);
+		model.addAttribute("token", tkn);
+		return "token/viewToken";
+	}
 }
