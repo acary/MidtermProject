@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.membertoken.entities.Business;
 import com.skilldistillery.membertoken.entities.Content;
+import com.skilldistillery.membertoken.entities.MemberToken;
+import com.skilldistillery.membertoken.entities.Purchase;
 
 @Service
 @Transactional
@@ -44,6 +46,19 @@ public class ContentDaoImpl implements ContentDAO {
 		em.getTransaction().commit();
 
 		return content;
+	}
+
+	/*
+	SELECT content.access_code, purchase.date_time_purchased FROM content 
+	JOIN member_token on content.member_token_id = member_token.id 
+	JOIN purchase on purchase.member_token_id = member_token.id WHERE purchase.date_time_purchased =?;
+
+	*/
+	
+	@Override
+	public List<MemberToken> findAccessCodeByPurchase(Purchase pid) {
+		String jpql = "SELECT c.accessCode FROM Content c JOIN  WHERE = :cid";
+		return em.createQuery(jpql, MemberToken.class).setParameter("pid", pid).getResultList();
 	}
 
 	@Override

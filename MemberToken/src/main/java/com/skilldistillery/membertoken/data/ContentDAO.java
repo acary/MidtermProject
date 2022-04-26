@@ -3,6 +3,8 @@ package com.skilldistillery.membertoken.data;
 import java.util.List;
 
 import com.skilldistillery.membertoken.entities.Content;
+import com.skilldistillery.membertoken.entities.MemberToken;
+import com.skilldistillery.membertoken.entities.Purchase;
 
 public interface ContentDAO {
 
@@ -15,5 +17,7 @@ public interface ContentDAO {
 	Content updateContent(int cid, Content content);
 
 	boolean deleteContent(int id);
+
+	List<MemberToken> findAccessCodeByPurchase(Purchase pid);
 
 }
