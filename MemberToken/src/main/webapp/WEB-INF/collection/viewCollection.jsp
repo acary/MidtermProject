@@ -19,13 +19,14 @@
 	    <div class="col-md-5 p-lg-5 mx-auto my-5">
 	      <h1 class="display-4 fw-normal">${collection.name}</h1>
 	      <p class="lead fw-normal">${collection.description}</p>
-	      <a class="btn btn-outline-secondary" href="#">View Tokens</a>
+	      <a class="btn btn-outline-secondary" href="#collectionTokens">View Tokens</a>
 	    </div>
 	    <div class="product-device shadow-sm d-none d-md-block"></div>
 		<div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
 	  </div>
 	  
 	  	<!-- TOKENS -->
+	  	<a id="collectionTokens">
 		<c:forEach var="token" items="${tokens}">
 			<div class="p-5 m-1 bg-light rounded-3" style="background-image: url(${token.tokenImgUrl});">
 		      <div class="container-fluid py-5">

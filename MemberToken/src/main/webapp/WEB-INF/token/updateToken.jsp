@@ -23,13 +23,26 @@
 					for="tokenName" class="form-label">Token Name</label> <input type="text"
 					name="tokenName" class="form-control form-control-lg" />
 				<div id="TokenNameHelp" class="form-text">${token.tokenName}</div>
+				
 				<label
 					for="description" class="form-label">Token Description</label> 
 					<input type="text" name="description" class="form-control form-control-lg" />
 				<div id="DescriptionHelp" class="form-text">${token.description}</div>
-				<br> <input type="submit" class="btn btn-primary m-2"
+				
+				<label
+					for="tokenImgUrl" class="form-label">Image URL</label> 
+					<input type="text" name="tokenImgUrl" class="form-control form-control-lg" />
+				<div id="ImageUrlHelp" class="form-text">${token.tokenImgUrl}</div>
+				
+				<br> 
+				<input type="submit" class="btn btn-primary m-2"
 					value="Update Token" />
 			</form>
+			
+			<div class="col-4">
+				<img src="${token.tokenImgUrl}" class="img-fluid">
+			</div>
+			
 		</div>
 	</div>
 

@@ -10,6 +10,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.membertoken.entities.Collection;
 import com.skilldistillery.membertoken.entities.MemberToken;
 
 @Service
@@ -39,6 +40,8 @@ public class TokenDaoImpl implements TokenDAO {
 		MemberToken updatedTkn = em.find(MemberToken.class, tid);
 		updatedTkn.setTokenName(token.getTokenName());
 		updatedTkn.setDescription(token.getDescription());
+		updatedTkn.setCollection(token.getCollection());
+		updatedTkn.setTokenImgUrl(token.getTokenImgUrl());
 		return updatedTkn;
 	}
 

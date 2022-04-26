@@ -8,7 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.skilldistillery.membertoken.data.CollectionDAO;
 import com.skilldistillery.membertoken.data.TokenDAO;
+import com.skilldistillery.membertoken.entities.Collection;
 import com.skilldistillery.membertoken.entities.MemberToken;
 
 @Controller
@@ -16,6 +18,9 @@ public class TokenController {
 
 	@Autowired
 	private TokenDAO dao; 
+	
+	@Autowired
+	private CollectionDAO collectionDao; 
 	
 	@RequestMapping(path = { "/all", "all.do" })
 	public String index(Model model) {
@@ -52,8 +57,11 @@ public class TokenController {
 	}
 
 	@RequestMapping(path = "updateToken.do", method = RequestMethod.POST)
-	public String updateToken(int tid, MemberToken token, Model model) {
-		model.addAttribute("token", dao.updateToken(tid, token));
+	public String updateToken(int tid, String tokenImgUrl, MemberToken token, Model model) {
+		MemberToken newToken = dao.findTokenById(tid);
+		newToken.setTokenImgUrl(tokenImgUrl);
+		token = dao.updateToken(tid, newToken);
+		model.addAttribute("token", token);
 		return "token/updateToken";
 	}
 }
