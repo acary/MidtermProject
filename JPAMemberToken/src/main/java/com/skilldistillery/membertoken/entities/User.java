@@ -179,6 +179,7 @@ public class User {
 	public void setMemberTokens(List<MemberToken> memberTokens) {
 		this.favorites = memberTokens;
 	}
+	
 
 	@Override
 	public String toString() {

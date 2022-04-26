@@ -34,12 +34,22 @@
 				</tr>
 			</thead>
 			<tbody>
+			<c:if test="${user.role == 'admin'}">
 				<c:forEach var="business" items="${allBusinesses}">
 					<tr>
 						<td>${business.id}</td>
 						<td><a href="getBusiness.do?bid=${business.id}">${business.name}</a></td>
 					</tr>
 				</c:forEach>
+			</c:if>
+			<c:if test="${businesses != null}">
+							<c:forEach var="business" items="${businesses}">
+					<tr>
+						<td>${business.id}</td>
+						<td><a href="getBusiness.do?bid=${business.id}">${business.name}</a></td>
+					</tr>
+				</c:forEach>
+			</c:if>	
 			</tbody>
 		</table>
 
