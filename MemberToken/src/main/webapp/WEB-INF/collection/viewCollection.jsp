@@ -17,21 +17,21 @@
 	  <!-- COLLECTION -->
 	  <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light" style="background-image: url(${collection.imageUrl});">
 	    <div class="col-md-5 p-lg-5 mx-auto my-5">
-	      <h1 class="display-4 fw-normal">${collection.name}</h1>
-	      <p class="lead fw-normal">${collection.description}</p>
-	      <a class="btn btn-outline-secondary" href="#collectionTokens">View Tokens</a>
+	      <p class="display-3 fw-normal brandText text-wrap" style="width: 20rem;">${collection.name}</p>
+	      <p class="lead fw-normal brandText text-wrap">${collection.description}</p>
+	      <a class="btn btn-primary" href="#collectionTokens">View Tokens</a>
 	    </div>
 	    <div class="product-device shadow-sm d-none d-md-block"></div>
 		<div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
 	  </div>
 	  
 	  	<!-- TOKENS -->
-	  	<a id="collectionTokens">
+	  	<a id="collectionTokens"></a>
 		<c:forEach var="token" items="${tokens}">
 			<div class="p-5 m-1 bg-light rounded-3" style="background-image: url(${token.tokenImgUrl});">
 		      <div class="container-fluid py-5">
-		        <h1 class="display-5 fw-bold">${token.tokenName}</h1>
-		        <p class="col-md-8 fs-4">${token.description}</p>
+		        <p class="display-6 fw-bold brandText text-wrap" style="width: 20rem;">${token.tokenName}</p>
+		        <p class="col-md-8 fs-4 brandText">${token.description}</p>
 		        <a href="getToken.do?tid=${token.id}"><button class="btn btn-primary btn-lg" type="button">View Token</button></a>
 		      </div>
 		    </div>
