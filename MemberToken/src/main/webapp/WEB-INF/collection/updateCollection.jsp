@@ -27,7 +27,15 @@
 					for="description" class="form-label">Collection Description</label> 
 					<input type="text" name="description" class="form-control form-control-lg" />
 				<div id="DescriptionHelp" class="form-text">${collection.description}</div>
-				<br> <input type="submit" class="btn btn-primary m-2"
+				
+				<label
+					for="imageUrl" class="form-label">Image URL</label> 
+					<input type="text" name="imageUrl" class="form-control form-control-lg" />
+				<div id="imageUrlHelp" class="form-text">${collection.imageUrl}</div>
+				
+				<br> 
+				
+				<input type="submit" class="btn btn-primary m-2"
 					value="Update Collection" />
 			</form>
 		</div>

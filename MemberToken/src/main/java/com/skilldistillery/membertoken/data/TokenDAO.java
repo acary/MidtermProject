@@ -13,5 +13,7 @@ public interface TokenDAO {
 	MemberToken updateToken(int tid, MemberToken token);
 
 	MemberToken createToken(MemberToken token);
+	
+	public List<MemberToken> findTokensByCollectionId(Integer cid);
 
 }

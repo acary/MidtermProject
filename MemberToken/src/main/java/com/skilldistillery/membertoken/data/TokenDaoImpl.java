@@ -10,6 +10,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.membertoken.entities.Collection;
 import com.skilldistillery.membertoken.entities.MemberToken;
 
 @Service
@@ -39,6 +40,8 @@ public class TokenDaoImpl implements TokenDAO {
 		MemberToken updatedTkn = em.find(MemberToken.class, tid);
 		updatedTkn.setTokenName(token.getTokenName());
 		updatedTkn.setDescription(token.getDescription());
+		updatedTkn.setCollection(token.getCollection());
+		updatedTkn.setTokenImgUrl(token.getTokenImgUrl());
 		return updatedTkn;
 	}
 
@@ -50,5 +53,11 @@ public class TokenDaoImpl implements TokenDAO {
 		em.flush();
 		em.getTransaction().commit();
 		return token;
+	}
+	
+	@Override
+	public List<MemberToken> findTokensByCollectionId(Integer cid) {
+		String jpql = "SELECT tkn FROM MemberToken tkn JOIN FETCH tkn.collection WHERE tkn.collection.id = :cid";
+		return em.createQuery(jpql, MemberToken.class).setParameter("cid", cid).getResultList();
 	}
 }

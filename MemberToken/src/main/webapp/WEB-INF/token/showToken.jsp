@@ -14,6 +14,10 @@
 	</div>
 	<div class="container">
 		<h1>Token Details</h1>
+		
+		<div class="col-4">
+			<img src="${token.tokenImgUrl}" class="img-fluid">
+		</div>
 
 		<div>
 			<h5>${token.tokenName}</h5>

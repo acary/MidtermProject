@@ -20,6 +20,11 @@
 
 			<br>
 			<p>${collection.description}</p>
+			
+			<br>
+			<div class="col-6">
+				<img src="${collection.imageUrl}" class="img-fluid">
+			</div>
 
 			<hr>
 

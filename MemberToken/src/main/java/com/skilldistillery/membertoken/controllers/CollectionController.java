@@ -9,13 +9,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.skilldistillery.membertoken.data.CollectionDAO;
+import com.skilldistillery.membertoken.data.TokenDAO;
 import com.skilldistillery.membertoken.entities.Collection;
+import com.skilldistillery.membertoken.entities.MemberToken;
 
 @Controller
 public class CollectionController {
 
 	@Autowired
 	private CollectionDAO dao;
+	
+	@Autowired
+	private TokenDAO tokenDao;
 	
 	@RequestMapping(path = { "/allCollection", "allCollection.do" })
 	public String indexCollection(Model model) {
@@ -52,9 +57,36 @@ public class CollectionController {
 	}
 
 	@RequestMapping(path = "updateCollection.do", method = RequestMethod.POST)
-	public String updateBusiness(int cid, Collection collection, Model model) {
-		model.addAttribute("collection", dao.updateCollection(cid, collection));
+	public String updateCollection(int cid, String description, String imageUrl, Collection collection, Model model) {
+		Collection newCollection = dao.findCollectionById(cid);
+		newCollection.setDescription(description);;
+		newCollection.setImageUrl(imageUrl);
+		collection = dao.updateCollection(cid, newCollection);
+		model.addAttribute("collection", collection);
 		return "collection/showCollection";
+	}
+	
+	@RequestMapping(path = { "/viewCollections", "viewCollections.do" })
+	public String userViewCollections(Model model) {
+		List<Collection> colList = dao.findAllCollection();
+		Collection featured = colList.get(0);
+		colList.remove(0);
+		model.addAttribute("featured", featured);
+		model.addAttribute("collections", colList);
+		return "collection/viewCollections";
+	}
+	
+	@RequestMapping(path = "viewCollection.do")
+	public String userViewCollection(Integer cid, Model model) {
+		cid = Integer.valueOf(cid);
+		Collection col = dao.findCollectionById(cid);
+		model.addAttribute("collection", col);
+		
+		List<MemberToken> tokens = tokenDao.findTokensByCollectionId(cid);
+		// List<MemberToken> tokens = tokenDao.findAllTokens();
+		model.addAttribute("tokens", tokens);
+		
+		return "collection/viewCollection";
 	}
 
 }
