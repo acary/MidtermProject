@@ -26,6 +26,7 @@ public class Business {
 	@Column(name="logo_image_url")
 	private String logoUrl;
 	
+	
 	@OneToMany(mappedBy="business")
 	private List<Collection> collections;
 	
@@ -69,6 +70,7 @@ public class Business {
 		this.logoUrl = logoUrl;
 	}
 
+	
 
 	public List<Collection> getCollections() {
 		return collections;
@@ -89,9 +91,7 @@ public class Business {
 	@Override
 	public String toString() {
 		return "Business [id=" + id + ", name=" + name + ", description=" + description + ", logoUrl=" + logoUrl
-
 				+  "]";
-
 	}
 
 	@Override
