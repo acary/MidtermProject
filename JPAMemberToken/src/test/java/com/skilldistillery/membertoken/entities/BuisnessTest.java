@@ -46,9 +46,6 @@ class BuisnessTest {
 	void test_business_basic_mapping() {
 		assertNotNull(business);
 		assertEquals(1, business.getId());
-		assertEquals("nike@nike.com", business.getLogoUrl());
-		assertEquals("nike", business.getDescription());
-		assertEquals(null, business.getImageUrl());
 		
 		/*
 		 * select * FROM business WHERE id = 1;
