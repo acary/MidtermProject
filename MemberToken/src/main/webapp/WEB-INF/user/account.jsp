@@ -110,38 +110,32 @@
 						</div>
 					</div>
 				</div>
-
-			
-					<div class="col-lg-8">
-						<div class="card">
-							<div class="card-body">
-								<h4>Your businesses</h4>
-								<table class="table table-striped">
-									<thead class="table-dark">
+				<div class="col-lg-8">
+					<div class="card">
+						<div class="card-body">
+							<h4>Your businesses</h4>
+							<table class="table table-striped">
+								<thead class="table-dark">
+									<tr>
+										<th>ID</th>
+										<th>Name</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach var="bus" items="${businesses}">
 										<tr>
-											<th>ID</th>
-											<th>Name</th>
+											<td>${bus.id}</td>
+											<td><a href="getBusiness.do?bid=${bus.id}">${bus.name}</a></td>
 										</tr>
-									</thead>
-									<tbody>
-										<c:forEach var="bus" items="${businesses}">
-											<tr>
-												<td>${bus.id}</td>
-												<td><a href="getBusiness.do?bid=${bus.id}">${bus.name}</a></td>
-											</tr>
-										</c:forEach>
-									</tbody>
-								</table>
-							</div>
+									</c:forEach>
+								</tbody>
+							</table>
 						</div>
 					</div>
-				
+				</div>
 			</div>
-
-		</div>
-	</div>
-	
-	<div class="col-lg-8">
+			<div class="row">
+				<div class="col-lg-8">
 						<div class="card">
 							<div class="card-body">
 								<h4>Your purchases</h4>
@@ -164,17 +158,9 @@
 							</div>
 						</div>
 					</div>
-				
 			</div>
-
 		</div>
 	</div>
-	
-
-
-
-
-
 
 	<jsp:include page="../footer.jsp" />
 </body>
