@@ -17,8 +17,8 @@
 	<div class="container">
 	    <div class="p-5 mb-4 bg-light rounded-3" style="background-image: url(${featuredCollection.imageUrl});">
 	      <div class="container-fluid py-5">
-	        <h1 class="display-5 fw-bold">MBR TKN</h1>
-	        <p class="col-md-8 fs-4">Member tokens are unique digital assets that show support for your favorite brands, musicians, designers and creators. Browse collections to find your new favorites and upcoming launches.</p>
+	        <p class="display-1 fw-bold brandText text-wrap" style="width: 20rem;">MBR TKN</p>
+	        <p class="col-md-8 fs-4 brandText">Member tokens are unique digital assets that show support for your favorite brands, musicians, designers and creators. Browse collections to find your new favorites and upcoming launches.</p>
 	        <a href="viewCollections.do"><button class="btn btn-primary btn-lg" type="button">Collections</button></a>
 	      </div>
 	    </div>
