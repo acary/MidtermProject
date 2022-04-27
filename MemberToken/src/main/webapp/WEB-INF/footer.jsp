@@ -12,20 +12,20 @@
 			<div class="col"></div>
 
 			<div class="col">
-				<h5>Search</h5>
+				<h5>Find New</h5>
 				<ul class="nav flex-column">
-					<li class="nav-item mb-2"><a href=""
-						class="nav-link p-0 text-muted">Token by ID</a></li>
-					<li class="nav-item mb-2"><a href=""
-						class="nav-link p-0 text-muted">Token by Keyword</a></li>
+					<li class="nav-item mb-2"><a href="viewCollections.do"
+						class="nav-link p-0 text-muted">Collections</a></li>
+					<li class="nav-item mb-2"><a href="viewTokens.do"
+						class="nav-link p-0 text-muted">Member Tokens</a></li>
 				</ul>
 			</div>
 
 			<div class="col">
-				<h5>Add</h5>
+				<h5>For Business</h5>
 				<ul class="nav flex-column">
-					<li class="nav-item mb-2"><a href=""
-						class="nav-link p-0 text-muted">New Token</a></li>
+					<li class="nav-item mb-2"><a href="" class="nav-link p-0 text-muted">New Collection</a></li>
+					<li class="nav-item mb-2"><a href="" class="nav-link p-0 text-muted">New Token</a></li>
 				</ul>
 			</div>
 

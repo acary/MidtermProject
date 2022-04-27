@@ -11,8 +11,9 @@
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="navbarNav">
-
 			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link" href="viewCollections.do">Collections</a></li>
+				<li class="nav-item"><a class="nav-link" href="viewTokens.do">Tokens</a></li>
 				<c:if test="${user.role == 'admin' }">
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
@@ -50,3 +51,12 @@
 		</div>
 	</div>
 </nav>
+
+<!-- ALERTS: CONTENT -->
+<c:if test="${not empty content}">
+	<div class="container my-2"> 
+		<div class="alert alert-primary" role="alert">
+			Use code: ${content} to enter <a href="getContent.do?cid=${contentId}">${contentTitle}</a>
+		</div>
+	</div>
+</c:if>

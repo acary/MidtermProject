@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.skilldistillery.membertoken.data.ContentDAO;
 import com.skilldistillery.membertoken.data.TokenDAO;
+import com.skilldistillery.membertoken.entities.Collection;
 import com.skilldistillery.membertoken.entities.Content;
 import com.skilldistillery.membertoken.entities.MemberToken;
 
@@ -65,21 +66,27 @@ public class TokenController {
 		return "token/updateToken";
 	}
 	
+	@RequestMapping(path = { "/viewTokens", "viewTokens.do" })
+	public String viewTokens(Model model) {
+		List<MemberToken> tkns = dao.findAllTokens();	
+		MemberToken featured = tkns.get(0);
+		tkns.remove(0);
+		model.addAttribute("featured", featured);
+		model.addAttribute("tokens", tkns);
+		return "token/viewTokens";
+	}
+	
 	@RequestMapping(path = "viewToken.do")
 	public String viewToken(Integer tid, Model model) {
-		tid = Integer.valueOf(tid);
-		
+		tid = Integer.valueOf(tid);	
 		MemberToken tkn = dao.findTokenById(tid);
-		model.addAttribute("token", tkn);
-		
+		model.addAttribute("token", tkn);	
 		Content content = contentDao.findContentByToken(tkn);
 		model.addAttribute("contentId", content.getId());
 		model.addAttribute("content", content.getAccessCode());
-		
 		String contentUrl = "getContent.do?cid=" + content.getId();
 		model.addAttribute("contentUrl", contentUrl);
-		model.addAttribute("contentTitle", content.getTitle());
-		
+		model.addAttribute("contentTitle", content.getTitle());	
 		return "token/viewToken";
 	}
 }

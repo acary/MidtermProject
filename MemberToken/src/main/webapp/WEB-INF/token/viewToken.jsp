@@ -12,15 +12,6 @@
 	<div class="container">
 		<jsp:include page="../nav.jsp" />
 	</div>
-	
-					
-	<c:if test="${not empty content}">
-		<div class="container my-2"> 
-			<div class="alert alert-primary" role="alert">
-				Use code: ${content} to enter <a href="getContent.do?cid=${contentId}">${contentTitle}</a>
-			</div>
-		</div>
-	</c:if>
 
 	<div class="container">
 		<div class="p-5 mb-4 bg-light rounded-3"
