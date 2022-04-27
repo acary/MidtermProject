@@ -15,11 +15,9 @@
 	
 					
 	<c:if test="${not empty content}">
-		<div class="container"> 
-			<div class="col-lg-8 my-2">
-				<div class="alert alert-primary" role="alert">
-					Use code: ${content} to enter <a href="getContent.do?cid=${contentId}">${contentTitle}</a>
-				</div>
+		<div class="container my-2"> 
+			<div class="alert alert-primary" role="alert">
+				Use code: ${content} to enter <a href="getContent.do?cid=${contentId}">${contentTitle}</a>
 			</div>
 		</div>
 	</c:if>
