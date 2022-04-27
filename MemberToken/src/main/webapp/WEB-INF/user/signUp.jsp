@@ -19,6 +19,7 @@
 			<div class="form-signin">
 			  <form action="signUp.do" method="post">
 			  	<input type="hidden" name="role" value="user"> 
+			  	<input type="hidden" name="active" value="1"> 
 			    <h1 class="h3 mb-3 fw-normal">Sign Up</h1>
 			
 			    <div class="form-floating">
