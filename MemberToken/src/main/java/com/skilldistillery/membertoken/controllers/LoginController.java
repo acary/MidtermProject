@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skilldistillery.membertoken.data.BusinessDAO;
 import com.skilldistillery.membertoken.data.ContentDAO;
@@ -63,13 +64,13 @@ public class LoginController {
 
 		List<Purchase> purchases = purchaseDao.findPurchasesByUserId(u);
 		session.setAttribute("purchases", purchases);
-
+		
 		MemberToken mt = tokenDao.findTokenById(1);
 		session.setAttribute("token", mt);
-
+		
 		Content cr = contentDao.findContentById(1);
 		session.setAttribute("contentItem", cr);
-
+		
 		return "redirect:account.do";
 	}
 
@@ -80,7 +81,7 @@ public class LoginController {
 		return "redirect:home.do";
 	}
 	
-	@RequestMapping("signUp.do")
+	@RequestMapping(path = "signUp.do", method = RequestMethod.GET)
 	public ModelAndView signUp(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		if (session.getAttribute("user") != null) {
@@ -90,6 +91,34 @@ public class LoginController {
 			mv.setViewName("user/signUp");
 		}
 		return mv;
+	}
+	
+	@RequestMapping(path = "signUp.do", method = RequestMethod.POST)
+	public String signUpPost(User user, HttpSession session, RedirectAttributes redir) {
+		User u = dao.findUserByEmailAndPass(user.getEmail(), user.getPassword());
+		if (u != null) {
+			session.setAttribute("user", u);
+			
+			List<Business> businesses = businessDao.findBusinessByUserId(u);
+			session.setAttribute("businesses", businesses);
+
+			List<Purchase> purchases = purchaseDao.findPurchasesByUserId(u);
+			session.setAttribute("purchases", purchases);
+			
+			MemberToken mt = tokenDao.findTokenById(1);
+			session.setAttribute("token", mt);
+			
+			Content cr = contentDao.findContentById(1);
+			session.setAttribute("contentItem", cr);
+			
+			return "redirect:account.do";
+		}
+
+		user = dao.addUser(user);
+		session.setAttribute("successMessage", "Successfully created new user! Please login.");
+		redir.addFlashAttribute("user",user);
+		
+		return "redirect:account.do";
 	}
 
 }

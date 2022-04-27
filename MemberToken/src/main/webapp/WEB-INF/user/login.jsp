@@ -31,7 +31,7 @@
 			    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign In</button>
 			  </form>
 			  
-			  <p>Need an account? <a href="signUp.do">Sign up here.</a></p>
+			  <p class="p-2">Need an account? <a href="signUp.do">Sign up here</a>.</p>
 			</div>
 			
 	</main>

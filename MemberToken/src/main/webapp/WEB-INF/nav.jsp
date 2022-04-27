@@ -55,8 +55,19 @@
 <!-- ALERTS: CONTENT -->
 <c:if test="${not empty accessCode}">
 	<div class="container my-2"> 
-		<div class="alert alert-primary" role="alert">
+		<div class="alert alert-primary alert-dismissible fade show" role="alert">
 			Use code: ${accessCode} to enter <a href="viewContent.do?cid=${contentId}">${contentTitle}</a>
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+	</div>
+</c:if>
+
+<!-- ALERTS: SUCCESS -->
+<c:if test="${not empty successMessage}">
+	<div class="container my-2"> 
+		<div class="alert alert-success alert-dismissible fade show" role="alert">
+			${successMessage}
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
 	</div>
 </c:if>
