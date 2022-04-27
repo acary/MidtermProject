@@ -53,7 +53,7 @@
 </nav>
 
 <!-- ALERTS: CONTENT -->
-<c:if test="${not empty accessCode}">
+<c:if test="${not empty accessCode && not empty user}">
 	<div class="container my-2"> 
 		<div class="alert alert-primary alert-dismissible fade show" role="alert">
 			Use code: ${accessCode} to enter <a href="viewContent.do?cid=${contentId}">${contentTitle}</a>

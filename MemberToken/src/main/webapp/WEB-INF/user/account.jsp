@@ -9,14 +9,10 @@
 <jsp:include page="../bootstrapHead.jsp" />
 </head>
 <body>
-
 	<div class="container">
 		<jsp:include page="../nav.jsp" />
 	</div>
 	<br>
-	<br>
-
-
 	<div class="container">
 		<div class="main-body">
 			<div class="row">
@@ -24,7 +20,6 @@
 					<div class="card">
 						<div class="card-body">
 							<div class="d-flex flex-column align-items-center text-center">
-
 								<c:choose>
 									<c:when test="${not empty user.profileImageUrl }">
 										<img src="${user.profileImageUrl}" alt="Admin"
@@ -34,7 +29,6 @@
 										<img
 											src="https://static.vecteezy.com/system/resources/previews/002/318/271/original/user-profile-icon-free-vector.jpg"
 											alt="Admin" class="rounded-circle " width="160" height="160">
-
 									</c:otherwise>
 								</c:choose>
 								<hr class="my-4">
@@ -43,7 +37,6 @@
 									<p class="text-secondary mb-1">${user.username}</p>
 								</div>
 							</div>
-
 						</div>
 					</div>
 				</div>
@@ -90,7 +83,7 @@
 								</div>
 								<div class="row mb-3">
 									<div class="col-sm-3">
-										<h6 class="mb-0">Profile Img URL</h6>
+										<h6 class="mb-0">Profile Image URL</h6>
 									</div>
 									<div class="col-sm-9 text-secondary">
 										<input type="text" class="form-control"
@@ -108,14 +101,15 @@
 						</div>
 					</div>
 				</div>
-				
+			</div>
+			<div class="row">
 				<c:if test="${businesses == null }">
 					<div class="col-lg-8 my-2">
 						<p>You have no businesses listed. <a href="createBusiness.do">Create one here.</a></p>
 					</div>
 				</c:if>
 				<c:if test="${businesses != null }">
-					<div class="col-lg-8">
+					<div class="col-lg-8 my-2">
 						<div class="card">
 							<div class="card-body">
 								<h4>Your Businesses</h4>
@@ -141,57 +135,54 @@
 						</div>
 					</div>
 				</c:if>
-				
 			</div>
 			<div class="row">
-				<div class="col-lg-8">
-						<div class="card">
-							<div class="card-body">
-								<h4>Your Purchases</h4>
-								<table class="table table-striped">
-									<thead class="table-dark">
+				<div class="col-lg-8 my-2">
+					<div class="card">
+						<div class="card-body">
+							<h4>Your Purchases</h4>
+							<table class="table table-striped">
+								<thead class="table-dark">
+									<tr>
+										<th>ID</th>
+										<th>Member Token</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach var="pur" items="${purchases}">
 										<tr>
-											<th>ID</th>
-											<th>Member Token</th>
+											<td>${pur.id}</td>
+											<td><a href="getPurchase.do?pid=${pur.id}">${pur.memberToken.tokenName}</a></td>
 										</tr>
-									</thead>
-									<tbody>
-										<c:forEach var="pur" items="${purchases}">
-											<tr>
-												<td>${pur.id}</td>
-												<td><a href="getPurchase.do?pid=${pur.id}">${pur.memberToken.tokenName}</a></td>
-											</tr>
-										</c:forEach>
-									</tbody>
-								</table>
-							</div>
+									</c:forEach>
+								</tbody>
+							</table>
 						</div>
 					</div>
-					<div class="row">
-				<div class="col-lg-8">
-						<div class="card">
-							<div class="card-body">
-								<h4>Your Favorites</h4>
-								<table class="table table-striped">
-									<thead class="table-dark">
-										<tr>
-											<th>Name</th>
-										</tr>
-									</thead>
-									<tbody>
-										<c:forEach var="fav" items="${favorites}">
-											<tr>
-												
-												<td>${fav.tokenName}</td>
-												
-											</tr>
-										</c:forEach>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
+				</div>
 			</div>
+			<div class="row">
+				<div class="col-lg-8 my-2">
+					<div class="card">
+						<div class="card-body">
+							<h4>Your Favorites</h4>
+							<table class="table table-striped">
+								<thead class="table-dark">
+									<tr>
+										<th>Member Token</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach var="fav" items="${favorites}">
+										<tr>
+											<td>${fav.tokenName}</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
