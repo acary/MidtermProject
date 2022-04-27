@@ -83,7 +83,7 @@ public class TokenController {
 		model.addAttribute("token", tkn);	
 		Content content = contentDao.findContentByToken(tkn);
 		model.addAttribute("contentId", content.getId());
-		model.addAttribute("content", content.getAccessCode());
+		model.addAttribute("accessCode", content.getAccessCode());
 		String contentUrl = "getContent.do?cid=" + content.getId();
 		model.addAttribute("contentUrl", contentUrl);
 		model.addAttribute("contentTitle", content.getTitle());	

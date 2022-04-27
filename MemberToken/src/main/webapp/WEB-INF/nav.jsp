@@ -53,10 +53,10 @@
 </nav>
 
 <!-- ALERTS: CONTENT -->
-<c:if test="${not empty content}">
+<c:if test="${not empty accessCode}">
 	<div class="container my-2"> 
 		<div class="alert alert-primary" role="alert">
-			Use code: ${content} to enter <a href="getContent.do?cid=${contentId}">${contentTitle}</a>
+			Use code: ${accessCode} to enter <a href="viewContent.do?cid=${contentId}">${contentTitle}</a>
 		</div>
 	</div>
 </c:if>

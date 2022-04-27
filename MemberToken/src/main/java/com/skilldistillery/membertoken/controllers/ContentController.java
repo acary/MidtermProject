@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.skilldistillery.membertoken.data.BusinessDAO;
 import com.skilldistillery.membertoken.data.ContentDAO;
+import com.skilldistillery.membertoken.data.TokenDAO;
 import com.skilldistillery.membertoken.entities.Business;
 import com.skilldistillery.membertoken.entities.Content;
+import com.skilldistillery.membertoken.entities.MemberToken;
 
 @Controller
 public class ContentController {
@@ -21,6 +23,9 @@ public class ContentController {
 	
 	@Autowired
 	private BusinessDAO businessDao;
+	
+	@Autowired
+	private TokenDAO tokenDao; 
 	
 	@RequestMapping(path = { "/allContent", "allContent.do" })
 	public String indexContent(Model model) {
@@ -72,5 +77,16 @@ public class ContentController {
 		} catch (Exception e) {
 			return "redirect:all";
 		}
+	}
+	
+	@RequestMapping(path = "viewContent.do")
+	public String viewContent(Integer cid, Model model) {
+		cid = Integer.valueOf(cid);
+		Content content = dao.findContentById(cid);
+		model.addAttribute("content", content);
+		
+		MemberToken token = tokenDao.findTokenById(content.getMemberToken().getId());
+		model.addAttribute("token", token);
+		return "content/viewContent";
 	}
 }

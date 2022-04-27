@@ -61,5 +61,5 @@ public class TokenDaoImpl implements TokenDAO {
 		String jpql = "SELECT tkn FROM MemberToken tkn JOIN FETCH tkn.collection WHERE tkn.collection.id = :cid";
 		return em.createQuery(jpql, MemberToken.class).setParameter("cid", cid).getResultList();
 	}
-
+	
 }
