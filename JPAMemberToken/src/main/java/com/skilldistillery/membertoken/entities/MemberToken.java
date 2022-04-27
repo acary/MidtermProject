@@ -20,6 +20,8 @@ import javax.persistence.Table;
 @Table(name = "member_token")
 public class MemberToken {
 
+	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -172,5 +174,10 @@ public class MemberToken {
 			users.remove(user);
 			user.removeFavorite(this);
 		}
+		
+	}
+	@Override
+	public String toString() {
+		return "MemberToken [tokenName=" + tokenName + "]";
 	}
 }

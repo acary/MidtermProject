@@ -20,11 +20,26 @@
 				<p class="display-1 fw-bold brandText text-wrap"
 					style="width: 20rem;">${token.tokenName}</p>
 				<p class="col-md-8 fs-4 brandText">${token.description}</p>
+				<c:if test="${empty user}">
+				<h2>Log in or sign up to purchase!</h2>
+					<a href="login.do"><button type="button" class="btn btn-outline-primary">Login </button></a>
+					<a href="signUp.do"><button type="button" class="btn btn-outline-primary">Sign Up</button></a>
+				</c:if>
+				
+					<c:if test="${not empty user}">
 				<form action="createUserPurchase.do" method="post">
 					<input type="hidden" value="${token.id}" name="tid"> <input
 						type="hidden" value="${user.id}" name="uid">
 					<button type="submit" class="btn btn-primary">Purchase</button>
 				</form>
+				
+				<form action="createUserFavorite.do" method="post">
+					<input type="hidden" value="${token.id}" name="tid"> <input
+						type="hidden" value="${user.id}" name="uid">
+					<button type="submit" class="btn btn-primary">Favorite</button>
+					
+				</form>
+					</c:if>
 			</div>
 		</div>
 

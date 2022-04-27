@@ -1,5 +1,6 @@
 package com.skilldistillery.membertoken.controllers;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -11,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.skilldistillery.membertoken.data.TokenDAO;
 import com.skilldistillery.membertoken.data.UserDAO;
+import com.skilldistillery.membertoken.entities.MemberToken;
 import com.skilldistillery.membertoken.entities.User;
 
 @Controller
@@ -19,6 +22,10 @@ public class UserController {
 
 	@Autowired
 	private UserDAO dao;
+	
+	@Autowired
+	private TokenDAO tokenDao;
+	
 	
 	@RequestMapping(path = { "/allUser", "allUser.do" })
 	public String indexUsers(Model model) {
@@ -71,6 +78,32 @@ public class UserController {
 		
 		return "redirect:account.do";
 	}
+	
+	
+	@RequestMapping(path = "createUserFavorite.do", method = RequestMethod.POST)
+	public String userPurchase(int uid, Model model, int tid, HttpSession session) {
+	
+		User user = dao.findUserById(uid);
+		MemberToken token = tokenDao.findTokenById(tid);
+		
+		
+		
+		token.addUser(user);
+		
+		user.addFavorite(token);
+		
+		List<User> users = token.getUsers();
+			
+	List<MemberToken> favorites = user.getFavorites();
+	System.out.println("*******************"+favorites);
+	System.out.println("******************"+users);
+		
+		session.setAttribute("favorites", favorites);
 
+//		Purchase purchases = purchaseDao.findPurchasesById(2);
+//		model.addAttribute("purchases", purchases);
+//		return "redirect:account.do";
+		return "home";
+	}
 	
 }

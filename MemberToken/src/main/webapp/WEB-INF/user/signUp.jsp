@@ -18,6 +18,8 @@
 
 			<div class="form-signin">
 			  <form action="signUp.do" method="post">
+			  	<input type="hidden" name="role" value="user"> 
+			  	<input type="hidden" name="active" value="1"> 
 			    <h1 class="h3 mb-3 fw-normal">Sign Up</h1>
 			
 			    <div class="form-floating">
@@ -31,7 +33,7 @@
 			    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign Up</button>
 			  </form>
 			  
-			  <p>Already have an account? <a href="login.do">Login here.</a></p>
+			  <p class="p-2">Already have an account? <a href="login.do">Login here</a>.</p>
 			</div>
 			
 	</main>

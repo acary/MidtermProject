@@ -169,6 +169,31 @@
 							</div>
 						</div>
 					</div>
+					<div class="row">
+				<div class="col-lg-8">
+						<div class="card">
+							<div class="card-body">
+								<h4>Your Favorites</h4>
+								<table class="table table-striped">
+									<thead class="table-dark">
+										<tr>
+											<th>Name</th>
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach var="fav" items="${favorites}">
+											<tr>
+												
+												<td>${fav}</td>
+												
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+			</div>
 			</div>
 		</div>
 	</div>

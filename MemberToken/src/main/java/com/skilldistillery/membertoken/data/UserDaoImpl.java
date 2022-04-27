@@ -76,5 +76,6 @@ public class UserDaoImpl implements UserDAO {
 		updatedUser.setProfileImageUrl(user.getProfileImageUrl());
 		return updatedUser;
 	}
+	
 
 }
