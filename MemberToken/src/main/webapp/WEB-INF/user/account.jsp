@@ -147,12 +147,11 @@
 				<div class="col-lg-8">
 						<div class="card">
 							<div class="card-body">
-								<h4>Your purchases</h4>
+								<h4>Your Purchases</h4>
 								<table class="table table-striped">
 									<thead class="table-dark">
 										<tr>
 											<th>ID</th>
-											<th>Name</th>
 											<th>Member Token</th>
 										</tr>
 									</thead>
@@ -160,8 +159,7 @@
 										<c:forEach var="pur" items="${purchases}">
 											<tr>
 												<td>${pur.id}</td>
-												<td><a href="getPurchase.do?pid=${pur.id}">${pur.dateTimePurchased}</a></td>
-												<td><a href="viewToken.do?tid=${pur.memberToken.id}">${pur.memberToken.tokenName}</a></td>
+												<td><a href="getPurchase.do?pid=${pur.id}">${pur.memberToken.tokenName}</a></td>
 											</tr>
 										</c:forEach>
 									</tbody>
