@@ -58,15 +58,15 @@ public class PurchaseDaoImpl implements PurchaseDAO {
 	@Override
 	public Purchase purchaseItem(User user, MemberToken token, LocalDateTime lt) {
 		EntityManager em = emf.createEntityManager();
-		em.getTransaction().begin();
+		
 		Purchase newPurchase = new Purchase();
-
 		newPurchase.setCustomer(user);
 		newPurchase.setMemberToken(token);
 		newPurchase.setDateTimePurchased(lt);
 
+		
 		em.persist(newPurchase);
-		em.getTransaction().commit();
+		
 
 		return newPurchase;
 	}
