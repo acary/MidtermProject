@@ -161,7 +161,7 @@
 											<tr>
 												<td>${pur.id}</td>
 												<td><a href="getPurchase.do?pid=${pur.id}">${pur.dateTimePurchased}</a></td>
-												<td><a href="viewToken.do?tid=${pur.memberToken.id}">${pur.memberToken.tokenName}</td>
+												<td><a href="viewToken.do?tid=${pur.memberToken.id}">${pur.memberToken.tokenName}</a></td>
 											</tr>
 										</c:forEach>
 									</tbody>

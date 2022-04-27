@@ -56,9 +56,9 @@ public class ContentDaoImpl implements ContentDAO {
 	*/
 	
 	@Override
-	public List<MemberToken> findAccessCodeByPurchase(Purchase pid) {
-		String jpql = "SELECT c.accessCode FROM Content c JOIN  WHERE = :cid";
-		return em.createQuery(jpql, MemberToken.class).setParameter("pid", pid).getResultList();
+	public Content findContentByToken(MemberToken token) {
+		String jpql = "SELECT c FROM Content c JOIN FETCH c.memberToken WHERE c.memberToken.id = :tid";
+		return em.createQuery(jpql, Content.class).setParameter("tid", token.getId()).getResultList().get(0);
 	}
 
 	@Override

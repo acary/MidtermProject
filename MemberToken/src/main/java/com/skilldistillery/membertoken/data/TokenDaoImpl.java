@@ -62,8 +62,4 @@ public class TokenDaoImpl implements TokenDAO {
 		return em.createQuery(jpql, MemberToken.class).setParameter("cid", cid).getResultList();
 	}
 
-
-
-	
-	
 }

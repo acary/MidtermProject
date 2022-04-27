@@ -18,6 +18,6 @@ public interface ContentDAO {
 
 	boolean deleteContent(int id);
 
-	List<MemberToken> findAccessCodeByPurchase(Purchase pid);
+	Content findContentByToken(MemberToken tid);
 
 }
