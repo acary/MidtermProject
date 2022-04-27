@@ -19,4 +19,6 @@ public interface PurchaseDAO {
 
 	Purchase purchaseItem(User user, MemberToken token, LocalDateTime lt);
 
+	Purchase updatePurchase(int pid, Purchase purchase);
+
 }

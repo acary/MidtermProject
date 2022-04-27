@@ -66,4 +66,17 @@ public class PurchaseDaoImpl implements PurchaseDAO {
 		em.persist(newPurchase);
 		return newPurchase;
 	}
+	
+	@Override
+	public Purchase updatePurchase(int pid, Purchase purchase) {
+		Purchase updatePurch = em.find(Purchase.class, pid);
+//		updatePurch.setCustomer(purchase.getCustomer());
+//		updatePurch.setDateTimePurchased(purchase.getDateTimePurchased());
+//		updatePurch.setMemberToken(purchase.getMemberToken());
+		updatePurch.setRating(purchase.getRating());
+		updatePurch.setRatingComment(purchase.getRatingComment());
+		
+		return updatePurch;
+		
+	}
 }

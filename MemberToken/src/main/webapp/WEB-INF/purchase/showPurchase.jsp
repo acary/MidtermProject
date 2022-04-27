@@ -16,16 +16,32 @@
 		<h1>Purchase Details</h1>
 
 		<div>
-			<h5>${purchase.id}</h5>
-			<h5>${purchase.ratingComment}</h5>
-			
+			<h5>ID: ${purchase.id}</h5>
+			<p>Date & time: ${purchase.dateTimePurchased}</p>
 			<br>
-			<p>${purchase.dateTimePurchased}</p>
-			
+
+			<h5>${purchase.rating}</h5>
+			<p>${purchase.ratingComment}
+			<p>
 			<hr>
-			
-			<a href=""><button type="button" class="btn btn-primary">Update</button></a>
-			<a href=""><button type="button" class="btn btn-danger">Delete</button></a>
+
+			<form action="editRatingAndComment.do" method="post" class="ratingForm">
+				<input type="hidden" name="pid" value="${purchase.id}">
+<%-- 				<input type="hidden" name="dateTimePurchased" value="${purchase.dateTimePurchased}">
+				<input type="hidden" name="customer" value="${purchase.customer}">
+				<input type="hidden" name="memberToken" value="${purchase.memberToken}"> --%>
+				<input type="number" name="rating" placeholder="Rating(1-5)"> <input type="text"
+					name="ratingComment" placeholder="Rating Review"> 
+					<c:choose>
+					<c:when test="${empty purchase.rating}">
+					<input type="submit" value="Leave Rating" >
+					</c:when>
+					<c:otherwise>
+					<input type="submit" value="Edit Rating">
+					</c:otherwise>
+					</c:choose>
+			</form>
+
 		</div>
 	</div>
 

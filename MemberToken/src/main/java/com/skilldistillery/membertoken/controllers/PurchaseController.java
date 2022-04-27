@@ -86,5 +86,12 @@ public class PurchaseController {
 //		return "redirect:account.do";
 		return "home";
 	}
+	
+	@RequestMapping(path="editRatingAndComment.do", method= RequestMethod.POST) 
+	public String editPurchaseRatingAndComment(int pid, Purchase purch, Model model) {
+		  model.addAttribute("purchase", purchaseDao.updatePurchase(pid, purch));
+		
+		return "purchase/showPurchase";
+	}
 
 }
