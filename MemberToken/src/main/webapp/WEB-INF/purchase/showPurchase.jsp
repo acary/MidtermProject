@@ -18,28 +18,62 @@
 		<div>
 			<h5>ID: ${purchase.id}</h5>
 			<p>Date & time: ${purchase.dateTimePurchased}</p>
-			<br>
+			<h5>Review: </h5>
 
-			<h5>${purchase.rating}</h5>
+
+			<c:choose>
+			<c:when test="${purchase.rating == 1 }">
+						<span class="fa fa-star checked"></span> <span
+				class="fa fa-star"></span> <span class="fa fa-star"></span>
+			<span class="fa fa-star"></span> <span class="fa fa-star"></span>
+			</c:when>
+			
+			<c:when test="${purchase.rating == 2 }">
+						<span class="fa fa-star checked"></span> <span
+				class="fa fa-star checked"></span> <span class="fa fa-star"></span>
+			<span class="fa fa-star"></span> <span class="fa fa-star"></span>
+			</c:when>
+			
+			<c:when test="${purchase.rating == 3 }">
+						<span class="fa fa-star checked"></span> <span
+				class="fa fa-star checked"></span> <span class="fa fa-star checked"></span>
+			<span class="fa fa-star"></span> <span class="fa fa-star"></span>
+			</c:when>
+			
+			<c:when test="${purchase.rating == 4 }">
+						<span class="fa fa-star checked"></span> <span
+				class="fa fa-star checked"></span> <span class="fa fa-star checked"></span>
+			<span class="fa fa-star checked"></span> <span class="fa fa-star"></span>
+			</c:when>
+			
+			<c:when test="${purchase.rating == 5 }">
+						<span class="fa fa-star checked"></span> <span
+				class="fa fa-star checked"></span> <span class="fa fa-star checked"></span>
+			<span class="fa fa-star checked"></span> <span class="fa fa-star checked"></span>
+			</c:when>
+			<c:otherwise>
+			<h5>No Rating</h5>
+			</c:otherwise>
+			
+			</c:choose>
+
 			<p>${purchase.ratingComment}
-			<p>
+			</p>
 			<hr>
 
-			<form action="editRatingAndComment.do" method="post" class="ratingForm">
-				<input type="hidden" name="pid" value="${purchase.id}">
-<%-- 				<input type="hidden" name="dateTimePurchased" value="${purchase.dateTimePurchased}">
-				<input type="hidden" name="customer" value="${purchase.customer}">
-				<input type="hidden" name="memberToken" value="${purchase.memberToken}"> --%>
-				<input type="number" name="rating" placeholder="Rating(1-5)"> <input type="text"
-					name="ratingComment" placeholder="Rating Review"> 
-					<c:choose>
+			<form action="editRatingAndComment.do" method="post"
+				class="ratingForm">
+				<input type="hidden" name="pid" value="${purchase.id}"> 
+					<input type="number" name="rating" max="5" min="1" class="form-control" placeholder="Rating(1-5)">
+				<input type="text" name="ratingComment" class="form-control" placeholder="Rating Review">
+				<c:choose>
 					<c:when test="${empty purchase.rating}">
-					<input type="submit" value="Leave Rating" >
+						<input type="submit" value="Leave Rating" class="w-100 btn btn-lg btn-primary">
 					</c:when>
 					<c:otherwise>
-					<input type="submit" value="Edit Rating">
+						<input type="submit" value="Edit Rating" class="w-100 btn btn-lg btn-primary">
 					</c:otherwise>
-					</c:choose>
+				</c:choose>
 			</form>
 
 		</div>

@@ -30,3 +30,6 @@
   border-top-right-radius: 0;
 }
 
+.checked {
+  color: orange;
+}
