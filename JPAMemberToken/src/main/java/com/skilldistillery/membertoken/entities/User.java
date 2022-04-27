@@ -181,6 +181,14 @@ public class User {
 	}
 	
 
+	public List<MemberToken> getFavorites() {
+		return favorites;
+	}
+
+	public void setFavorites(List<MemberToken> favorites) {
+		this.favorites = favorites;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + "]";

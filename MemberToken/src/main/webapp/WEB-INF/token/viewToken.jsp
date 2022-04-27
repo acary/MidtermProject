@@ -25,6 +25,14 @@
 						type="hidden" value="${user.id}" name="uid">
 					<button type="submit" class="btn btn-primary">Purchase</button>
 				</form>
+				
+				<form action="createUserFavorite.do" method="post">
+					<input type="hidden" value="${token.id}" name="tid"> <input
+						type="hidden" value="${user.id}" name="uid">
+					<button type="submit" class="btn btn-primary">Favorite</button>
+					
+					
+				</form>
 			</div>
 		</div>
 

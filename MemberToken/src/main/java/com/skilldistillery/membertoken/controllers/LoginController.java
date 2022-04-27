@@ -69,6 +69,9 @@ public class LoginController {
 
 		Content cr = contentDao.findContentById(1);
 		session.setAttribute("contentItem", cr);
+		
+		List<MemberToken> favorites = user.getFavorites();
+		session.setAttribute("favorites",favorites);
 
 		return "redirect:account.do";
 	}
