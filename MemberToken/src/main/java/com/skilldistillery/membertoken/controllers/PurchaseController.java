@@ -61,9 +61,18 @@ public class PurchaseController {
 		User user = dao.findUserById(uid);
 		MemberToken token = tokenDao.findTokenById(tid);
 		
+		MemberToken newToken = new MemberToken();
+		newToken.setTokenName(token.getTokenName());
+		newToken.setTokenImgUrl(token.getTokenImgUrl());
+		newToken.setPrice(token.getPrice());
+		newToken.setCollection(token.getCollection());
+		newToken.setActualItem(token.getActualItem());
+		newToken.setDescription(token.getDescription());
+		newToken = tokenDao.createToken(newToken);
+		
 		LocalDateTime lt = LocalDateTime.now();
 
-		Purchase newPurchase = purchaseDao.purchaseItem(user, token, lt);
+		Purchase newPurchase = purchaseDao.purchaseItem(user, newToken, lt);
 
 //		Purchase purchases = purchaseDao.findPurchasesById(2);
 //		model.addAttribute("purchases", purchases);
