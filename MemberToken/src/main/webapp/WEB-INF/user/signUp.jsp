@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MBR TKN - Login</title>
+<title>MBR TKN - Sign Up</title>
 <jsp:include page="../bootstrapHead.jsp" />
 </head>
 <body>
@@ -17,8 +17,8 @@
 	<main class="container">
 
 			<div class="form-signin">
-			  <form action="login.do" method="post">
-			    <h1 class="h3 mb-3 fw-normal">Sign In</h1>
+			  <form action="signUp.do" method="post">
+			    <h1 class="h3 mb-3 fw-normal">Sign Up</h1>
 			
 			    <div class="form-floating">
 			      <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
@@ -28,10 +28,10 @@
 			      <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
 			      <label for="floatingPassword">Password</label>
 			    </div>
-			    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign In</button>
+			    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign Up</button>
 			  </form>
 			  
-			  <p>Need an account? <a href="signUp.do">Sign up here.</a></p>
+			  <p>Already have an account? <a href="login.do">Login here.</a></p>
 			</div>
 			
 	</main>

@@ -45,7 +45,6 @@ public class LoginController {
 			mv.setViewName("redirect:home.do");
 		} else {
 			mv.addObject("userCommandObject", new User());
-
 			mv.setViewName("user/login");
 		}
 		return mv;
@@ -79,6 +78,18 @@ public class LoginController {
 		session.removeAttribute("user");
 		session.removeAttribute("businesses");
 		return "redirect:home.do";
+	}
+	
+	@RequestMapping("signUp.do")
+	public ModelAndView signUp(HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		if (session.getAttribute("user") != null) {
+			mv.setViewName("redirect:home.do");
+		} else {
+			mv.addObject("userCommandObject", new User());
+			mv.setViewName("user/signUp");
+		}
+		return mv;
 	}
 
 }
