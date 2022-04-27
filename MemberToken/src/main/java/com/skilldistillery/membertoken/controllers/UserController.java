@@ -80,30 +80,6 @@ public class UserController {
 	}
 	
 	
-	@RequestMapping(path = "createUserFavorite.do", method = RequestMethod.POST)
-	public String userPurchase(int uid, Model model, int tid, HttpSession session) {
 	
-		User user = dao.findUserById(uid);
-		MemberToken token = tokenDao.findTokenById(tid);
-		
-		
-		
-		token.addUser(user);
-		
-		user.addFavorite(token);
-		
-		List<User> users = token.getUsers();
-			
-	List<MemberToken> favorites = user.getFavorites();
-	System.out.println("*******************"+favorites);
-	System.out.println("******************"+users);
-		
-		session.setAttribute("favorites", favorites);
-
-//		Purchase purchases = purchaseDao.findPurchasesById(2);
-//		model.addAttribute("purchases", purchases);
-//		return "redirect:account.do";
-		return "home";
-	}
 	
 }

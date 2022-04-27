@@ -43,6 +43,7 @@ public class TokenDaoImpl implements TokenDAO {
 		updatedTkn.setDescription(token.getDescription());
 		updatedTkn.setCollection(token.getCollection());
 		updatedTkn.setTokenImgUrl(token.getTokenImgUrl());
+		updatedTkn.setUsers(token.getUsers());
 		return updatedTkn;
 	}
 

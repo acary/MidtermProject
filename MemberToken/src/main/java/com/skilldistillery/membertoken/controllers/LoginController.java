@@ -53,28 +53,29 @@ public class LoginController {
 
 	@RequestMapping(path = "login.do", method = RequestMethod.POST)
 	public String tryLogIn(User user, HttpSession session) {
-		User u = dao.findUserByEmailAndPass(user.getEmail(), user.getPassword());
-		if (u == null) {
+		user = dao.findUserByEmailAndPass(user.getEmail(), user.getPassword());
+		if (user == null) {
 			return "redirect:login.do";
 		}
-		session.setAttribute("user", u);
+		session.setAttribute("user", user);
 
-		List<Business> businesses = businessDao.findBusinessByUserId(u);
+		List<Business> businesses = businessDao.findBusinessByUserId(user);
 		session.setAttribute("businesses", businesses);
 
-		List<Purchase> purchases = purchaseDao.findPurchasesByUserId(u);
+		List<Purchase> purchases = purchaseDao.findPurchasesByUserId(user);
 		session.setAttribute("purchases", purchases);
-		
+
 		MemberToken mt = tokenDao.findTokenById(1);
 		session.setAttribute("token", mt);
-		
+
 		Content cr = contentDao.findContentById(1);
 		session.setAttribute("contentItem", cr);
-		
 
 		List<MemberToken> favorites = user.getFavorites();
-		session.setAttribute("favorites",favorites);
 
+		favorites.size();
+
+		session.setAttribute("favorites", favorites);
 
 		return "redirect:account.do";
 	}
@@ -85,7 +86,7 @@ public class LoginController {
 		session.removeAttribute("businesses");
 		return "redirect:home.do";
 	}
-	
+
 	@RequestMapping(path = "signUp.do", method = RequestMethod.GET)
 	public ModelAndView signUp(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
@@ -97,32 +98,32 @@ public class LoginController {
 		}
 		return mv;
 	}
-	
+
 	@RequestMapping(path = "signUp.do", method = RequestMethod.POST)
 	public String signUpPost(User user, HttpSession session, RedirectAttributes redir) {
 		User u = dao.findUserByEmailAndPass(user.getEmail(), user.getPassword());
 		if (u != null) {
 			session.setAttribute("user", u);
-			
+
 			List<Business> businesses = businessDao.findBusinessByUserId(u);
 			session.setAttribute("businesses", businesses);
 
 			List<Purchase> purchases = purchaseDao.findPurchasesByUserId(u);
 			session.setAttribute("purchases", purchases);
-			
+
 			MemberToken mt = tokenDao.findTokenById(1);
 			session.setAttribute("token", mt);
-			
+
 			Content cr = contentDao.findContentById(1);
 			session.setAttribute("contentItem", cr);
-			
+
 			return "redirect:account.do";
 		}
 
 		user = dao.addUser(user);
 		session.setAttribute("successMessage", "Successfully created new user! Please login.");
-		redir.addFlashAttribute("user",user);
-		
+		redir.addFlashAttribute("user", user);
+
 		return "redirect:account.do";
 	}
 

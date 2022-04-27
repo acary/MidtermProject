@@ -182,7 +182,7 @@
 										<c:forEach var="fav" items="${favorites}">
 											<tr>
 												
-												<td>${fav}</td>
+												<td>${fav.tokenName}</td>
 												
 											</tr>
 										</c:forEach>
