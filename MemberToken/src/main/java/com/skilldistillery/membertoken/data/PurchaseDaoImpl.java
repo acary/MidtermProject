@@ -54,7 +54,7 @@ public class PurchaseDaoImpl implements PurchaseDAO {
 		return em.createQuery(jpql, Purchase.class).setParameter("uid", uid).getResultList();
 
 	}
-
+	
 	@Override
 	public Purchase purchaseItem(User user, MemberToken token, LocalDateTime lt) {
 		

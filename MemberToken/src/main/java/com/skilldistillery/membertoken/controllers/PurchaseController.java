@@ -63,6 +63,15 @@ public class PurchaseController {
 		User user = dao.findUserById(uid);
 		MemberToken token = tokenDao.findTokenById(tid);
 		
+		List<Purchase> purchList = user.getPurchases();
+		
+		for (Purchase purchase : purchList) {
+			if (purchase.getMemberToken().getTokenName().equals(token.getTokenName())) {
+				model.addAttribute("hasPurchased", true);
+				return "purchase/showPurchase";
+			}
+		}
+		
 		MemberToken newToken = new MemberToken();
 		newToken.setTokenName(token.getTokenName());
 		newToken.setTokenImgUrl(token.getTokenImgUrl());
@@ -80,7 +89,8 @@ public class PurchaseController {
 		
 		List<Purchase> purchases = purchaseDao.findPurchasesByUserId(user);
 		session.setAttribute("purchases", purchases);
-
+		model.addAttribute("hasPurchased", null);
+		
 //		Purchase purchases = purchaseDao.findPurchasesById(2);
 //		model.addAttribute("purchases", purchases);
 //		return "redirect:account.do";
