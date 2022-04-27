@@ -57,9 +57,10 @@ public class PurchaseController {
 
 	@RequestMapping(path = "createUserPurchase.do", method = RequestMethod.POST)
 	public String userPurchase(int uid, Model model, int tid) {
-
+	
 		User user = dao.findUserById(uid);
 		MemberToken token = tokenDao.findTokenById(tid);
+		
 		LocalDateTime lt = LocalDateTime.now();
 
 		Purchase newPurchase = purchaseDao.purchaseItem(user, token, lt);
