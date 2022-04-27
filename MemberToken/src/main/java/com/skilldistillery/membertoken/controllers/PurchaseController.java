@@ -3,6 +3,8 @@ package com.skilldistillery.membertoken.controllers;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -56,7 +58,7 @@ public class PurchaseController {
 	}
 
 	@RequestMapping(path = "createUserPurchase.do", method = RequestMethod.POST)
-	public String userPurchase(int uid, Model model, int tid) {
+	public String userPurchase(int uid, Model model, int tid, HttpSession session) {
 	
 		User user = dao.findUserById(uid);
 		MemberToken token = tokenDao.findTokenById(tid);
@@ -72,7 +74,12 @@ public class PurchaseController {
 		
 		LocalDateTime lt = LocalDateTime.now();
 
-		Purchase newPurchase = purchaseDao.purchaseItem(user, newToken, lt);
+		purchaseDao.purchaseItem(user, newToken, lt);
+		
+		session.removeAttribute("purchases");
+		
+		List<Purchase> purchases = purchaseDao.findPurchasesByUserId(user);
+		session.setAttribute("purchases", purchases);
 
 //		Purchase purchases = purchaseDao.findPurchasesById(2);
 //		model.addAttribute("purchases", purchases);
