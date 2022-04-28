@@ -38,7 +38,7 @@
 						</c:when>
 						<c:otherwise>
 						
-					<!--add show purchase button-->
+					<a href="account.do"><button type="submit" class="btn btn-primary m-1">View Your Purchase</button><</a>
 						
 					</c:otherwise>
 				</c:choose>
