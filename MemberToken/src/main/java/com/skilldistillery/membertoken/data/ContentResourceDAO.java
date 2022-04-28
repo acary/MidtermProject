@@ -2,6 +2,7 @@ package com.skilldistillery.membertoken.data;
 
 import java.util.List;
 
+import com.skilldistillery.membertoken.entities.Content;
 import com.skilldistillery.membertoken.entities.ContentResource;
 
 public interface ContentResourceDAO {
@@ -13,4 +14,6 @@ public interface ContentResourceDAO {
 	ContentResource createContentResource(ContentResource contentResource);
 
 	ContentResource updateContentResource(int cid, ContentResource contentResource);
+
+	Content findContentResourceByContent(Content content);
 }

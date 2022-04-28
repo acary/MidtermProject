@@ -37,6 +37,21 @@
 				</div>
 			</div>
 		</div>
+
+		<div class="row align-items-md-stretch">
+			<div class="col-md-6">
+				<div class="h-100 p-5 text-white bg-dark rounded-3">
+					<h2>${content.contentResources}</h2>
+					<p></p>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="h-100 p-5 bg-light border rounded-3">
+					<h2>${content.title}</h2>
+					<p>${content.description}</p>
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<div class="container">
