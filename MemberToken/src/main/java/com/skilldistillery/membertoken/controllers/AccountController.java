@@ -29,7 +29,6 @@ public class AccountController {
 			return "redirect:login.do";
 		}
 		session.getAttribute("user");
-		session.removeAttribute("successMessage");
 		return "user/account";
 	}
 

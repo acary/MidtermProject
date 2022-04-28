@@ -2,6 +2,8 @@ package com.skilldistillery.membertoken.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -76,12 +78,13 @@ public class CollectionController {
 	}
 	
 	@RequestMapping(path = { "/viewCollections", "viewCollections.do" })
-	public String userViewCollections(Model model) {
+	public String userViewCollections(Model model, HttpSession session) {
 		List<Collection> colList = dao.findAllCollection();
 		Collection featured = colList.get(0);
 		colList.remove(0);
 		model.addAttribute("featured", featured);
 		model.addAttribute("collections", colList);
+		session.removeAttribute("successMessage");
 		return "collection/viewCollections";
 	}
 	
@@ -92,7 +95,6 @@ public class CollectionController {
 		model.addAttribute("collection", col);
 		
 		List<MemberToken> tokens = tokenDao.findTokensByCollectionId(cid);
-		// List<MemberToken> tokens = tokenDao.findAllTokens();
 		model.addAttribute("tokens", tokens);
 		
 		return "collection/viewCollection";

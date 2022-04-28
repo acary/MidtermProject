@@ -153,7 +153,7 @@
 						<c:forEach var="col" items="${bus.collections}">
 							<tr>
 								<td>${col.id}</td>
-								<td><a href="getCollection.do?cid=${col.id}">${col.name}</a></td>
+								<td><a href="viewCollection.do?cid=${col.id}">${col.name}</a></td>
 							</tr>
 						</c:forEach>
 					</c:forEach>
@@ -188,7 +188,7 @@
 							<tr>
 								<td>${tkn.id}</td>
 								<td><a href="viewToken.do?tid=${tkn.id}">${tkn.tokenName}</a></td>
-								<td><a href="getCollection.do?cid=${col.id}">${col.name}</a></td>
+								<td><a href="viewCollection.do?cid=${col.id}">${col.name}</a></td>
 							</tr>
 						</c:forEach>
 						</c:forEach>

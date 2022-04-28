@@ -59,7 +59,6 @@ public class PurchaseController {
 
 	@RequestMapping(path = "createUserPurchase.do", method = RequestMethod.POST)
 	public String userPurchase(int uid, Model model, int tid, HttpSession session) {
-
 		User user = dao.findUserById(uid);
 		MemberToken token = tokenDao.findTokenById(tid);
 		MemberToken newToken = new MemberToken();
@@ -70,16 +69,15 @@ public class PurchaseController {
 		newToken.setActualItem(token.getActualItem());
 		newToken.setDescription(token.getDescription());
 		newToken = tokenDao.createToken(newToken);
-
+		
 		LocalDateTime lt = LocalDateTime.now();
-
 		purchaseDao.purchaseItem(user, newToken, lt);
-
 		session.removeAttribute("purchases");
-
+		
 		List<Purchase> purchases = purchaseDao.findPurchasesByUserId(user);
 		session.setAttribute("purchases", purchases);
-		return "home";
+		session.setAttribute("successMessage", "Your purchase was successful!");
+		return "redirect:account.do";
 	}
 
 	@RequestMapping(path = "editRatingAndComment.do", method = RequestMethod.POST)
@@ -88,5 +86,4 @@ public class PurchaseController {
 
 		return "purchase/showPurchase";
 	}
-
 }

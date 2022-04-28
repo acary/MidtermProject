@@ -86,12 +86,13 @@ public class TokenController {
 	}
 
 	@RequestMapping(path = { "/viewTokens", "viewTokens.do" })
-	public String viewTokens(Model model) {
+	public String viewTokens(Model model, HttpSession session) {
 		List<MemberToken> tkns = dao.findAllTokens();
 		MemberToken featured = tkns.get(0);
 		tkns.remove(0);
 		model.addAttribute("featured", featured);
 		model.addAttribute("tokens", tkns);
+		session.removeAttribute("successMessage");
 		return "token/viewTokens";
 	}
 

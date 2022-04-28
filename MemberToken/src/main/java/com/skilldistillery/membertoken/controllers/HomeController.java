@@ -2,6 +2,8 @@ package com.skilldistillery.membertoken.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,13 +23,13 @@ public class HomeController {
 	private CollectionDAO collectionDao;
 
 	@RequestMapping(path = { "/", "home.do" })
-	public String home(Model model) {
+	public String home(Model model, HttpSession session) {
 		model.addAttribute("DEBUG", dao.findUserById(1));
 		
 		List<Collection> colList = collectionDao.findAllCollection();
 		Collection featuredCollection = colList.get(0);
 		model.addAttribute("featuredCollection", featuredCollection);
-		
+		session.removeAttribute("successMessage");
 		return "home";
 	}
 	
