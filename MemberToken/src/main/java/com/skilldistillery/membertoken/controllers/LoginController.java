@@ -117,6 +117,7 @@ public class LoginController {
 
 			Content cr = contentDao.findContentById(1);
 			session.setAttribute("contentItem", cr);
+			
 
 			return "redirect:account.do";
 		}

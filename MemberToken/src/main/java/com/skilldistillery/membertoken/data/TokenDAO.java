@@ -17,5 +17,7 @@ public interface TokenDAO {
 	MemberToken createToken(MemberToken token);
 	
 	public List<MemberToken> findTokensByCollectionId(Integer cid);
+
+	List<MemberToken> findTokensByUser(User user);
 	
 }

@@ -94,6 +94,7 @@ public class TokenController {
 		model.addAttribute("tokens", tkns);
 		session.removeAttribute("successMessage");
 		return "token/viewTokens";
+		
 	}
 
 	@RequestMapping(path = "viewToken.do")
@@ -128,4 +129,5 @@ public class TokenController {
 		session.setAttribute("hasPurchased", false);
 		return "token/viewToken";
 	}
+	
 }
