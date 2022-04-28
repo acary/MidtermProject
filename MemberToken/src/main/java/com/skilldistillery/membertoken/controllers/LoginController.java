@@ -60,7 +60,7 @@ public class LoginController {
 		session.setAttribute("user", user);
 
 		List<Business> businesses = businessDao.findBusinessByUserId(user);
-		businesses.size();
+		
 		session.setAttribute("businesses", businesses);
 
 		List<Purchase> purchases = purchaseDao.findPurchasesByUserId(user);
