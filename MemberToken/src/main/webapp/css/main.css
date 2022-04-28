@@ -33,8 +33,3 @@
 .checked {
   color: orange;
 }
-
-.nav-align { 
-	display: flex;
-	justify-content: flex-end;
-}
