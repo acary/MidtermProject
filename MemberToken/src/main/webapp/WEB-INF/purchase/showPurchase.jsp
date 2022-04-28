@@ -71,7 +71,9 @@
 						<span class="fa fa-star checked"></span> <span class="fa fa-star checked"></span>
 					</c:when>
 					<c:otherwise>
-						<h5>No rating found</h5>
+					<c:if test="${empty purchase.ratingComment}">
+						<h5>No Rating Found</h5>
+						</c:if>
 					</c:otherwise>
 				</c:choose>
 		    </div>
