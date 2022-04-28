@@ -27,7 +27,7 @@
 				</c:if>
 				
 				<c:if test="${not empty user}">
-
+				
 					<form action="createUserPurchase.do" method="post">
 						<input type="hidden" value="${token.id}" name="tid"> <input
 							type="hidden" value="${user.id}" name="uid">
