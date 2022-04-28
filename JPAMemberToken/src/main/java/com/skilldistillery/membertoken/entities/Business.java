@@ -5,6 +5,7 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,7 +28,7 @@ public class Business {
 	private String logoUrl;
 	
 	
-	@OneToMany(mappedBy="business")
+	@OneToMany(mappedBy="business", fetch= FetchType.EAGER)
 	private List<Collection> collections;
 	
 	@ManyToOne

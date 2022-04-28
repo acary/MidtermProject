@@ -25,6 +25,7 @@ public class CollectionController {
 	@RequestMapping(path = { "/allCollection", "allCollection.do" })
 	public String indexCollection(Model model) {
 		List<Collection> colList = dao.findAllCollection();
+		colList.size();
 		model.addAttribute("allCollection", colList);
 		return "collection/allCollection";
 	}

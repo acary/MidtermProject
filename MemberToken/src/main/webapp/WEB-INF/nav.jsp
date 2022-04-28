@@ -35,6 +35,8 @@
 				<c:if test="${businesses != null }">
 					<li class="nav-item"><a class="nav-link" href="allBusinesses.do">My Businesses</a>
 					</li>
+					<li class="nav-item"><a class="nav-link" href="allCollection.do">My Collections</a>
+					</li>
 				</c:if>
 				<c:if test="${empty user}">
 					<li class="nav-item"><a class="nav-link" href="login.do">Login</a>

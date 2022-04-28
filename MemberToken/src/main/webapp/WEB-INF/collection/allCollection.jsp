@@ -13,7 +13,6 @@
 	<div class="container">
 		<jsp:include page="../nav.jsp" />
 	</div>
-
 	<main class="container">
 		<h1>Collections</h1>
 
@@ -34,14 +33,28 @@
 				</tr>
 			</thead>
 			<tbody>
+<c:if test="${user.role == 'admin'}">
 				<c:forEach var="col" items="${allCollection}">
 					<tr>
 						<td>${col.id}</td>
 						<td><a href="getCollection.do?cid=${col.id}">${col.name}</a></td>
 					</tr>
 				</c:forEach>
+</c:if>
+<c:if test="${businesses != null }">
+				<c:forEach var="bus" items="${businesses}">
+				<c:forEach var="col" items="${bus.collections}">
+					<tr>
+						<td>${col.id}</td>
+						<td><a href="getCollection.do?cid=${col.id}">${col.name}</a></td>
+					</tr>
+				</c:forEach>
+				</c:forEach>
+</c:if>
 			</tbody>
 		</table>
+
+
 
 	</main>
 
