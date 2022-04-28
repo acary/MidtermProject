@@ -1,6 +1,5 @@
 package com.skilldistillery.membertoken.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -33,6 +32,7 @@ public class TokenController {
 	private UserDAO userDao;
 	@Autowired
 	private ActualItemDAO actualItemDao;
+
 
 	@RequestMapping(path = { "/all", "all.do" })
 	public String index(Model model) {
@@ -108,6 +108,7 @@ public class TokenController {
 		String contentUrl = "getContent.do?cid=" + content.getId();
 		model.addAttribute("contentUrl", contentUrl);
 		model.addAttribute("contentTitle", content.getTitle());
+
 
 		User user = (User) session.getAttribute("user");
 

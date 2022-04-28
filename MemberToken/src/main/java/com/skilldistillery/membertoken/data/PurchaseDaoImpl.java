@@ -80,10 +80,4 @@ public class PurchaseDaoImpl implements PurchaseDAO {
 		
 	}
 	
-	public int averagePurchaseRating(String name) {
-		String jpql = "SELECT AVG(pur.rating) FROM Purchase pur JOIN FETCH pur.memberTokens ON "
-				      +" pur.memberTokens.tokenName = :name";
-		int avg = em.createQuery(jpql, Integer.class).setParameter("name", name).getSingleResult();
-		return avg;
-	}
 }
