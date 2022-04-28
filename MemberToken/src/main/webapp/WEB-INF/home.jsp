@@ -15,7 +15,7 @@
 	</div>
 	
 	<div class="container">
-	    <div class="p-5 mb-1 bg-light rounded-3" style="background-image: url(${featuredCollection.imageUrl});">
+	    <div class="p-5 mb-1 bg-light rounded-3" style="background-image: url(${featuredCollection.imageUrl}); background-size: cover; background-position:center; height: auto; width: auto;">
 	      <div class="container-fluid py-5">
 	        <p class="display-1 fw-bold brandText text-wrap" style="width: 20rem;">MBR TKN</p>
 	        <p class="col-md-8 fs-4 brandText">Member tokens are unique digital assets that show support for your favorite brands, musicians, designers and creators. Browse collections to find your new favorites and upcoming launches.</p>
