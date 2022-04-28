@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.skilldistillery.membertoken.data.ContentDAO;
 import com.skilldistillery.membertoken.data.TokenDAO;
+import com.skilldistillery.membertoken.data.UserDAO;
 import com.skilldistillery.membertoken.entities.Content;
 import com.skilldistillery.membertoken.entities.MemberToken;
+import com.skilldistillery.membertoken.entities.Purchase;
+import com.skilldistillery.membertoken.entities.User;
 
 
 @Controller
@@ -24,6 +27,8 @@ public class TokenController {
 	
 	@Autowired
 	private ContentDAO contentDao; 
+	@Autowired
+	private UserDAO userDao; 
 	
 	@RequestMapping(path = { "/all", "all.do" })
 	public String index(Model model) {
@@ -90,7 +95,21 @@ public class TokenController {
 		model.addAttribute("contentUrl", contentUrl);
 		model.addAttribute("contentTitle", content.getTitle());	
 		
+		User user= (User)session.getAttribute("user");
 		
+		user = userDao.findUserById(user.getId());
+		
+		List<Purchase> purchList = user.getPurchases();
+		purchList.size();
+		for (Purchase purchase : purchList) {
+			if (purchase.getMemberToken().getTokenName().equals(tkn.getTokenName())) {
+				session.setAttribute("hasPurchased", true);
+				return "token/viewToken";
+				
+			}
+		}
+		
+		session.setAttribute("hasPurchased", false);
 		return "token/viewToken";
 	}
 }

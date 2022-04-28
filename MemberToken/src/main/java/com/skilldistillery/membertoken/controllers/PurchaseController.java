@@ -59,19 +59,9 @@ public class PurchaseController {
 
 	@RequestMapping(path = "createUserPurchase.do", method = RequestMethod.POST)
 	public String userPurchase(int uid, Model model, int tid, HttpSession session) {
-	
+
 		User user = dao.findUserById(uid);
 		MemberToken token = tokenDao.findTokenById(tid);
-		
-		List<Purchase> purchList = user.getPurchases();
-		
-		for (Purchase purchase : purchList) {
-			if (purchase.getMemberToken().getTokenName().equals(token.getTokenName())) {
-				model.addAttribute("hasPurchased", true);
-				return "purchase/showPurchase";
-			}
-		}
-		
 		MemberToken newToken = new MemberToken();
 		newToken.setTokenName(token.getTokenName());
 		newToken.setTokenImgUrl(token.getTokenImgUrl());
@@ -80,27 +70,22 @@ public class PurchaseController {
 		newToken.setActualItem(token.getActualItem());
 		newToken.setDescription(token.getDescription());
 		newToken = tokenDao.createToken(newToken);
-		
+
 		LocalDateTime lt = LocalDateTime.now();
 
 		purchaseDao.purchaseItem(user, newToken, lt);
-		
+
 		session.removeAttribute("purchases");
-		
+
 		List<Purchase> purchases = purchaseDao.findPurchasesByUserId(user);
 		session.setAttribute("purchases", purchases);
-		model.addAttribute("hasPurchased", null);
-		
-//		Purchase purchases = purchaseDao.findPurchasesById(2);
-//		model.addAttribute("purchases", purchases);
-//		return "redirect:account.do";
 		return "home";
 	}
-	
-	@RequestMapping(path="editRatingAndComment.do", method= RequestMethod.POST) 
+
+	@RequestMapping(path = "editRatingAndComment.do", method = RequestMethod.POST)
 	public String editPurchaseRatingAndComment(int pid, Purchase purch, Model model) {
-		  model.addAttribute("purchase", purchaseDao.updatePurchase(pid, purch));
-		
+		model.addAttribute("purchase", purchaseDao.updatePurchase(pid, purch));
+
 		return "purchase/showPurchase";
 	}
 
