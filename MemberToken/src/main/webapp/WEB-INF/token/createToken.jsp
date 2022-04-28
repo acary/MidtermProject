@@ -19,6 +19,8 @@
 			<form action="createToken.do" method="post">
 				<input type="hidden" name="token.id" value="${token.id}"> 
 				
+				<input type="hidden" name="original" value= "true"> 
+				
 				<label
 					for="tokenName" class="form-label">Token Name</label> <input
 					type="text" name="tokenName" class="form-control form-control-lg" /> <br>

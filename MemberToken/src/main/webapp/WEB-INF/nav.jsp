@@ -176,16 +176,21 @@
 					<tr>
 						<th>ID</th>
 						<th>Member Token</th>
+						<th>Collection</th>
 					</tr>
 				</thead>
 				<tbody>
 	
 					<c:forEach var="bus" items="${businesses}">
 						<c:forEach var="col" items="${bus.collections}">
+						<c:forEach var="tkn" items="${col.memberTokens}">
+							
 							<tr>
-								<td>${col.id}</td>
+								<td>${tkn.id}</td>
+								<td><a href="viewToken.do?tid=${tkn.id}">${tkn.tokenName}</a></td>
 								<td><a href="getCollection.do?cid=${col.id}">${col.name}</a></td>
 							</tr>
+						</c:forEach>
 						</c:forEach>
 					</c:forEach>
 	

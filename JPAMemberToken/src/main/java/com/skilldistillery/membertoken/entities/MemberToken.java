@@ -58,6 +58,9 @@ public class MemberToken {
 
 	@ManyToMany(mappedBy = "favorites")
 	private List<User> users;
+	
+	private Boolean original;
+	
 
 	public MemberToken() {
 		super();
@@ -159,6 +162,14 @@ public class MemberToken {
 		this.users = users;
 	}
 
+	public Boolean getOriginal() {
+		return original;
+	}
+	
+	public void setOriginal(Boolean original) {
+		this.original = original;
+	}
+	
 	public void addUser(User user) {
 		if (user == null)
 			users = new ArrayList<>();
@@ -180,4 +191,5 @@ public class MemberToken {
 	public String toString() {
 		return "MemberToken [tokenName=" + tokenName + "]";
 	}
+
 }

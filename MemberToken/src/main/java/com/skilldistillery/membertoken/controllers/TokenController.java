@@ -1,5 +1,6 @@
 package com.skilldistillery.membertoken.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -10,9 +11,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.skilldistillery.membertoken.data.ActualItemDAO;
 import com.skilldistillery.membertoken.data.ContentDAO;
 import com.skilldistillery.membertoken.data.TokenDAO;
 import com.skilldistillery.membertoken.data.UserDAO;
+import com.skilldistillery.membertoken.entities.ActualItem;
 import com.skilldistillery.membertoken.entities.Content;
 import com.skilldistillery.membertoken.entities.MemberToken;
 import com.skilldistillery.membertoken.entities.Purchase;
@@ -28,6 +31,8 @@ public class TokenController {
 	private ContentDAO contentDao;
 	@Autowired
 	private UserDAO userDao;
+	@Autowired
+	private ActualItemDAO actualItemDao;
 
 	@RequestMapping(path = { "/all", "all.do" })
 	public String index(Model model) {
@@ -42,8 +47,16 @@ public class TokenController {
 	}
 
 	@RequestMapping(path = "createToken.do", method = RequestMethod.POST)
-	public String createToken(MemberToken token, Model model) {
+	public String createToken(Boolean original, MemberToken token, Model model) {
+		token.setOriginal(original);
+		ActualItem item = actualItemDao.findActualItemById(1);
+		token.setActualItem(item);
 		MemberToken newToken = dao.createToken(token);
+		
+		Content content = new Content();
+		content.setMemberToken(newToken);
+		contentDao.createContent(content);
+		
 		model.addAttribute("token", newToken);
 		return "token/showToken";
 	}

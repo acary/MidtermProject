@@ -27,7 +27,7 @@ public class TokenDaoImpl implements TokenDAO {
 
 	@Override
 	public List<MemberToken> findAllTokens() {
-		String jpql = "SELECT tkn FROM MemberToken tkn";
+		String jpql = "SELECT tkn FROM MemberToken tkn WHERE tkn.original = true";
 		return em.createQuery(jpql, MemberToken.class).getResultList();
 	}
 
