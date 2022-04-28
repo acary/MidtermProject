@@ -8,8 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.skilldistillery.membertoken.data.BusinessDAO;
 import com.skilldistillery.membertoken.data.CollectionDAO;
 import com.skilldistillery.membertoken.data.TokenDAO;
+import com.skilldistillery.membertoken.entities.Business;
 import com.skilldistillery.membertoken.entities.Collection;
 import com.skilldistillery.membertoken.entities.MemberToken;
 
@@ -21,6 +23,10 @@ public class CollectionController {
 	
 	@Autowired
 	private TokenDAO tokenDao;
+	
+	@Autowired
+	private BusinessDAO busDao;
+	
 	
 	@RequestMapping(path = { "/allCollection", "allCollection.do" })
 	public String indexCollection(Model model) {
@@ -44,10 +50,12 @@ public class CollectionController {
 	}
 
 	@RequestMapping(path = "createCollection.do", method = RequestMethod.POST)
-	public String createCollection(Collection collection, Model model) {
+	public String createCollection(int bid, Collection collection, Model model) {
+		Business b = busDao.findBusinessById(bid);
+		collection.setBusiness(b);
 		Collection newCollection = dao.createCollection(collection);
 		model.addAttribute("collection", newCollection);
-		return "collection/showCollection";
+		return "user/account";
 	}
 	
 	@RequestMapping(path = "updateCollection.do", method = RequestMethod.GET)

@@ -157,6 +157,7 @@
 	
 				</tbody>
 			</table>
+			<a href="createCollection.do"><button class="btn btn-dark btn-sm" type="button">Create a Collection</button></a>
 		</div>
 	</div>
 </c:if>

@@ -3,8 +3,6 @@ package com.skilldistillery.membertoken.data;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
@@ -16,7 +14,6 @@ import com.skilldistillery.membertoken.entities.Collection;
 @Transactional
 public class CollectionDaoImpl implements CollectionDAO {
 
-	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("JPAMemberToken");
 
 	@PersistenceContext
 	private EntityManager em;
@@ -35,12 +32,10 @@ public class CollectionDaoImpl implements CollectionDAO {
 	}
 
 	@Override
-	public Collection createCollection(Collection collection) {
-		EntityManager em = emf.createEntityManager();
-		em.getTransaction().begin();
+	public Collection createCollection( Collection collection) {
 		em.persist(collection);
 		em.flush();
-		em.getTransaction().commit();
+
 		return collection;
 	}
 

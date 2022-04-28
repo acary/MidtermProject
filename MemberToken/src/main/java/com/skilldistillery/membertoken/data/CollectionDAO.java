@@ -10,7 +10,7 @@ public interface CollectionDAO {
 
 	List<Collection> findAllCollection();
 
-	Collection createCollection(Collection collection);
+	Collection createCollection( Collection collection);
 
 	Collection updateCollection(int cid, Collection collection);
 

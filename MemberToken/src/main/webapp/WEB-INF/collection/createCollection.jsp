@@ -17,7 +17,7 @@
 
 		<div>
 			<form action="createCollection.do" method="post">
-				<input type="hidden" name="business.id" value="${business.id}"> <label
+				<input type="hidden" name="bid" value="1"> <label
 					for="name" class="form-label">Collection Name</label> <input
 					type="text" name="name" class="form-control form-control-lg" /> <br>
 				<input type="submit" class="btn btn-primary m-2"
