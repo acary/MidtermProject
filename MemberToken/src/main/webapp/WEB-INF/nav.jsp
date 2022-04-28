@@ -36,16 +36,19 @@
 						</ul></li>
 				</c:if>
 				<c:if test="${businesses != null }">
-					<li class="nav-item mx-2">
+					<li class="nav-item mx-1">
 						<button class="btn btn-primary my-1" type="button"
 							data-bs-toggle="offcanvas"
 							data-bs-target="#offcanvasWithBothOptions"
 							aria-controls="offcanvasWithBothOptions">My Business</button>
 					</li>
-					<li class="nav-item mx-2">
+					<li class="nav-item mx-1">
 						<button class="btn btn-secondary my-1" type="button"
 							data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
 							aria-controls="offcanvasRight">My Collections</button>
+					</li>
+					<li class="nav-item mx-1">
+						<button class="btn btn-light my-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">My Tokens</button>
 					</li>
 				</c:if>
 				<c:if test="${empty user}">
@@ -160,4 +163,36 @@
 			<a href="createCollection.do"><button class="btn btn-dark btn-sm" type="button">Create a Collection</button></a>
 		</div>
 	</div>
+	
+	<!-- TOKENS: OFF-GRID -->
+	<div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
+	  <div class="offcanvas-header">
+	    <h5 class="offcanvas-title" id="offcanvasBottomLabel">My Tokens</h5>
+	    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+	  </div>
+	  <div class="offcanvas-body small">
+	  		<table class="table table-striped">
+				<thead class="table-dark">
+					<tr>
+						<th>ID</th>
+						<th>Member Token</th>
+					</tr>
+				</thead>
+				<tbody>
+	
+					<c:forEach var="bus" items="${businesses}">
+						<c:forEach var="col" items="${bus.collections}">
+							<tr>
+								<td>${col.id}</td>
+								<td><a href="getCollection.do?cid=${col.id}">${col.name}</a></td>
+							</tr>
+						</c:forEach>
+					</c:forEach>
+	
+				</tbody>
+			</table>
+			<a href="createToken.do"><button class="btn btn-dark btn-sm" type="button">Create a token</button></a>
+	  </div>
+	</div>
+	
 </c:if>
