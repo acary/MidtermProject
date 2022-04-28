@@ -44,7 +44,7 @@
 	        <div class="h-100 p-5 text-white bg-dark rounded-3">
 	          <h2>Collect tokens, gain access</h2>
 	          <p>Find limited tokens to collect and use to gain access to the hottest upcoming releases.</p>
-	          <a href="all.do"><button class="btn btn-outline-light" type="button">Tokens</button></a>
+	          <a href="viewTokens.do"><button class="btn btn-outline-light" type="button">Tokens</button></a>
 	        </div>
 	      </div>
 	      <div class="col-md-6">
