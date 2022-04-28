@@ -27,13 +27,12 @@
 				</c:if>
 				
 				<c:if test="${not empty user}">
-
+				
 					<form action="createUserPurchase.do" method="post">
 						<input type="hidden" value="${token.id}" name="tid"> <input
 							type="hidden" value="${user.id}" name="uid">
 						<button type="submit" class="btn btn-success m-1">Purchase</button>
 					</form>
-
 					
 					<form action="createUserFavorite.do" method="post">
 						<input type="hidden" value="${token.id}" name="tid"> <input
