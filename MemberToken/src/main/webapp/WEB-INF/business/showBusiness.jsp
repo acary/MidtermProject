@@ -10,18 +10,9 @@
 <jsp:include page="../bootstrapHead.jsp" />
 </head>
 <body>
-
 	<div class="container">
 		<jsp:include page="../nav.jsp" />
 	</div>
-
-
-
-
-
-
-
-
 	<div class="container">
 		<div class="main-body">
 			<div class="row">
@@ -29,7 +20,6 @@
 					<div class="card">
 						<div class="card-body">
 							<div class="d-flex flex-column align-items-center text-center">
-
 								<c:choose>
 									<c:when test="${not empty business.logoUrl}">
 										<img src="${business.logoUrl }" width="140">
@@ -43,8 +33,6 @@
 								</c:choose>
 								<hr class="my-4">
 								<div class="mt-3">
-
-
 									<h4>${business.name}</h4>
 									<p>${business.description}</p>
 									<c:if test="${not empty user  || business.user.id == user.id || user.role == 'admin' }">
@@ -55,7 +43,6 @@
 									</c:if>
 								</div>
 							</div>
-
 						</div>
 					</div>
 				</div>
@@ -86,7 +73,6 @@
 										</div>
 									</div>
 
-
 									<div class="row mb-3">
 										<div class="col-sm-3">
 											<h6 class="mb-0">Image Logo</h6>
@@ -96,9 +82,6 @@
 												value="${business.logoUrl}">
 										</div>
 									</div>
-
-
-
 
 									<div class="col-sm-9 text-secondary">
 										<input type="submit" class="btn btn-primary m-2"
@@ -113,12 +96,6 @@
 		</div>
 	</div>
 
-
-
-
-
 	<jsp:include page="../footer.jsp" />
 </body>
 </html>
-
-
