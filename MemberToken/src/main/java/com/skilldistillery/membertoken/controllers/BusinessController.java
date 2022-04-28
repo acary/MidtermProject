@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.skilldistillery.membertoken.data.BusinessDAO;
 import com.skilldistillery.membertoken.entities.Business;
+import com.skilldistillery.membertoken.entities.User;
 
 @Controller
 public class BusinessController {
@@ -41,10 +42,14 @@ public class BusinessController {
 	}
 
 	@RequestMapping(path = "createBusiness.do", method = RequestMethod.POST)
-	public String createBusiness(Business business, Model model) {
+	public String createBusiness(Business business, Model model, HttpSession session) {
 		Business newBusiness = dao.createBusiness(business);
 		model.addAttribute("business", newBusiness);
+		session.removeAttribute("businesses");
+		User u = (User)session.getAttribute("user");
+		session.setAttribute("businesses", dao.findBusinessByUserId(u));
 		return "business/showBusiness";
+		
 	}
 	
 	@RequestMapping(path = "updateBusiness.do", method = RequestMethod.GET)
