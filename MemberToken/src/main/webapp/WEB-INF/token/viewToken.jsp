@@ -15,7 +15,7 @@
 
 	<div class="container">
 		<div class="p-5 mb-4 bg-light rounded-3"
-			style="background-image: url(${token.tokenImgUrl});">
+			style="background-image: url(${token.tokenImgUrl}); background-size: cover; background-position:center; height: auto; width: auto;">
 			<div class="container-fluid py-5">
 				<p class="display-1 fw-bold brandText text-wrap"
 					style="width: 30rem;">${token.tokenName}</p>
@@ -65,7 +65,7 @@
 		<!-- TOKEN -->
 		<div
 			class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light"
-			style="background-image: url(${token.tokenImgUrl});">
+			style="background-image: url(${token.tokenImgUrl}); background-size: cover; background-position:center; height: auto; width: auto;">
 			<div class="col-md-5 p-lg-5 mx-auto my-5">
 				<p class="display-3 fw-normal brandText text-wrap"
 					style="width: 20rem;">${token.tokenName}</p>
