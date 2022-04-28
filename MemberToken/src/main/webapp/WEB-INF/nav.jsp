@@ -124,6 +124,7 @@
 					</c:forEach>
 				</tbody>
 			</table>
+			<a href="createBusiness.do"><button class="btn btn-dark btn-sm" type="button">Create a business</button></a>
 		</div>
 	</div>
 	
