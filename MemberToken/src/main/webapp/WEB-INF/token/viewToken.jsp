@@ -21,32 +21,35 @@
 					style="width: 30rem;">${token.tokenName}</p>
 				<p class="col-md-8 fs-4 brandText">${token.description}</p>
 				<c:if test="${empty user}">
-				<h2>Log in or sign up to purchase!</h2>
-					<a href="login.do"><button type="button" class="btn btn-outline-primary">Login </button></a>
-					<a href="signUp.do"><button type="button" class="btn btn-outline-primary">Sign Up</button></a>
+					<h2>Log in or sign up to purchase!</h2>
+					<a href="login.do"><button type="button"
+							class="btn btn-outline-primary">Login</button></a>
+					<a href="signUp.do"><button type="button"
+							class="btn btn-outline-primary">Sign Up</button></a>
 				</c:if>
-				
+
 				<c:if test="${not empty user}">
-				<c:choose>
-				<c:when test="${hasPurchased != 'true' }">
-				
-					<form action="createUserPurchase.do" method="post">
-						<input type="hidden" value="${token.id}" name="tid"> <input
-							type="hidden" value="${user.id}" name="uid">
-						<button type="submit" class="btn btn-success m-1">Purchase</button>
-					</form>
+					<c:choose>
+						<c:when test="${hasPurchased != 'true' }">
+
+							<form action="createUserPurchase.do" method="post">
+								<input type="hidden" value="${token.id}" name="tid"> <input
+									type="hidden" value="${user.id}" name="uid">
+								<button type="submit" class="btn btn-success m-1">Purchase</button>
+							</form>
 						</c:when>
 						<c:otherwise>
-						
-					<a href="account.do"><button type="submit" class="btn btn-primary m-1">View Your Purchase</button></a>
-						
-					</c:otherwise>
-				</c:choose>
+
+							<a href="account.do"><button type="submit"
+									class="btn btn-primary m-1">View Your Purchase</button></a>
+
+						</c:otherwise>
+					</c:choose>
 					<form action="createUserFavorite.do" method="post">
 						<input type="hidden" value="${token.id}" name="tid"> <input
 							type="hidden" value="${user.id}" name="uid">
 						<button type="submit" class="btn btn-secondary m-1">Favorite</button>
-						
+
 					</form>
 				</c:if>
 			</div>
@@ -79,7 +82,8 @@
 				<p class="lead fw-normal brandText text-wrap">${token.description}</p>
 			</div>
 			<div class="product-device shadow-sm d-none d-md-block"></div>
-			<div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+			<div
+				class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
 		</div>
 
 	</div>
