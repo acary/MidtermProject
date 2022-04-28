@@ -68,7 +68,9 @@ public class PurchaseController {
 		newToken.setCollection(token.getCollection());
 		newToken.setActualItem(token.getActualItem());
 		newToken.setDescription(token.getDescription());
+		token.setTotalSupply(token.getTotalSupply()-1);
 		newToken = tokenDao.createToken(newToken);
+		
 		
 		LocalDateTime lt = LocalDateTime.now();
 		purchaseDao.purchaseItem(user, newToken, lt);
