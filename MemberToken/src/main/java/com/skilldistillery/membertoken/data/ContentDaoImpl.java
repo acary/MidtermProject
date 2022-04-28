@@ -61,6 +61,8 @@ public class ContentDaoImpl implements ContentDAO {
 		return em.createQuery(jpql, Content.class).setParameter("tid", token.getId()).getResultList().get(0);
 	}
 
+	
+	
 	@Override
 	public Content updateContent(int cid, Content content) {
 		Content updatedContent = em.find(Content.class, cid);

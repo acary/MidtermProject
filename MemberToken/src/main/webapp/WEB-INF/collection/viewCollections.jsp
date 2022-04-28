@@ -28,7 +28,7 @@
 	
 		<!-- COLLECTIONS -->
 		<c:forEach var="col" items="${collections}">
-			<div class="p-5 m-1 bg-light rounded-3" style="background-image: url(${col.imageUrl});">
+			<div class="p-5 m-1 bg-light rounded-3" style="background-image: url(${col.imageUrl}); background-size: cover; background-position:center; height: auto; width: auto;">
 		      <div class="container-fluid py-5">
 		        <p class="display-3 fw-bold brandText text-wrap" style="width: 20rem;">${col.name}</p>
 		        <p class="display-6 fw-bold brandText text-wrap" style="width: 20rem;">${col.business.name}</p>
