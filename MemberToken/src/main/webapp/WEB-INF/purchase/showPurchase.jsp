@@ -13,10 +13,11 @@
 		<jsp:include page="../nav.jsp" />
 	</div>
 	<div class="container">
-		<h1 class="mt-1">Purchase Details</h1>
+		<p class="display-6">${purchase.memberToken.tokenName}</p>
 
 	  	<div class="row">
 		    <div class="col">
+		    	<h5>Purchase Details</h5>
 		    	<span class="badge rounded-pill bg-primary">ID ${purchase.id}</span>
 				<p class="font-monospace my-2">${purchase.dateTimePurchased}</p>
 		    </div>
@@ -44,12 +45,12 @@
 				<p class="display-6 fst-italic">${purchase.ratingComment}</p>
 				<c:choose>
 					<c:when test="${purchase.rating == 1 }">
-								<span class="fa fa-star checked"></span> <span
+						<span class="fa fa-star checked"></span> <span
 						class="fa fa-star"></span> <span class="fa fa-star"></span>
 					<span class="fa fa-star"></span> <span class="fa fa-star"></span>
 					</c:when>
 					<c:when test="${purchase.rating == 2 }">
-								<span class="fa fa-star checked"></span> <span
+						<span class="fa fa-star checked"></span> <span
 						class="fa fa-star checked"></span> <span class="fa fa-star"></span>
 					<span class="fa fa-star"></span> <span class="fa fa-star"></span>
 					</c:when>
