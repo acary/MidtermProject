@@ -1,6 +1,5 @@
 package com.skilldistillery.membertoken.controllers;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -12,9 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.skilldistillery.membertoken.data.TokenDAO;
 import com.skilldistillery.membertoken.data.UserDAO;
-import com.skilldistillery.membertoken.entities.MemberToken;
 import com.skilldistillery.membertoken.entities.User;
 
 @Controller
@@ -22,11 +19,7 @@ public class UserController {
 
 	@Autowired
 	private UserDAO dao;
-	
-	@Autowired
-	private TokenDAO tokenDao;
-	
-	
+
 	@RequestMapping(path = { "/allUser", "allUser.do" })
 	public String indexUsers(Model model) {
 		List<User> users = dao.findAllUsers();

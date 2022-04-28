@@ -10,7 +10,6 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
-import com.skilldistillery.membertoken.entities.Business;
 import com.skilldistillery.membertoken.entities.MemberToken;
 import com.skilldistillery.membertoken.entities.User;
 
@@ -67,7 +66,7 @@ public class TokenDaoImpl implements TokenDAO {
 	@Override
 	public List<MemberToken> findTokensByUser(User user){
 		List<MemberToken> tokens = null;
-		List<Business> businesses =businessDao.findBusinessByUserId(user);
+		businessDao.findBusinessByUserId(user);
 		return tokens;
 	}
 }

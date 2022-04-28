@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.skilldistillery.membertoken.entities.Content;
 import com.skilldistillery.membertoken.entities.MemberToken;
-import com.skilldistillery.membertoken.entities.Purchase;
 
 public interface ContentDAO {
 

@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import com.skilldistillery.membertoken.entities.Business;
 import com.skilldistillery.membertoken.entities.Content;
 import com.skilldistillery.membertoken.entities.MemberToken;
-import com.skilldistillery.membertoken.entities.Purchase;
 
 @Service
 @Transactional
