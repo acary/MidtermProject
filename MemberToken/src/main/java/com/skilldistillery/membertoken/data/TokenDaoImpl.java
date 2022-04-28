@@ -10,8 +10,8 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.membertoken.entities.Business;
 import com.skilldistillery.membertoken.entities.MemberToken;
-import com.skilldistillery.membertoken.entities.Purchase;
 import com.skilldistillery.membertoken.entities.User;
 
 @Service
@@ -20,6 +20,8 @@ public class TokenDaoImpl implements TokenDAO {
 
 	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("JPAMemberToken");
 
+	BusinessDAO businessDao;
+	
 	@PersistenceContext
 	private EntityManager em;
 
@@ -62,5 +64,24 @@ public class TokenDaoImpl implements TokenDAO {
 		String jpql = "SELECT tkn FROM MemberToken tkn JOIN FETCH tkn.collection WHERE tkn.collection.id = :cid";
 		return em.createQuery(jpql, MemberToken.class).setParameter("cid", cid).getResultList();
 	}
-	
+	@Override
+	public List<MemberToken> findTokensByUser(User user){
+		List<MemberToken> tokens = null;
+		
+		List<Business> businesses =businessDao.findBusinessByUserId(user);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		return tokens;
+		
+		
+		
+		
+	}
 }

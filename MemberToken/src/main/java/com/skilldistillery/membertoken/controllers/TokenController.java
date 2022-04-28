@@ -80,6 +80,7 @@ public class TokenController {
 		model.addAttribute("featured", featured);
 		model.addAttribute("tokens", tkns);
 		return "token/viewTokens";
+		
 	}
 
 	@RequestMapping(path = "viewToken.do")
@@ -114,4 +115,5 @@ public class TokenController {
 		session.setAttribute("hasPurchased", false);
 		return "token/viewToken";
 	}
+	
 }
