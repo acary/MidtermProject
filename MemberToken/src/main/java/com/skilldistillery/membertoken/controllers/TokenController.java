@@ -2,6 +2,8 @@ package com.skilldistillery.membertoken.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.skilldistillery.membertoken.data.ContentDAO;
 import com.skilldistillery.membertoken.data.TokenDAO;
-import com.skilldistillery.membertoken.entities.Collection;
 import com.skilldistillery.membertoken.entities.Content;
 import com.skilldistillery.membertoken.entities.MemberToken;
+
 
 @Controller
 public class TokenController {
@@ -77,7 +79,7 @@ public class TokenController {
 	}
 	
 	@RequestMapping(path = "viewToken.do")
-	public String viewToken(Integer tid, Model model) {
+	public String viewToken(Integer tid, Model model, HttpSession session) {
 		tid = Integer.valueOf(tid);	
 		MemberToken tkn = dao.findTokenById(tid);
 		model.addAttribute("token", tkn);	
@@ -87,6 +89,8 @@ public class TokenController {
 		String contentUrl = "getContent.do?cid=" + content.getId();
 		model.addAttribute("contentUrl", contentUrl);
 		model.addAttribute("contentTitle", content.getTitle());	
+		
+		
 		return "token/viewToken";
 	}
 }
