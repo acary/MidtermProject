@@ -31,10 +31,11 @@
 											alt="Admin" class="rounded-circle " width="160" height="160">
 									</c:otherwise>
 								</c:choose>
-								<hr class="my-4">
-								<div class="mt-3">
-									<h4>${user.firstName}${user.lastName}</h4>
-									<p class="text-secondary mb-1">${user.username}</p>
+								<hr>
+								<div class="mt-1">
+									<h4>${user.firstName}&nbsp;${user.lastName}</h4>
+									<p class="text-secondary mb-1">@${user.username}</p>
+									<p class="text-muted">${user.aboutMe}</p>
 								</div>
 							</div>
 						</div>
@@ -102,45 +103,33 @@
 					</div>
 				</div>
 			</div>
-			<div class="row">
-				<c:if test="${businesses == null }">
-					<div class="col-lg-8 my-2">
-						<p>You have no businesses listed. <a href="createBusiness.do">Create one here.</a></p>
-					</div>
-				</c:if>
-				<c:if test="${businesses != null }">
-					<div class="col-lg-8 my-2">
-						<div class="card">
-							<div class="card-body">
-								<h4>Your Businesses</h4>
-								<table class="table table-striped">
-									<thead class="table-dark">
-										<tr>
-											<th>ID</th>
-											<th>Name</th>
-											<th>Description</th>
-										</tr>
-									</thead>
-									<tbody>
-										<c:forEach var="bus" items="${businesses}">
-											<tr>
-												<td>${bus.id}</td>
-												<td><a href="getBusiness.do?bid=${bus.id}">${bus.name}</a></td>
-												<td>${bus.description}</td>
-											</tr>
-										</c:forEach>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-				</c:if>
-			</div>
-			<div class="row">
-				<div class="col-lg-8 my-2">
+
+			<div class="row my-2">
+				<div class="col-lg-4">
 					<div class="card">
 						<div class="card-body">
-							<h4>Your Purchases</h4>
+							<h4>My Favorites</h4>
+							<table class="table table-striped">
+								<thead class="table-dark">
+									<tr>
+										<th>Member Token</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach var="fav" items="${favorites}">
+										<tr>
+											<td><a href="viewToken.do?tid=${fav.id}">${fav.tokenName}</a></td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-8">
+					<div class="card">
+						<div class="card-body">
+							<h4>My Purchases</h4>
 							<table class="table table-striped">
 								<thead class="table-dark">
 									<tr>
@@ -161,29 +150,20 @@
 					</div>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-lg-8 my-2">
-					<div class="card">
-						<div class="card-body">
-							<h4>Your Favorites</h4>
-							<table class="table table-striped">
-								<thead class="table-dark">
-									<tr>
-										<th>Member Token</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach var="fav" items="${favorites}">
-										<tr>
-											<td>${fav.tokenName}</td>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
+			
+			<div class="row my-2">
+				<c:if test="${businesses == null }">
+					<div class="col">
+						<div class="card">
+							<div class="card-body">
+								<h4>No Business Found</h4>
+								<p>Would you like to <a href="createBusiness.do">create a business</a>?</p>
+							</div>
 						</div>
 					</div>
-				</div>
+				</c:if>
 			</div>
+			
 		</div>
 	</div>
 

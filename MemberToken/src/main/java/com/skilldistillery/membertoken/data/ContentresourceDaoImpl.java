@@ -38,8 +38,8 @@ public class ContentresourceDaoImpl implements ContentResourceDAO {
 
 	@Override
 	public Content findContentResourceByContent(Content content) {
-		String jpql = "SELECT c FROM ContentResource c JOIN FETCH c.contentItem WHERE c.contentItem.id = :tid";
-		return em.createQuery(jpql, Content.class).setParameter("tid", content.getId()).getResultList().get(0);
+		String jpql = "SELECT c FROM ContentResource c JOIN FETCH c.contentItem WHERE c.contentItem.id = :cid";
+		return em.createQuery(jpql, Content.class).setParameter("cid", content.getId()).getResultList().get(0);
 	}
 	
 	@Override

@@ -18,7 +18,7 @@
 			style="background-image: url(${token.tokenImgUrl});">
 			<div class="container-fluid py-5">
 				<p class="display-1 fw-bold brandText text-wrap"
-					style="width: 20rem;">${token.tokenName}</p>
+					style="width: 30rem;">${token.tokenName}</p>
 				<p class="col-md-8 fs-4 brandText">${token.description}</p>
 				<c:if test="${empty user}">
 				<h2>Log in or sign up to purchase!</h2>
@@ -48,14 +48,14 @@
 		<div class="row align-items-md-stretch">
 			<div class="col-md-6">
 				<div class="h-100 p-5 text-white bg-dark rounded-3">
-					<h2>${token.tokenName}</h2>
-					<p>${token.description}</p>
+					<h2>Available</h2>
+					<p class="display-5">${token.totalSupply}</p>
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="h-100 p-5 bg-light border rounded-3">
-					<h2>${token.tokenName}</h2>
-					<p>${token.description}</p>
+					<h2>Price</h2>
+					<p class="display-5">$${token.price}</p>
 				</div>
 			</div>
 		</div>
