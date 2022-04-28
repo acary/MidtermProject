@@ -61,27 +61,13 @@ public class TokenDaoImpl implements TokenDAO {
 	
 	@Override
 	public List<MemberToken> findTokensByCollectionId(Integer cid) {
-		String jpql = "SELECT tkn FROM MemberToken tkn JOIN FETCH tkn.collection WHERE tkn.collection.id = :cid";
+		String jpql = "SELECT tkn FROM MemberToken tkn JOIN FETCH tkn.collection WHERE tkn.original = true AND tkn.collection.id = :cid";
 		return em.createQuery(jpql, MemberToken.class).setParameter("cid", cid).getResultList();
 	}
 	@Override
 	public List<MemberToken> findTokensByUser(User user){
 		List<MemberToken> tokens = null;
-		
 		List<Business> businesses =businessDao.findBusinessByUserId(user);
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		return tokens;
-		
-		
-		
-		
 	}
 }
