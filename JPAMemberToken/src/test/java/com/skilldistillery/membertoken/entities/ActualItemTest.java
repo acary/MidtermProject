@@ -45,8 +45,6 @@ class ActualItemTest {
 		assertNotNull(actualItem);
 		assertEquals(1, actualItem.getId());
 		assertEquals("Air Jordan 1 Stash", actualItem.getName());
-		assertEquals(null, actualItem.getDescription());
-		assertEquals(null, actualItem.getImageUrl());
 
 		/*
 		 * SELECT * FROM actual_item WHERE id = 1;
