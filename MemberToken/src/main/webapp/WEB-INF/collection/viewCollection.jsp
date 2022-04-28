@@ -15,7 +15,7 @@
 	
 	<div class="container">
 	  <!-- COLLECTION -->
-	  <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light" style="background-image: url(${collection.imageUrl});">
+	  <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light" style="background-image: url(${collection.imageUrl}); background-size: cover; background-position:center; height: auto; width: auto;">
 	    <div class="col-md-5 p-lg-5 mx-auto my-5">
 	      <p class="display-3 fw-normal brandText text-wrap" style="width: 20rem;">${collection.name}</p>
 	      <p class="lead fw-normal brandText text-wrap">${collection.description}</p>
@@ -28,7 +28,7 @@
 	  	<!-- TOKENS -->
 	  	<a id="collectionTokens"></a>
 		<c:forEach var="token" items="${tokens}">
-			<div class="p-5 m-1 bg-light rounded-3" style="background-image: url(${token.tokenImgUrl});">
+			<div class="p-5 m-1 bg-light rounded-3" style="background-image: url(${token.tokenImgUrl}); background-size: cover; background-position:center; height: auto; width: auto;">
 		      <div class="container-fluid py-5">
 		        <p class="display-6 fw-bold brandText text-wrap" style="width: 20rem;">${token.tokenName}</p>
 		        <p class="col-md-8 fs-4 brandText">${token.description}</p>
