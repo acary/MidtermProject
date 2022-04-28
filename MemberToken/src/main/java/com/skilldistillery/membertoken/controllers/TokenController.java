@@ -18,25 +18,24 @@ import com.skilldistillery.membertoken.entities.MemberToken;
 import com.skilldistillery.membertoken.entities.Purchase;
 import com.skilldistillery.membertoken.entities.User;
 
-
 @Controller
 public class TokenController {
 
 	@Autowired
-	private TokenDAO dao; 
-	
+	private TokenDAO dao;
+
 	@Autowired
-	private ContentDAO contentDao; 
+	private ContentDAO contentDao;
 	@Autowired
-	private UserDAO userDao; 
-	
+	private UserDAO userDao;
+
 	@RequestMapping(path = { "/all", "all.do" })
 	public String index(Model model) {
 		List<MemberToken> tkns = dao.findAllTokens();
 		model.addAttribute("allTokens", tkns);
 		return "token/allTokens";
 	}
-	
+
 	@RequestMapping(path = "createToken.do", method = RequestMethod.GET)
 	public String startCreateToken(Model model) {
 		return "token/createToken";
@@ -56,7 +55,7 @@ public class TokenController {
 		model.addAttribute("token", tkn);
 		return "token/showToken";
 	}
-	
+
 	@RequestMapping(path = "updateToken.do", method = RequestMethod.GET)
 	public String startUpdateToken(Integer tid, Model model) {
 		MemberToken token = dao.findTokenById(tid);
@@ -72,43 +71,46 @@ public class TokenController {
 		model.addAttribute("token", token);
 		return "token/updateToken";
 	}
-	
+
 	@RequestMapping(path = { "/viewTokens", "viewTokens.do" })
 	public String viewTokens(Model model) {
-		List<MemberToken> tkns = dao.findAllTokens();	
+		List<MemberToken> tkns = dao.findAllTokens();
 		MemberToken featured = tkns.get(0);
 		tkns.remove(0);
 		model.addAttribute("featured", featured);
 		model.addAttribute("tokens", tkns);
 		return "token/viewTokens";
 	}
-	
+
 	@RequestMapping(path = "viewToken.do")
 	public String viewToken(Integer tid, Model model, HttpSession session) {
-		tid = Integer.valueOf(tid);	
+		tid = Integer.valueOf(tid);
 		MemberToken tkn = dao.findTokenById(tid);
-		model.addAttribute("token", tkn);	
+		model.addAttribute("token", tkn);
 		Content content = contentDao.findContentByToken(tkn);
 		model.addAttribute("contentId", content.getId());
 		model.addAttribute("accessCode", content.getAccessCode());
 		String contentUrl = "getContent.do?cid=" + content.getId();
 		model.addAttribute("contentUrl", contentUrl);
-		model.addAttribute("contentTitle", content.getTitle());	
-		
-		User user= (User)session.getAttribute("user");
-		
-		user = userDao.findUserById(user.getId());
-		
-		List<Purchase> purchList = user.getPurchases();
-		purchList.size();
-		for (Purchase purchase : purchList) {
-			if (purchase.getMemberToken().getTokenName().equals(tkn.getTokenName())) {
-				session.setAttribute("hasPurchased", true);
-				return "token/viewToken";
-				
+		model.addAttribute("contentTitle", content.getTitle());
+
+		User user = (User) session.getAttribute("user");
+
+		if (user != null) {
+			user = userDao.findUserById(user.getId());
+
+			List<Purchase> purchList = user.getPurchases();
+			purchList.size();
+			for (Purchase purchase : purchList) {
+				if (purchase.getMemberToken().getTokenName().equals(tkn.getTokenName())) {
+					session.setAttribute("hasPurchased", true);
+					return "token/viewToken";
+
+				}
 			}
+
 		}
-		
+
 		session.setAttribute("hasPurchased", false);
 		return "token/viewToken";
 	}
