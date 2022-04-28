@@ -27,7 +27,7 @@
 				</c:if>
 				
 				<c:if test="${not empty user}">
-				
+				<c:choose>
 				<c:when test="${hasPurchased != 'true' }">
 				
 					<form action="createUserPurchase.do" method="post">
@@ -41,6 +41,7 @@
 					<!--add show purchase button-->
 						
 					</c:otherwise>
+				</c:choose>
 					<form action="createUserFavorite.do" method="post">
 						<input type="hidden" value="${token.id}" name="tid"> <input
 							type="hidden" value="${user.id}" name="uid">
