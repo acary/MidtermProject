@@ -184,12 +184,13 @@
 					<c:forEach var="bus" items="${businesses}">
 						<c:forEach var="col" items="${bus.collections}">
 						<c:forEach var="tkn" items="${col.memberTokens}">
-							
-							<tr>
-								<td>${tkn.id}</td>
-								<td><a href="viewToken.do?tid=${tkn.id}">${tkn.tokenName}</a></td>
-								<td><a href="viewCollection.do?cid=${col.id}">${col.name}</a></td>
-							</tr>
+							<c:if test="${tkn.original == true}">
+								<tr>
+									<td>${tkn.id}</td>
+									<td><a href="viewToken.do?tid=${tkn.id}">${tkn.tokenName}</a></td>
+									<td><a href="viewCollection.do?cid=${col.id}">${col.name}</a></td>
+								</tr>
+							</c:if>
 						</c:forEach>
 						</c:forEach>
 					</c:forEach>
